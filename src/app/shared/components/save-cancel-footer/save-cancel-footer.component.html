@@ -1,0 +1,12 @@
+<div class="non-responsive-row p-10 text-left m-t-10 float-right">
+  <app-cancel-btn
+    (click)="cancel($event)"
+    [loading]="cancelIsLoading"
+    [disabled]="cancelIsDisabled"
+  ></app-cancel-btn>
+  <app-save-btn
+    (click)="save($event)"
+    [loading]="saveIsLoading"
+    [disabled]="saveIsDisabled"
+  ></app-save-btn>
+</div>

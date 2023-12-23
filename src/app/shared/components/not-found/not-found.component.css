@@ -1,0 +1,12 @@
+.not-found {
+  font-size: 50px;
+  color: var(--primary-color-300);
+  font-family: Arial, SansSerif, cursive;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--primary-color-900);
+}
+
+.not-found-container {
+  user-select: none;
+}

@@ -1,0 +1,15 @@
+<p-button
+  [outlined]="true"
+  styleClass="m-r-10 text-center min-w-100"
+  severity="warning"
+  (onClick)="onButtonClick($event)"
+  [disabled]="loading || disabled"
+>
+  <div class="text-center m-l-auto m-r-auto">
+    <i
+      class="pi pi-spin pi-spinner"
+      *ngIf="loading"
+    ></i>
+    <span *ngIf="!loading"> {{ 'CANCEL' | translate }} </span>
+  </div>
+</p-button>

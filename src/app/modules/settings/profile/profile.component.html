@@ -1,0 +1,199 @@
+<p-tabView styleClass="tabview-custom">
+  <p-toast></p-toast>
+  <p-tabPanel [headerStyle]="{'width': '100%'}">
+    <ng-template pTemplate="header" class="text-center">
+      <i class="pi pi-list"></i>
+      <span class="m-l-10">{{ 'GENERAL_INFO' | translate }}</span>
+    </ng-template>
+    <form [formGroup]="profileDetailsForm">
+      <div class="row">
+        <div class="flex flex-column gap-2 col-6 d-flex f-d-column text-left p-10">
+          <label for="firstName">{{ 'FIRSTNAME' | translate }} <span class="required"> :</span></label>
+          <input
+            id="firstName"
+            type="text"
+            pInputText
+            formControlName="firstName"
+          />
+          <small
+            *ngIf="
+                profileControls['firstName'].errors &&
+                (profileControls['firstName'].dirty || profileControls['firstName'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="profileControls['firstName'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+        <div class="flex flex-column gap-2 col-6 d-flex f-d-column text-left p-10">
+          <label for="lastName">{{ 'LASTNAME' | translate }} <span class="required"> :</span></label>
+          <input
+            id="lastName"
+            type="text"
+            pInputText
+            formControlName="lastName"
+          />
+          <small
+            *ngIf="
+                profileControls['lastName'].errors &&
+                (profileControls['lastName'].dirty || profileControls['lastName'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="profileControls['lastName'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex flex-column gap-2 col-6 d-flex f-d-column text-left p-10">
+          <label for="email">{{ 'EMAIL' | translate }} <span class="required"> :</span></label>
+          <input
+            id="email"
+            type="text"
+            pInputText
+            formControlName="email"
+            [readonly]="true"
+          />
+        </div>
+        <div class="flex flex-column gap-2 col-6 d-flex f-d-column text-left p-10">
+          <label for="phoneNumber">{{ 'PHONE_NUMBER' | translate }} <span class="required"> :</span></label>
+          <input
+            id="phoneNumber"
+            type="text"
+            pInputText
+            formControlName="phoneNumber"
+          />
+          <small
+            *ngIf="
+                profileControls['phoneNumber'].errors &&
+                (profileControls['phoneNumber'].dirty || profileControls['phoneNumber'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="profileControls['phoneNumber'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex flex-column gap-2 col-6 d-flex f-d-column text-left p-10">
+          <label for="birthdate">{{ 'BIRTH_DATE' | translate }} <span class="required"> :</span></label>
+          <p-calendar
+            id="birthdate"
+            formControlName="birthDate"
+            [showIcon]="true"
+            styleClass="col-12"
+          ></p-calendar>
+          <small
+            *ngIf="
+                profileControls['birthDate'].errors &&
+                (profileControls['birthDate'].dirty || profileControls['birthDate'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="profileControls['birthDate'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+        <div class="flex flex-column gap-2 col-6 d-flex f-d-column text-left p-10">
+          <label for="role">{{ 'ROLE' | translate }} <span class="required"> :</span></label>
+          <input
+            id="role"
+            type="text"
+            pInputText
+            formControlName="role"
+            [readonly]="true"
+          />
+        </div>
+      </div>
+      <app-save-cancel-footer
+        *ngIf="showUpdateDetailsFooter"
+        [saveIsLoading]="loading"
+        [saveIsDisabled]="profileDetailsForm.invalid"
+        (onCancel)="cancelUpdateDetails()"
+        (onSave)="updateProfileDetails($event)"
+      >
+      </app-save-cancel-footer>
+    </form>
+  </p-tabPanel>
+  <p-tabPanel [headerStyle]="{'width': '100%'}">
+    <ng-template pTemplate="header">
+      <i class="pi pi-verified"></i>
+      <span class="m-l-10">{{ 'SECURITY' | translate }}</span>
+    </ng-template>
+    <form [formGroup]="passwordForm">
+      <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <label for="oldPassword">{{ 'OLD_PASSWORD' | translate }} <span class="required"> :</span></label>
+        <p-password
+          [inputStyle]="{ 'width': '100%' }"
+          [style]="{ 'width': '100%' }"
+          [toggleMask]="true"
+          [feedback]="false"
+          id="oldPassword"
+          formControlName="oldPassword"
+        ></p-password>
+        <small
+          *ngIf="
+                passwordControls['oldPassword'].errors &&
+                (passwordControls['oldPassword'].dirty || passwordControls['oldPassword'].touched)
+              "
+          class="col-12 p-t-4 form-text text-danger"
+        >
+          <div *ngIf="passwordControls['oldPassword'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+        </small>
+      </div>
+      <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <label for="newPassword">{{ 'NEW_PASSWORD' | translate }} <span class="required"> :</span></label>
+        <p-password
+          [inputStyle]="{ 'width': '100%' }"
+          [style]="{ 'width': '100%' }"
+          [toggleMask]="true"
+          [feedback]="true"
+          [mediumLabel]="'MEDIUM' | translate"
+          [strongLabel]="'STRONG' | translate"
+          [weakLabel]="'WEAK' | translate"
+          [promptLabel]="'ENTER_PASSWORD' | translate"
+          id="newPassword"
+          formControlName="newPassword"
+        ></p-password>
+        <small
+          *ngIf="
+                passwordControls['newPassword'].errors &&
+                (passwordControls['newPassword'].dirty || passwordControls['newPassword'].touched)
+              "
+          class="col-12 p-t-4 form-text text-danger"
+        >
+          <div *ngIf="passwordControls['newPassword'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+        </small>
+      </div>
+      <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <label for="passwordConfirmation">{{ 'PASSWORD_CONFIRMATION' | translate }} <span class="required"> :</span></label>
+        <p-password
+          [inputStyle]="{ 'width': '100%' }"
+          [style]="{ 'width': '100%' }"
+          [toggleMask]="true"
+          [feedback]="false"
+          id="passwordConfirmation"
+          formControlName="passwordConfirmation"
+        ></p-password>
+        <small
+          *ngIf="
+                passwordControls['passwordConfirmation'].errors &&
+                (passwordControls['passwordConfirmation'].dirty || passwordControls['passwordConfirmation'].touched)
+              "
+          class="col-12 p-t-4 form-text text-danger"
+        >
+          <div *ngIf="passwordControls['passwordConfirmation'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+        </small>
+      </div>
+      <app-save-cancel-footer
+        *ngIf="showUpdatePasswordFooter"
+        [saveIsLoading]="loading"
+        [saveIsDisabled]="passwordForm.invalid"
+        (onCancel)="cancelUpdatePassword()"
+        (onSave)="updatePassword($event)"
+      >
+      </app-save-cancel-footer>
+    </form>
+  </p-tabPanel>
+</p-tabView>
+
+

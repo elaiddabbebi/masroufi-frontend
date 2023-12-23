@@ -1,0 +1,9 @@
+.breadcrumb-full-width {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.breadcrumb-full-width .p-breadcrumb {
+  width: 100%;
+}

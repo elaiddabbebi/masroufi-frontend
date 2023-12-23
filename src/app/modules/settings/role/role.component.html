@@ -1,0 +1,206 @@
+<p-toast></p-toast>
+<div class="m-t-20">
+  <p-table
+    [value]="roleList"
+    styleClass="p-datatable-gridlines p-datatable-sm"
+    [tableStyle]="{'min-width': '50rem'}"
+    dataKey="uuid"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="false"
+    [paginator]="true"
+    currentPageReportTemplate="{{ ('SHOWING' | translate) + ' {first} ' +  ('TO' | translate) + ' {last} ' +  ('OF' | translate) + ' {totalRecords} ' + ('ROLES' | translate) }}"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button
+          type="button" pButton pRipple
+          icon="pi pi-plus"
+          (click)="setupCreateRole()"
+          class="mr-2"
+          pTooltip="{{ 'ADD_ROLE' | translate }}"
+          tooltipPosition="top"
+        ></button>
+        <div class="float-right">
+          <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputTextarea
+                  type="text"
+                  (input)="null"
+                  placeholder="{{ 'SEARCH' | translate }}"
+                  class="min-w-400"
+                />
+        </span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="text-center">{{ 'NAME' | translate }}</th>
+        <th class="text-center">{{ 'TYPE' | translate }}</th>
+        <th class="text-center" style="width: 200px !important;">{{ 'ACTIONS' | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-role>
+      <tr>
+        <td class="text-center">
+          <a class="basic-link" routerLink="/main/settings/roles/details" [queryParams]="{uuid: role.uuid}">
+            {{ role.name }}
+          </a>
+        </td>
+        <td class="text-center">{{ role?.type | translate }}</td>
+        <td class="text-center non-responsive-row" style="justify-content: center; width: 200px;">
+          <p-button
+            icon="pi pi-pencil"
+            styleClass="m-r-5 m-l-5"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'EDIT' | translate"
+            tooltipPosition="top"
+            (onClick)="setupUpdateRole(role)"
+          ></p-button>
+          <p-button
+            *ngIf="!role.isSystemRole"
+            icon="pi pi-trash"
+            styleClass="m-r-5 m-l-5"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'DELETE' | translate"
+            tooltipPosition="top"
+            (onClick)="deleteRole(role)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">{{ 'NO_RESULT_FOUND' | translate }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  header="header"
+  [(visible)]="deleteRoleDialog"
+  [style]="{ width: '600px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ 'DELETE_ROLE' | translate }}
+    </span>
+  </ng-template>
+  <p>
+    {{ 'ROLE_DELETE_CONFIRM' | translate }}
+    <span style="font-weight: bold;">{{ ' ' + currentRoleName }}</span> ?
+  </p>
+  <ng-template pTemplate="footer">
+    <app-confirm-cancel-footer
+      (onCancel)="hideDeleteRoleDialog()"
+      (onConfirm)="deleteSelectedRole($event)"
+      [confirmIsLoading]="deleteIsLoading"
+    ></app-confirm-cancel-footer>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="header"
+  [(visible)]="addEditRoleDialog"
+  [style]="{ width: '650px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ (mode === 'add' ? 'ADD_ROLE' : 'EDIT_ROLE') | translate }}
+    </span>
+  </ng-template>
+
+  <ng-template pTemplate="body">
+    <form [formGroup]="roleForm">
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <label for="name">{{ 'NAME' | translate }} <span class="required"> :</span></label>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            formControlName="name"
+          />
+          <small
+            *ngIf="
+                roleControls['name'].errors &&
+                (roleControls['name'].dirty || roleControls['name'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="roleControls['name'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <label for="role-type">{{ 'ROLE_TYPE' | translate }} <span class="required"> :</span></label>
+          <p-dropdown
+            class="w-100"
+            id="role-type"
+            [options]="roleTypeList"
+            formControlName="type"
+            optionLabel="key"
+            optionValue="value"
+            [showClear]="true"
+            placeholder="{{ 'ROLE_TYPE' | translate }}"
+            appendTo="body"
+          ></p-dropdown>
+          <small
+            *ngIf="
+                roleControls['type'].errors &&
+                (roleControls['type'].dirty || roleControls['type'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="roleControls['type'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <label for="permissions">{{ 'PERMISSIONS' | translate }} <span class="required"> :</span></label>
+          <p-multiSelect
+            class="w-100"
+            id="permissions"
+            [options]="permissionList"
+            formControlName="permissions"
+            optionLabel="name"
+            itemid="uuid"
+            itemref="uuid"
+            [display]="'chip'"
+            placeholder="{{ 'PERMISSIONS' | translate }}"
+            appendTo="body"
+            emptyMessage="{{ 'NO_ELEMENT' | translate }}"
+            emptyFilterMessage="{{ 'NO_ELEMENT' | translate }}"
+          ></p-multiSelect>
+          <small
+            *ngIf="
+                roleControls['permissions'].errors &&
+                (roleControls['permissions'].dirty || roleControls['permissions'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="roleControls['permissions'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <app-save-cancel-footer
+      (onCancel)="hideAddEditRoleDialog()"
+      (onSave)="saveRole($event)"
+      [saveIsDisabled]="roleForm.invalid"
+      [saveIsLoading]="addEditIsLoading"
+    ></app-save-cancel-footer>
+  </ng-template>
+</p-dialog>

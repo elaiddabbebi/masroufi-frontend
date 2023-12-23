@@ -1,0 +1,263 @@
+<p-toast></p-toast>
+<div class="m-t-20">
+  <p-table
+    [value]="userList"
+    styleClass="p-datatable-gridlines p-datatable-sm"
+    [tableStyle]="{'min-width': '50rem'}"
+    dataKey="uuid"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="false"
+    [paginator]="true"
+    currentPageReportTemplate="{{ ('SHOWING' | translate) + ' {first} ' +  ('TO' | translate) + ' {last} ' +  ('OF' | translate) + ' {totalRecords} ' + ('USERS' | translate) }}"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button
+          type="button" pButton pRipple
+          icon="pi pi-plus"
+          (click)="addAccount()"
+          class="mr-2"
+          pTooltip="{{ 'ADD_USER' | translate }}"
+          tooltipPosition="top"
+        ></button>
+        <div class="float-right">
+          <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputTextarea
+                  type="text"
+                  (input)="null"
+                  placeholder="{{ 'SEARCH' | translate }}"
+                  class="min-w-400"
+                />
+        </span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="text-center">{{ 'FULL_NAME' | translate }}</th>
+        <th class="text-center">{{ 'EMAIL' | translate }}</th>
+        <th class="text-center">{{ 'BIRTH_DATE' | translate }}</th>
+        <th class="text-center">{{ 'TYPE' | translate }}</th>
+        <th class="text-center">{{ 'STATUS' | translate }}</th>
+        <th class="text-center" style="width: 200px !important;">{{ 'ACTIONS' | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td class="text-center">
+          <a class="basic-link" routerLink="/main/settings/users/details" [queryParams]="{uuid: user.uuid}">
+            {{ user.fullName }}
+          </a>
+        </td>
+        <td class="text-center">{{ user.email }}</td>
+        <td class="text-center">{{ user.birthDate ? (user.birthDate | date : 'dd/MM/YYYY') : '' }}</td>
+        <td class="text-center">{{ user.role?.type | translate }}</td>
+        <td class="text-center">
+          <p-tag
+            [value]="(user.isActivated ? 'ACTIVATED' : 'DEACTIVATED') | translate"
+            [severity]="user.isActivated ? 'success' : 'danger'"
+          ></p-tag>
+        </td>
+        <td class="text-center non-responsive-row" style="justify-content: center; width: 200px;">
+          <p-button
+            *ngIf="!user.isActivated"
+            styleClass="m-r-5 m-l-5"
+            icon="pi pi-check"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'ACTIVATE' | translate"
+            tooltipPosition="top"
+            (onClick)="activateAccount(user)"
+          ></p-button>
+          <p-button
+            *ngIf="user.isActivated"
+            styleClass="m-r-5 m-l-5"
+            icon="pi pi-times"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'DEACTIVATE' | translate"
+            tooltipPosition="top"
+            (onClick)="deactivateAccount(user)"
+          ></p-button>
+          <p-button
+            icon="pi pi-pencil"
+            styleClass="m-r-5 m-l-5"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'EDIT' | translate"
+            tooltipPosition="top"
+            (onClick)="editUser(user)"
+          ></p-button>
+          <p-button
+            icon="pi pi-trash"
+            styleClass="m-r-5 m-l-5"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'DELETE' | translate"
+            tooltipPosition="top"
+            (onClick)="deleteAccount(user)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">{{ 'NO_RESULT_FOUND' | translate }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  header="header"
+  [(visible)]="activateDeactivateAccountDialog"
+  [style]="{ width: '600px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ isActivation ? ('ACTIVATE_ACCOUNT' | translate) : ('DEACTIVATE_ACCOUNT' | translate) }}
+    </span>
+  </ng-template>
+  <p>
+    {{ (isActivation ? ('ACCOUNT_ACTIVATION_CONFIRM' | translate) : ('ACCOUNT_DEACTIVATION_CONFIRM' | translate)) }}
+    <span style="font-weight: bold;">{{ ' ' + currentAccountFullName }}</span> ?
+  </p>
+  <ng-template pTemplate="footer">
+    <app-confirm-cancel-footer
+      (onCancel)="hideActivateDeactivateAccountDialog()"
+      (onConfirm)="activateDeactivateSelectedUser($event)"
+      [confirmIsLoading]="activateDeactivateIsLoading"
+    ></app-confirm-cancel-footer>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="header"
+  [(visible)]="deleteAccountDialog"
+  [style]="{ width: '600px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ 'DELETE_ACCOUNT' | translate }}
+    </span>
+  </ng-template>
+  <p>
+    {{ 'ACCOUNT_DELETE_CONFIRM' | translate }}
+    <span style="font-weight: bold;">{{ ' ' + currentAccountFullName }}</span> ?
+  </p>
+  <ng-template pTemplate="footer">
+    <app-confirm-cancel-footer
+      (onCancel)="hideDeleteAccountDialog()"
+      (onConfirm)="deleteSelectedUser($event)"
+      [confirmIsLoading]="deleteIsLoading"
+    ></app-confirm-cancel-footer>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="header"
+  [(visible)]="addAccountDialog"
+  [style]="{ width: '650px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ 'ADD_USER' | translate }}
+    </span>
+  </ng-template>
+
+  <ng-template pTemplate="body">
+    <form [formGroup]="userDetailsForm">
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <label for="firstName">{{ 'FIRSTNAME' | translate }} <span class="required"> :</span></label>
+          <input
+            id="firstName"
+            type="text"
+            pInputText
+            formControlName="firstName"
+          />
+          <small
+            *ngIf="
+                userDetailsControls['firstName'].errors &&
+                (userDetailsControls['firstName'].dirty || userDetailsControls['firstName'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="userDetailsControls['firstName'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <label for="lastName">{{ 'LASTNAME' | translate }} <span class="required"> :</span></label>
+          <input
+            id="lastName"
+            type="text"
+            pInputText
+            formControlName="lastName"
+          />
+          <small
+            *ngIf="
+                userDetailsControls['lastName'].errors &&
+                (userDetailsControls['lastName'].dirty || userDetailsControls['lastName'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="userDetailsControls['lastName'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <label for="firstName">{{ 'EMAIL' | translate }} <span class="required"> :</span></label>
+          <input
+            id="email"
+            type="text"
+            pInputText
+            formControlName="email"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <label for="role">{{ 'ROLE' | translate }} <span class="required"> :</span></label>
+          <p-dropdown
+            class="w-100"
+            id="role"
+            [options]="roleList"
+            formControlName="role"
+            optionLabel="name"
+            optionValue="uuid"
+            [showClear]="true"
+            placeholder="{{ 'ROLE' | translate }}"
+            appendTo="body"
+          ></p-dropdown>
+          <small
+            *ngIf="
+                userDetailsControls['role'].errors &&
+                (userDetailsControls['role'].dirty || userDetailsControls['role'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="userDetailsControls['role'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <app-save-cancel-footer
+      (onCancel)="hideAddAccountDialog()"
+      (onSave)="createUser($event)"
+      [saveIsDisabled]="userDetailsForm.invalid"
+      [saveIsLoading]="addIsLoading"
+    ></app-save-cancel-footer>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,34 @@
+<div>
+  <app-nav-bar
+    [username]="fullName"
+  >
+  </app-nav-bar>
+  <div class="non-responsive-row">
+    <app-side-bar></app-side-bar>
+    <div class="p-t-20">
+      <div class="card flex justify-content-center p-l-20" style="width: 100%;">
+        <p-breadcrumb
+          [model]="items"
+          [home]="home"
+          [style]="{'width': 'calc(100vw - 340px)'}"
+          class="breadcrumb-full-width"
+        >
+        </p-breadcrumb>
+      </div>
+        <p-card
+          [style]="{
+            'width':'calc(100vw - 340px)',
+            'min-height': 'calc(100vh - 160px)',
+            'margin-top': '10px',
+            'margin-left': '20px',
+            'padding-top': '2px',
+            'padding-bottom': '10px',
+            'padding-left': '20px',
+            'padding-right': '20px'
+          }"
+        >
+          <router-outlet></router-outlet>
+        </p-card>
+    </div>
+  </div>
+</div>

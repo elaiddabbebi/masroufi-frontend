@@ -1,0 +1,25 @@
+<div class="p-card">
+  <p-menubar
+    [style]="{'height': '60px'}"
+  >
+    <ng-template pTemplate="start">
+      <img src="assets/img/money-bag.png" height="36" class="mr-2" />
+      <img src="assets/img/masroufi-text.png" height="34" class="mr-2" />
+    </ng-template>
+    <ng-template pTemplate="end">
+      <p-menubar
+        [model]="items"
+        [style]="{'border':'none'}"
+      ></p-menubar>
+    </ng-template>
+  </p-menubar>
+</div>
+
+<p-dialog
+  [header]="'ABOUT' | translate"
+  [(visible)]="aboutDialogVisible"
+  [style]="{width: '550px'}"
+  [modal]="true"
+>
+  <app-about></app-about>
+</p-dialog>

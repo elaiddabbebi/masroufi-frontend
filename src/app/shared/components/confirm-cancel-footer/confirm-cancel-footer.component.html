@@ -1,0 +1,12 @@
+<div class="non-responsive-row text-left m-t-10 float-right">
+  <app-cancel-btn
+    (click)="cancel($event)"
+    [loading]="cancelIsLoading"
+    [disabled]="cancelIsDisabled"
+  ></app-cancel-btn>
+  <app-confirm-btn
+    (click)="confirm($event)"
+    [loading]="confirmIsLoading"
+    [disabled]="confirmIsDisabled"
+  ></app-confirm-btn>
+</div>

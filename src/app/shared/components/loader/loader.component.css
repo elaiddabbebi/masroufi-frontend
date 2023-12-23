@@ -1,0 +1,9 @@
+.app-loader-spinner {
+  margin-left: calc(50% - 2rem);
+  margin-top:  calc(30% - 10rem);
+  color: var(--primary-color-500);
+}
+
+.pi-spin {
+  animation: fa-spin 1s infinite linear;
+}
