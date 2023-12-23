@@ -15,7 +15,8 @@ import {ProfileService} from "./settings/profile/services/profile.service";
 })
 export class MainComponent implements OnInit {
 
-  items: MenuItem[] = [];
+  breadcrumbItems: MenuItem[] = [];
+  sidebarItems: MenuItem[] | undefined = [];
   home: MenuItem = { icon: 'pi pi-home', routerLink: '/' };
   fullName: string = '';
 
@@ -43,11 +44,14 @@ export class MainComponent implements OnInit {
 
   getAccountInfo(): void {
     this.profileService.getAccountInfo().pipe(
-      tap((response: AccountDetails) => {
-        this.fullName = response.fullName ? response.fullName : 'Unknown User';
-      },
-      (error) => {
-        this.logout();
+      tap({
+        next: (response: AccountDetails) => {
+          this.fullName = response.fullName ? response.fullName : 'Unknown User';
+          this.sidebarItems = response.items;
+        },
+        error: (error) => {
+          this.logout();
+        }
       })
     ).subscribe();
   }
@@ -83,12 +87,12 @@ export class MainComponent implements OnInit {
                   this.router.url.split('/')[this.router.url.split('/').length - 1].split(';')[0]
                 )
               ) {
-                this.items.push({
+                this.breadcrumbItems.push({
                   label: this.translate.transform(routes.snapshot.data.breadcrumb),
                   routerLink: url,
                 });
               } else {
-                this.items.push({
+                this.breadcrumbItems.push({
                   label: this.translate.transform(routes.snapshot.data.breadcrumb),
                   routerLink: url,
                 });
@@ -102,12 +106,12 @@ export class MainComponent implements OnInit {
       });
     } while (currentRoute);
 
-    if (this.items.length > 0) {
-      this.items[this.items.length - 1].routerLink = undefined;
+    if (this.breadcrumbItems.length > 0) {
+      this.breadcrumbItems[this.breadcrumbItems.length - 1].routerLink = undefined;
     }
   }
 
   resetBreadCrumbs(): void {
-    this.items = [];
+    this.breadcrumbItems = [];
   }
 }

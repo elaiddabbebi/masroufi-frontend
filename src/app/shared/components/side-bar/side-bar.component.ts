@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import {TranslatePipe} from "../../pipes/translate.pipe";
 
@@ -8,54 +8,34 @@ import {TranslatePipe} from "../../pipes/translate.pipe";
   styleUrls: ['./side-bar.component.css'],
   providers: [TranslatePipe]
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent implements OnInit, OnChanges {
 
-  items: MenuItem[] | undefined;
+  @Input()
+  items: MenuItem[] | undefined = [];
 
   constructor(
     private translate: TranslatePipe
   ) {}
 
   ngOnInit(): void {
-    this.items = [
-      {
-        label: this.translate.transform('DASHBOARD'),
-        icon: 'pi pi-fw pi-home',
-        routerLink: '/main/dashboard',
-        visible: true,
-      },
-      {
-        label: this.translate.transform('SETTINGS'),
-        icon: 'pi pi-fw pi-cog',
-        expanded: true,
-        visible: true,
-        items: [
-          {
-            label: this.translate.transform('MY_PROFILE'),
-            icon: 'pi pi-fw pi-user',
-            routerLink: '/main/settings/profile',
-            visible: true,
-          },
-          {
-            label: this.translate.transform('USERS'),
-            icon: 'pi pi-fw pi-users',
-            routerLink: '/main/settings/users',
-            visible: true,
-          },
-          {
-            label: this.translate.transform('ROLES'),
-            icon: 'pi pi-fw pi-cog',
-            routerLink: '/main/settings/roles',
-            visible: true,
-          },
-          {
-            label: this.translate.transform('LISTS'),
-            icon: 'pi pi-fw pi-list',
-            routerLink: '/main/settings/lists',
-            visible: true,
-          },
-        ]
-      },
-    ];
+
+  }
+
+  translateMenuItemsLabels(item: MenuItem): void {
+    if (item) {
+      item.label = this.translate.transform(item.label ? item.label : '');
+      if (item.items) {
+        item.items.forEach(elt => {
+          this.translateMenuItemsLabels(elt);
+        })
+      }
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.items?.forEach(item => {
+      this.translateMenuItemsLabels(item);
+
+    })
   }
 }

@@ -1,4 +1,5 @@
 import {Role} from "./role";
+import {MenuItem} from "primeng/api";
 
 export interface AccountDetails {
   uuid?: string;
@@ -11,4 +12,5 @@ export interface AccountDetails {
   role?: Role;
   age?: number;
   isActivated?: boolean;
+  items?: MenuItem[];
 }

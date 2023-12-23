@@ -4,11 +4,13 @@
   >
   </app-nav-bar>
   <div class="non-responsive-row">
-    <app-side-bar></app-side-bar>
+    <app-side-bar
+      [items]="sidebarItems"
+    ></app-side-bar>
     <div class="p-t-20">
       <div class="card flex justify-content-center p-l-20" style="width: 100%;">
         <p-breadcrumb
-          [model]="items"
+          [model]="breadcrumbItems"
           [home]="home"
           [style]="{'width': 'calc(100vw - 340px)'}"
           class="breadcrumb-full-width"
