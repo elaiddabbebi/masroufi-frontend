@@ -98,5 +98,9 @@
   "EDIT_ROLE": "Modifier un rôle",
   "ROLE_UPDATE_SUCCESS": "Rôle modifié avec succès",
   "EMPTY": "Vide",
-  "NO_ELEMENT": "Aucun élément"
+  "NO_ELEMENT": "Aucun élément",
+  "SIMULATOR": "Simulateur",
+  "STATISTICS": "Statistiques",
+  "GAINS_EXPENSES": "Gains & Dépenses",
+  "CASH_REGISTER": "Registre de caisse"
 }

@@ -97,5 +97,9 @@
   "EDIT_ROLE": "Edit role",
   "ROLE_UPDATE_SUCCESS": "Role updated successfully",
   "EMPTY": "Empty",
-  "NO_ELEMENT": "No element"
+  "NO_ELEMENT": "No element",
+  "SIMULATOR": "Simulator",
+  "STATISTICS": "Statistics",
+  "GAINS_EXPENSES": "Gains & Expenses",
+  "CASH_REGISTER": "Cash register"
 }
