@@ -46,7 +46,7 @@
     <ng-template pTemplate="body" let-role>
       <tr>
         <td class="text-center">
-          <a class="basic-link" routerLink="/main/settings/roles/details" [queryParams]="{uuid: role.uuid}">
+          <a class="basic-link cursor-pointer" (click)="setupUpdateRole(role)">
             {{ role.name }}
           </a>
         </td>

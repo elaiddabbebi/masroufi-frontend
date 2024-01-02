@@ -101,5 +101,7 @@
   "SIMULATOR": "Simulator",
   "STATISTICS": "Statistics",
   "GAINS_EXPENSES": "Gains & Expenses",
-  "CASH_REGISTER": "Cash register"
+  "CASH_FLOW": "Cash flow",
+  "MANAGE_CONFIG": "Manage configuraion",
+  "MY_CONFIG": "Configuration"
 }
