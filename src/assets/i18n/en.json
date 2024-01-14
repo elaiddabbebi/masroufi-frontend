@@ -103,5 +103,6 @@
   "GAINS_EXPENSES": "Gains & Expenses",
   "CASH_FLOW": "Cash flow",
   "MANAGE_CONFIG": "Manage configuraion",
-  "MY_CONFIG": "Configuration"
+  "MY_CONFIG": "Configuration",
+  "CASH_FLOW_CATEGORY": "Flow category"
 }

@@ -104,5 +104,6 @@
   "GAINS_EXPENSES": "Gains & Dépenses",
   "CASH_FLOW": "Flux de caisse",
   "MANAGE_CONFIG": "Gérer son configuraion",
-  "MY_CONFIG": "Configuration"
+  "MY_CONFIG": "Configuration",
+  "CASH_FLOW_CATEGORY": "Catégorie de flux"
 }
