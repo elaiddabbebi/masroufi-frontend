@@ -10,6 +10,9 @@ import {BadgeModule} from "primeng/badge";
 import {TabViewModule} from "primeng/tabview";
 import {PasswordModule} from "primeng/password";
 import {ToastModule} from "primeng/toast";
+import {ButtonModule} from "primeng/button";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {TableModule} from "primeng/table";
 
 
 
@@ -28,6 +31,9 @@ import {ToastModule} from "primeng/toast";
     TabViewModule,
     PasswordModule,
     ToastModule,
+    ButtonModule,
+    InputTextareaModule,
+    TableModule,
   ]
 })
 export class ListModule { }

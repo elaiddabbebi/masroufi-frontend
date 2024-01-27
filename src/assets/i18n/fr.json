@@ -105,5 +105,10 @@
   "CASH_FLOW": "Flux de caisse",
   "MANAGE_CONFIG": "Gérer son configuraion",
   "MY_CONFIG": "Configuration",
-  "CASH_FLOW_CATEGORY": "Catégorie de flux"
+  "CASH_FLOW_CATEGORY": "Catégorie de flux",
+  "GAIN": "Gain",
+  "EXPENSE": "Dépense",
+  "SYSTEM": "Système",
+  "ADD_CASH_FLOW_CATEGORY": "Ajouter catégorie",
+  "CASH_FLOW_CATEGORIES": "Catégories"
 }

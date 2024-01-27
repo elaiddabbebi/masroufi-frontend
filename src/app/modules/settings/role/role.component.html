@@ -14,25 +14,25 @@
   >
     <ng-template pTemplate="caption">
       <div class="flex">
-        <button
-          type="button" pButton pRipple
-          icon="pi pi-plus"
-          (click)="setupCreateRole()"
-          class="mr-2"
-          pTooltip="{{ 'ADD_ROLE' | translate }}"
-          tooltipPosition="top"
-        ></button>
-        <div class="float-right">
-          <span class="p-input-icon-left ml-auto">
-                <i class="pi pi-search"></i>
-                <input
-                  pInputTextarea
-                  type="text"
-                  (input)="null"
-                  placeholder="{{ 'SEARCH' | translate }}"
-                  class="min-w-400"
-                />
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputTextarea
+            type="text"
+            (input)="null"
+            placeholder="{{ 'SEARCH' | translate }}"
+            class="min-w-400"
+          />
         </span>
+        <div class="float-right">
+          <button
+            type="button" pButton pRipple
+            icon="pi pi-plus"
+            (click)="setupCreateRole()"
+            class="mr-2"
+            pTooltip="{{ 'ADD_ROLE' | translate }}"
+            tooltipPosition="top"
+          ></button>
         </div>
       </div>
     </ng-template>

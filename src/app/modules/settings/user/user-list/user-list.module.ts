@@ -15,27 +15,29 @@ import {CalendarModule} from "primeng/calendar";
 import {InputTextModule} from "primeng/inputtext";
 import {ReactiveFormsModule} from "@angular/forms";
 import { DropdownModule } from 'primeng/dropdown';
+import {RippleModule} from "primeng/ripple";
 
 @NgModule({
   declarations: [
     UserListComponent
   ],
-  imports: [
-    CommonModule,
-    UserListRoutingModule,
-    TableModule,
-    PipesModule,
-    TagModule,
-    ButtonModule,
-    TooltipModule,
-    DialogModule,
-    ComponentsModule,
-    ToastModule,
-    InputTextareaModule,
-    CalendarModule,
-    InputTextModule,
-    ReactiveFormsModule,
-    DropdownModule,
-  ]
+    imports: [
+        CommonModule,
+        UserListRoutingModule,
+        TableModule,
+        PipesModule,
+        TagModule,
+        ButtonModule,
+        TooltipModule,
+        DialogModule,
+        ComponentsModule,
+        ToastModule,
+        InputTextareaModule,
+        CalendarModule,
+        InputTextModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        RippleModule,
+    ]
 })
 export class UserListModule { }

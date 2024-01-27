@@ -104,5 +104,10 @@
   "CASH_FLOW": "Cash flow",
   "MANAGE_CONFIG": "Manage configuraion",
   "MY_CONFIG": "Configuration",
-  "CASH_FLOW_CATEGORY": "Flow category"
+  "CASH_FLOW_CATEGORY": "Flow category",
+  "GAIN": "Gain",
+  "EXPENSE": "Expense",
+  "SYSTEM": "System",
+  "ADD_CASH_FLOW_CATEGORY": "Add category",
+  "CASH_FLOW_CATEGORIES": "Categories"
 }
