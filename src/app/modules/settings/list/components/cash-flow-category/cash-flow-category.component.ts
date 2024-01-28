@@ -18,11 +18,14 @@ export class CashFlowCategoryComponent implements OnInit {
 
   cashFlowCategoryList: CashFlowCategory[] = [];
   categoryDetailsDialog: boolean = false;
+  deleteCategoryDialog: boolean = false;
   categoryDetailsForm: FormGroup;
   saveIsLoading: boolean = false;
+  deleteIsLoading: boolean = false;
   categoryDetailsDialogHeader: string = '';
   mode: string = '';
   currentCategoryUuid: string = '';
+  currentCategoryName: string = '';
 
   constructor(
     private router: Router,
@@ -50,6 +53,14 @@ export class CashFlowCategoryComponent implements OnInit {
     this.categoryDetailsDialog = true;
   }
 
+  hideDeleteCategoryDialog(): void {
+    this.deleteCategoryDialog = false;
+  }
+
+  showDeleteCategoryDialog(): void {
+    this.deleteCategoryDialog = true;
+  }
+
   addCategory(): void {
     this.categoryDetailsForm.reset();
     this.categoryDetailsDialogHeader = 'ADD_CATEGORY';
@@ -67,8 +78,10 @@ export class CashFlowCategoryComponent implements OnInit {
     this.showCategoryDetailsDialog();
   }
 
-  deleteCategory(uuid: string): void {
-
+  deleteCategory(category: any): void {
+    this.currentCategoryName = category.name;
+    this.currentCategoryUuid = category.uuid;
+    this.showDeleteCategoryDialog();
   }
 
   saveCategory(event: Event): void {
@@ -101,6 +114,7 @@ export class CashFlowCategoryComponent implements OnInit {
     if (this.categoryDetailsForm.invalid) {
       return;
     }
+    this.saveIsLoading = true;
     const category: CashFlowCategory = {
       name: this.categoryDetailsForm.value.name,
       gain: this.categoryDetailsForm.value.gain,
@@ -114,10 +128,12 @@ export class CashFlowCategoryComponent implements OnInit {
           this.hideCategoryDetailsDialog();
           this.notificationService.notifySuccess('CATEGORY_CREATION_SUCCESS');
           this.searchCategories();
+          this.saveIsLoading = false;
         },
         error: error => {
           console.log(error);
           this.notificationService.notifyError('CATEGORY_CREATION_ERROR');
+          this.saveIsLoading = false;
         }
       })
     ).subscribe();
@@ -127,6 +143,7 @@ export class CashFlowCategoryComponent implements OnInit {
     if (this.categoryDetailsForm.invalid) {
       return;
     }
+    this.saveIsLoading = true;
     const category: CashFlowCategory = {
       name: this.categoryDetailsForm.value.name,
       gain: this.categoryDetailsForm.value.gain,
@@ -138,10 +155,32 @@ export class CashFlowCategoryComponent implements OnInit {
           this.hideCategoryDetailsDialog();
           this.notificationService.notifySuccess('UPDATE_SUCCESS');
           this.searchCategories();
+          this.saveIsLoading = false;
         },
         error: error => {
           console.log(error);
           this.notificationService.notifyError('UPDATE_ERROR');
+          this.saveIsLoading = false;
+        }
+      })
+    ).subscribe();
+  }
+
+  confirmDeleteCategory(event: Event): void {
+    event.stopPropagation();
+    this.deleteIsLoading = true;
+    this.categoryService.deleteCategory(this.currentCategoryUuid).pipe(
+      tap({
+        next: response => {
+          this.hideDeleteCategoryDialog();
+          this.searchCategories();
+          this.notificationService.notifySuccess('DELETE_CATEGORY_SUCCESS');
+          this.deleteIsLoading = false;
+        },
+        error: error => {
+          console.log(error);
+          this.deleteIsLoading = false;
+          this.notificationService.notifyError('DELETE_CATEGORY_ERROR');
         }
       })
     ).subscribe();

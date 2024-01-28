@@ -80,7 +80,7 @@
             [outlined]="true"
             [pTooltip]="'DELETE' | translate"
             tooltipPosition="top"
-            (onClick)="deleteCategory(category?.uuid)"
+            (onClick)="deleteCategory(category)"
           ></p-button>
         </td>
       </tr>
@@ -158,5 +158,29 @@
       [saveIsDisabled]="categoryDetailsForm.invalid"
       [saveIsLoading]="saveIsLoading"
     ></app-save-cancel-footer>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="header"
+  [(visible)]="deleteCategoryDialog"
+  [style]="{ width: '600px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ 'DELETE_CATEGORY' | translate }}
+    </span>
+  </ng-template>
+  <p>
+    {{ 'DELETE_CATEGORY_CONFIRM_Q' | translate }}
+    <span style="font-weight: bold;">{{ ' ' + currentCategoryName }}</span> ?
+  </p>
+  <ng-template pTemplate="footer">
+    <app-confirm-cancel-footer
+      (onCancel)="hideDeleteCategoryDialog()"
+      (onConfirm)="confirmDeleteCategory($event)"
+      [confirmIsLoading]="deleteIsLoading"
+    ></app-confirm-cancel-footer>
   </ng-template>
 </p-dialog>

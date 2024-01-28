@@ -115,12 +115,14 @@
   "EDIT_CATEGORY": "Modifier une catégorie",
   "DELETE_CATEGORY": "Supprimer une catégorie",
   "VALIDATE_CATEGORY": "Valider une catégorie",
-  "DELETE_CATEGORY_CONFIRM_Q": "Voulez vous vraiment supprimer cette catégorie?",
+  "DELETE_CATEGORY_CONFIRM_Q": "Voulez vous vraiment supprimer la catégorie",
   "YES": "Oui",
   "NO": "Non",
   "VALIDATED": "Validé",
   "REJECTED": "Rejeté",
   "PENDING": "En attente",
   "CATEGORY_CREATION_SUCCESS": "Catégorie ajoutée avec succès",
-  "CATEGORY_CREATION_ERROR": "L'opération d'ajout a échouée"
+  "CATEGORY_CREATION_ERROR": "L'opération d'ajout a échouée",
+  "DELETE_CATEGORY_SUCCESS": "Catégorie supprimée avec succès",
+  "DELETE_CATEGORY_ERROR": "La suppression à échouée!"
 }
