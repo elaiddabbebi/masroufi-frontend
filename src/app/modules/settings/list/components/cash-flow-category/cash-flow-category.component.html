@@ -29,7 +29,7 @@
           <button
             type="button" pButton pRipple
             icon="pi pi-plus"
-            (click)="null"
+            (click)="addCategory()"
             class="mr-2"
             pTooltip="{{ 'ADD_CASH_FLOW_CATEGORY' | translate }}"
             tooltipPosition="top"
@@ -54,10 +54,15 @@
             {{ category.name }}
           </a>
         </td>
-        <td class="text-center">{{ category.gain | translate }}</td>
-        <td class="text-center">{{ category.expense | translate }}</td>
-        <td class="text-center">{{ category.system | translate }}</td>
-        <td class="text-center">{{ category.status | translate }}</td>
+        <td class="text-center">{{ (category.gain ? 'YES' : 'NO') | translate }}</td>
+        <td class="text-center">{{ (category.expense ? 'YES' : 'NO') | translate }}</td>
+        <td class="text-center">{{ (category.systemCategory ? 'YES' : 'NO') | translate }}</td>
+        <td class="text-center">
+          <p-tag
+            [value]="category.status | translate"
+            [severity]="category.status === CashFlowCategoryStatus.VALIDATED ? 'success' : category.status === CashFlowCategoryStatus.REJECTED ? 'danger' : 'warning'"
+          ></p-tag>
+        </td>
         <td class="text-center non-responsive-row" style="justify-content: center; width: 200px;">
           <p-button
             icon="pi pi-pencil"
@@ -66,7 +71,7 @@
             [outlined]="true"
             [pTooltip]="'EDIT' | translate"
             tooltipPosition="top"
-            (onClick)="null"
+            (onClick)="editCategory(category)"
           ></p-button>
           <p-button
             icon="pi pi-trash"
@@ -75,7 +80,7 @@
             [outlined]="true"
             [pTooltip]="'DELETE' | translate"
             tooltipPosition="top"
-            (onClick)="null"
+            (onClick)="deleteCategory(category?.uuid)"
           ></p-button>
         </td>
       </tr>
@@ -87,3 +92,71 @@
     </ng-template>
   </p-table>
 </div>
+
+<p-dialog
+  header="header"
+  [(visible)]="categoryDetailsDialog"
+  [style]="{ width: '650px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ categoryDetailsDialogHeader | translate }}
+    </span>
+  </ng-template>
+
+  <ng-template pTemplate="body">
+    <form [formGroup]="categoryDetailsForm">
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <label for="name">{{ 'NAME' | translate }} <span class="required"> :</span></label>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            formControlName="name"
+          />
+          <small
+            *ngIf="
+                categoryDetailsControls['name'].errors &&
+                (categoryDetailsControls['name'].dirty || categoryDetailsControls['name'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="categoryDetailsControls['name'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <p-checkbox
+            [label]="'GAIN' | translate"
+            name="gain"
+            [binary]="true"
+            formControlName="gain"
+          ></p-checkbox>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <p-checkbox
+            [label]="'EXPENSE' | translate"
+            [binary]="true"
+            name="expense"
+            formControlName="expense"
+          ></p-checkbox>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <app-save-cancel-footer
+      (onCancel)="hideCategoryDetailsDialog()"
+      (onSave)="saveCategory($event)"
+      [saveIsDisabled]="categoryDetailsForm.invalid"
+      [saveIsLoading]="saveIsLoading"
+    ></app-save-cancel-footer>
+  </ng-template>
+</p-dialog>

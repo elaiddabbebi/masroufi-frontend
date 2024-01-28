@@ -109,5 +109,17 @@
   "EXPENSE": "Expense",
   "SYSTEM": "System",
   "ADD_CASH_FLOW_CATEGORY": "Add category",
-  "CASH_FLOW_CATEGORIES": "Categories"
+  "CASH_FLOW_CATEGORIES": "Categories",
+  "ADD_CATEGORY": "Add category",
+  "EDIT_CATEGORY": "Edit category",
+  "DELETE_CATEGORY": "Delete category",
+  "VALIDATE_CATEGORY": "Validate category",
+  "DELETE_CATEGORY_CONFIRM_Q": "Are you sure you want to delete this category?",
+  "YES": "Yes",
+  "NO": "No",
+  "VALIDATED": "Validated",
+  "REJECTED": "Rejected",
+  "PENDING": "Pending",
+  "CATEGORY_CREATION_SUCCESS": "Category added successfully",
+  "CATEGORY_CREATION_ERROR": "Add operation failed"
 }

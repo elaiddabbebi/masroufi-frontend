@@ -13,8 +13,12 @@ import {ToastModule} from "primeng/toast";
 import {ButtonModule} from "primeng/button";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {TableModule} from "primeng/table";
-
-
+import {DialogModule} from "primeng/dialog";
+import {DropdownModule} from "primeng/dropdown";
+import {InputTextModule} from "primeng/inputtext";
+import {ReactiveFormsModule} from "@angular/forms";
+import { CheckboxModule } from 'primeng/checkbox';
+import {TagModule} from "primeng/tag";
 
 @NgModule({
   declarations: [
@@ -34,6 +38,12 @@ import {TableModule} from "primeng/table";
     ButtonModule,
     InputTextareaModule,
     TableModule,
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    CheckboxModule,
+    TagModule,
   ]
 })
 export class ListModule { }

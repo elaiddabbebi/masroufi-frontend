@@ -171,6 +171,15 @@ input:read-only {
   transition: box-shadow 0.2s;
 }
 
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  box-shadow: 0 0 0 0.2rem var(--primary-color-010);
+  border-color: var(--primary-color-700);
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: var(--primary-color-700);
+}
+
 .p-menuitem-link-active {
   color: var(--primary-color-900) !important;
 }
