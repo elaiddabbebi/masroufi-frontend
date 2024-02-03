@@ -19,6 +19,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {ReactiveFormsModule} from "@angular/forms";
 import { CheckboxModule } from 'primeng/checkbox';
 import {TagModule} from "primeng/tag";
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {TagModule} from "primeng/tag";
     ReactiveFormsModule,
     CheckboxModule,
     TagModule,
+    ChipModule,
   ]
 })
 export class ListModule { }

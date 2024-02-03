@@ -124,5 +124,6 @@
   "CATEGORY_CREATION_SUCCESS": "Catégorie ajoutée avec succès",
   "CATEGORY_CREATION_ERROR": "L'opération d'ajout a échouée",
   "DELETE_CATEGORY_SUCCESS": "Catégorie supprimée avec succès",
-  "DELETE_CATEGORY_ERROR": "La suppression à échouée!"
+  "DELETE_CATEGORY_ERROR": "La suppression à échouée!",
+  "CREATED_BY": "Crée par"
 }

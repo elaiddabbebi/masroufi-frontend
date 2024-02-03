@@ -281,6 +281,14 @@ input:read-only {
   background: white !important;
 }
 
+.text-green-500 {
+  color: green;
+}
+
+.text-red-500 {
+  color: red;
+}
+
 span.required::before {
   content: '*';
   color: red;
