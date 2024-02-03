@@ -125,5 +125,19 @@
   "CATEGORY_CREATION_ERROR": "L'opération d'ajout a échouée",
   "DELETE_CATEGORY_SUCCESS": "Catégorie supprimée avec succès",
   "DELETE_CATEGORY_ERROR": "La suppression à échouée!",
-  "CREATED_BY": "Crée par"
+  "CREATED_BY": "Crée par",
+  "CATEGORY": "Catégorie",
+  "ADD_CASH_FLOW": "Ajouter un flux de caisse",
+  "DELETE_CASH_FLOW": "Supprimer un flux de caisse",
+  "DELETE_CASH_FLOW_CONFIRM_Q": "Voulez vous vraiment supprimer le flux",
+  "EDIT_CASH_FLOW": "Modifier un flux de caisse",
+  "CASH_FLOW_CREATION_SUCCESS": "Flux ajoutée avec succès",
+  "CASH_FLOW_CREATION_ERROR": "L'opération d'ajout du flux a échouée",
+  "DELETE_CASH_FLOW_SUCCESS": "Flux supprimée avec succès",
+  "DELETE_CASH_FLOW_ERROR": "La suppression du flux à échouée!",
+  "ADD_CASH_FLOW_TOOL_TIP": "Ajouter un flux",
+  "UPDATE_ERROR": "L'opération de mise à jour à échouée",
+  "CASH": "Caisse",
+  "ROLES_AND_PERMISSIONS": "Rôles et permissions",
+  "CASH_FLOW_REGISTRY": "Registre de caisse"
 }

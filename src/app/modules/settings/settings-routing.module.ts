@@ -10,28 +10,28 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),
+    loadChildren: () => import('../profile/profile.module').then((m) => m.ProfileModule),
     data: {
       breadcrumb: 'MY_PROFILE'
     },
   },
   {
     path: 'users',
-    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
     data: {
       breadcrumb: 'USERS'
     },
   },
   {
     path: 'roles',
-    loadChildren: () => import('./role/role.module').then((m) => m.RoleModule),
+    loadChildren: () => import('../role/role.module').then((m) => m.RoleModule),
     data: {
       breadcrumb: 'ROLES'
     },
   },
   {
     path: 'lists',
-    loadChildren: () => import('./list/list.module').then((m) => m.ListModule),
+    loadChildren: () => import('../cash-flow-list/cash-flow-list.module').then((m) => m.CashFlowListModule),
     data: {
       breadcrumb: 'LISTS'
     },

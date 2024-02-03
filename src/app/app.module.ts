@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthenticationModule} from "./authentication/authentication.module";
 import {HttpClientModule} from "@angular/common/http";
 import {AppHttpClient} from "./shared/http/app-http-client";
-import {NotificationService} from "./modules/services/notification.service";
+import {NotificationService} from "./shared/services/notification.service";
 
 @NgModule({
   declarations: [

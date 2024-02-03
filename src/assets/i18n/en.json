@@ -125,5 +125,19 @@
   "DELETE_CATEGORY_SUCCESS": "Category deleted successfully",
   "DELETE_CATEGORY_ERROR": "Delete operation failed!",
   "NAME": "Name",
-  "CREATED_BY": "Created by"
+  "CREATED_BY": "Created by",
+  "CATEGORY": "Category",
+  "ADD_CASH_FLOW": "Add cash flow",
+  "DELETE_CASH_FLOW": "Delete cash flow",
+  "DELETE_CASH_FLOW_CONFIRM_Q": "Are you sure you want to delete the cash flow",
+  "EDIT_CASH_FLOW": "Edit cash flow",
+  "CASH_FLOW_CREATION_SUCCESS": "Cash flow created successfully",
+  "CASH_FLOW_CREATION_ERROR": "Cash flow creation failed",
+  "DELETE_CASH_FLOW_SUCCESS": "Cash flow deleted successfully",
+  "DELETE_CASH_FLOW_ERROR": "Cash flow deletion failed!",
+  "ADD_CASH_FLOW_TOOL_TIP": "Add cashflow",
+  "UPDATE_ERROR": "Update operation failed!",
+  "CASH": "Cash",
+  "ROLES_AND_PERMISSIONS": "Roles and permissions",
+  "CASH_FLOW_REGISTRY": "Cash flow registry"
 }

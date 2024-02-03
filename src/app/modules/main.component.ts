@@ -3,15 +3,14 @@ import {MenuItem} from "primeng/api";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter, tap} from "rxjs";
 import {TranslatePipe} from "../shared/pipes/translate.pipe";
-import {MainService} from "./services/main.service";
-import {AccountDetails} from "./types/account-details";
-import {ProfileService} from "./settings/profile/services/profile.service";
+import {AccountDetails} from "./user/types/account-details";
+import {ProfileService} from "./profile/services/profile.service";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
-  providers: [TranslatePipe, MainService, ProfileService]
+  providers: [TranslatePipe, ProfileService]
 })
 export class MainComponent implements OnInit {
 
@@ -24,7 +23,6 @@ export class MainComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslatePipe,
-    private service: MainService,
     private profileService: ProfileService
   ) {
     this.router.events
