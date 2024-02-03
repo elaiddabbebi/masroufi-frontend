@@ -123,5 +123,6 @@
   "CATEGORY_CREATION_SUCCESS": "Category added successfully",
   "CATEGORY_CREATION_ERROR": "Add operation failed",
   "DELETE_CATEGORY_SUCCESS": "Category deleted successfully",
-  "DELETE_CATEGORY_ERROR": "Delete operation failed!"
+  "DELETE_CATEGORY_ERROR": "Delete operation failed!",
+  "NAME": "Name"
 }

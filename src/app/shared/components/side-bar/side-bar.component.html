@@ -1,13 +1,18 @@
 <p-card
   [style]="{
     'width':'300px',
-    'min-height': 'calc(100vh - 100px)',
-    'margin-top': '20px'
+    'min-height': 'calc(100vh - 95px)',
+    'margin-top': '10px',
+    'position': 'fixed',
+    'overflow-y': 'scroll'
   }"
 >
   <p-panelMenu
     [model]="items"
-    [style]="{'width':'300px'}"
+    [style]="{
+    'width':'300px',
+    'overflow-y': 'scroll'
+    }"
   >
   </p-panelMenu>
 </p-card>

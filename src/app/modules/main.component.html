@@ -1,28 +1,30 @@
-<div>
-  <app-nav-bar
-    [username]="fullName"
-  >
-  </app-nav-bar>
-  <div class="non-responsive-row">
+<div class="z-index-0">
+  <div class="position-fixed z-index-3" style="width: calc(100% - 15px);">
+    <app-nav-bar
+      [username]="fullName"
+    >
+    </app-nav-bar>
+  </div>
+  <div class="non-responsive-row p-t-65 z-index-0">
     <app-side-bar
       [items]="sidebarItems"
     ></app-side-bar>
-    <div class="p-t-20">
-      <div class="card flex justify-content-center p-l-20" style="width: 100%;">
+    <div class="p-t-10 p-l-300 w-100">
+      <div class="card flex justify-content-center p-l-10 w-100">
         <p-breadcrumb
           [model]="breadcrumbItems"
           [home]="home"
-          [style]="{'width': 'calc(100vw - 340px)'}"
+          [style]="{'width': 'calc(100vw - 326px)'}"
           class="breadcrumb-full-width"
         >
         </p-breadcrumb>
       </div>
         <p-card
           [style]="{
-            'width':'calc(100vw - 340px)',
+            'width':'calc(100vw - 326px)',
             'min-height': 'calc(100vh - 160px)',
             'margin-top': '10px',
-            'margin-left': '20px',
+            'margin-left': '10px',
             'padding-top': '2px',
             'padding-bottom': '10px',
             'padding-left': '20px',

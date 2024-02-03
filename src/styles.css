@@ -273,6 +273,14 @@ input:read-only {
   padding: unset !important;
 }
 
+.p-button.p-button-warning.p-button-outlined, .p-buttonset.p-button-warning > .p-button.p-button-outlined, .p-splitbutton.p-button-warning > .p-button.p-button-outlined {
+  background: rgba(245, 158, 11, 0.04) !important;
+}
+
+.p-button.p-button-warning.p-button-outlined:hover, .p-buttonset.p-button-warning:hover > .p-button.p-button-outlined:hover, .p-splitbutton.p-button-warning:hover > .p-button.p-button-outlined:hover {
+  background: white !important;
+}
+
 span.required::before {
   content: '*';
   color: red;
@@ -1505,4 +1513,36 @@ span.required::before {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.p-l-300 {
+  padding-left: 300px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.z-index-0 {
+  z-index: 0;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.z-index-2 {
+  z-index: 2;
+}
+
+.z-index-3 {
+  z-index: 3;
+}
+
+.p-t-65 {
+  padding-top: 65px;
 }
