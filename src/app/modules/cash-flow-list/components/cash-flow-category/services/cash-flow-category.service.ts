@@ -4,6 +4,7 @@ import {cashFlowCategoryEndpoints} from "./cash-flow-category-endpoints";
 import {CashFlowCategory} from "../types/cash-flow-category";
 import {Observable} from "rxjs";
 import {ValidityModel} from "../../../../../shared/types/validity-model";
+import {HttpParams} from "@angular/common/http";
 
 @Injectable()
 export class CashFlowCategoryService {
@@ -40,5 +41,13 @@ export class CashFlowCategoryService {
       valid: valid
     }
     return this.httpClient.patch<CashFlowCategory>(url, validity);
+  }
+
+  public checkIfCategoryExist(categoryName: string): Observable<boolean>{
+    const url = cashFlowCategoryEndpoints.checkIfCategoryExist;
+    const options = {
+      params: new HttpParams().append('categoryName', categoryName)
+    };
+    return this.httpClient.get<boolean>(url, options);
   }
 }

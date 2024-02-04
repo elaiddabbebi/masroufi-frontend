@@ -139,5 +139,6 @@
   "UPDATE_ERROR": "L'opération de mise à jour à échouée",
   "CASH": "Caisse",
   "ROLES_AND_PERMISSIONS": "Rôles et permissions",
-  "CASH_FLOW_REGISTRY": "Registre de caisse"
+  "CASH_FLOW_REGISTRY": "Registre de caisse",
+  "CATEGORY_ALREADY_EXIST": "Cette catégorie existe déjà"
 }

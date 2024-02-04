@@ -9,4 +9,5 @@ export const cashFlowCategoryEndpoints = {
   createCategory: baseUrl + `/cash-flow-category`,
   updateCategory: (uuid: string): string => baseUrl + `/cash-flow-category/${uuid}`,
   validateRejectCategory: (uuid: string): string => baseUrl + `/cash-flow-category/${uuid}`,
+  checkIfCategoryExist: baseUrl + '/cash-flow-category/check-exist',
 }

@@ -152,6 +152,7 @@
             class="col-12 p-t-4 form-text text-danger"
           >
             <div *ngIf="categoryDetailsControls['name'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+            <div *ngIf="categoryDetailsControls['name'].errors?.['categoryAlreadyExists']">{{ 'CATEGORY_ALREADY_EXIST' | translate }}</div>
           </small>
         </div>
       </div>

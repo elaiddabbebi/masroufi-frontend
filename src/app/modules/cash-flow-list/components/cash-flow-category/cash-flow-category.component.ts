@@ -7,6 +7,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CashFlowCategoryService} from "./services/cash-flow-category.service";
 import {tap} from "rxjs";
 import {CashFlowCategoryStatus} from "./types/cash-flow-category-status";
+import {CategoryValidators} from "../../../../shared/validators/category-validators";
 
 @Component({
   selector: 'app-cash-flow-category',
@@ -35,7 +36,7 @@ export class CashFlowCategoryComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.categoryDetailsForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required], [CategoryValidators.checkExisting(this.categoryService, this)]),
       gain: new FormControl(false, []),
       expense: new FormControl(false, []),
     });
@@ -62,6 +63,8 @@ export class CashFlowCategoryComponent implements OnInit {
   }
 
   addCategory(): void {
+    this.currentCategoryName = '';
+    this.currentCategoryUuid = '';
     this.categoryDetailsForm.reset();
     this.categoryDetailsDialogHeader = 'ADD_CATEGORY';
     this.mode = 'ADD';
@@ -70,6 +73,7 @@ export class CashFlowCategoryComponent implements OnInit {
 
   editCategory(category: any): void {
     this.currentCategoryUuid = category.uuid;
+    this.currentCategoryName = category.name;
     this.categoryDetailsForm.get('name')?.setValue(category.name);
     this.categoryDetailsForm.get('gain')?.setValue(category.gain);
     this.categoryDetailsForm.get('expense')?.setValue(category.expense);
