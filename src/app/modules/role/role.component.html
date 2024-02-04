@@ -121,7 +121,7 @@
   <ng-template pTemplate="body">
     <form [formGroup]="roleForm">
       <div class="row">
-        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="name">{{ 'NAME' | translate }} <span class="required"> :</span></label>
           <input
             id="name"
@@ -141,7 +141,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="role-type">{{ 'ROLE_TYPE' | translate }} <span class="required"> :</span></label>
           <p-dropdown
             class="w-100"
@@ -166,7 +166,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="permissions">{{ 'PERMISSIONS' | translate }} <span class="required"> :</span></label>
           <p-multiSelect
             class="w-100"

@@ -281,10 +281,26 @@ input:read-only {
   background: white !important;
 }
 
-/*.p-element.p-autocomplete-input.p-inputtext.p-component {*/
-/*  width: 100%;*/
-/*}*/
+.p-autocomplete {
+  width: 100% !important;
+}
 
+.p-inputtext {
+  width: 100% !important;
+}
+
+.p-checkbox-label {
+  cursor: pointer;
+}
+
+.p-dialog .p-dialog-footer {
+  padding: 0.5rem 0rem;
+}
+
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight {
+  color: var(--primary-color-900);
+  background: var(--primary-color-001);
+}
 .text-green-500 {
   color: green;
 }

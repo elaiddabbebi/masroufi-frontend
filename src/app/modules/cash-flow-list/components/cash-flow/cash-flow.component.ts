@@ -69,6 +69,7 @@ export class CashFlowComponent {
 
   addCashFlow(): void {
     this.cashFlowDetailsForm.reset();
+    this.cashFlowDetailsForm.get('published')?.setValue(true);
     this.cashFlowDetailsDialogHeader = 'ADD_CASH_FLOW';
     this.mode = 'ADD';
     this.showCashFlowDetailsDialog();

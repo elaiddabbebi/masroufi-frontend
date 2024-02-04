@@ -67,6 +67,7 @@ export class CashFlowCategoryComponent implements OnInit {
     this.currentCategoryName = '';
     this.currentCategoryUuid = '';
     this.categoryDetailsForm.reset();
+    this.categoryDetailsForm.get('published')?.setValue(true);
     this.categoryDetailsDialogHeader = 'ADD_CATEGORY';
     this.mode = 'ADD';
     this.showCategoryDetailsDialog();

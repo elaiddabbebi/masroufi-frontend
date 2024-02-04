@@ -11,6 +11,7 @@ export class ConfirmCancelFooterComponent {
   @Input() cancelIsLoading: boolean = false;
   @Input() confirmIsDisabled: boolean = false;
   @Input() cancelIsDisabled: boolean = false;
+  @Input() styleClass: string = '';
 
   @Output() onConfirm: EventEmitter<Event> = new EventEmitter<Event>();
   @Output() onCancel: EventEmitter<Event> = new EventEmitter<Event>();

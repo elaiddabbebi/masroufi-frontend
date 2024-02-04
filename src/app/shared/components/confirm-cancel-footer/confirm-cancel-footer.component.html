@@ -1,4 +1,4 @@
-<div class="non-responsive-row text-left m-t-10 float-right">
+<div [class]="'non-responsive-row text-left m-t-10 float-right ' + styleClass">
   <app-cancel-btn
     (click)="cancel($event)"
     [loading]="cancelIsLoading"

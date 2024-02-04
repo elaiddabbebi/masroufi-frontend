@@ -123,16 +123,21 @@
       {{ isActivation ? ('ACTIVATE_ACCOUNT' | translate) : ('DEACTIVATE_ACCOUNT' | translate) }}
     </span>
   </ng-template>
-  <p>
-    {{ (isActivation ? ('ACCOUNT_ACTIVATION_CONFIRM' | translate) : ('ACCOUNT_DEACTIVATION_CONFIRM' | translate)) }}
-    <span style="font-weight: bold;">{{ ' ' + currentAccountFullName }}</span> ?
-  </p>
+
+  <ng-template pTemplate="body">
+    <p>
+      {{ (isActivation ? ('ACCOUNT_ACTIVATION_CONFIRM' | translate) : ('ACCOUNT_DEACTIVATION_CONFIRM' | translate)) }}
+      <span style="font-weight: bold;">{{ ' ' + currentAccountFullName }}</span> ?
+    </p>
+  </ng-template>
+
   <ng-template pTemplate="footer">
-    <app-confirm-cancel-footer
-      (onCancel)="hideActivateDeactivateAccountDialog()"
-      (onConfirm)="activateDeactivateSelectedUser($event)"
-      [confirmIsLoading]="activateDeactivateIsLoading"
-    ></app-confirm-cancel-footer>
+      <app-confirm-cancel-footer
+        styleClass="p-10"
+        (onCancel)="hideActivateDeactivateAccountDialog()"
+        (onConfirm)="activateDeactivateSelectedUser($event)"
+        [confirmIsLoading]="activateDeactivateIsLoading"
+      ></app-confirm-cancel-footer>
   </ng-template>
 </p-dialog>
 
@@ -147,12 +152,17 @@
       {{ 'DELETE_ACCOUNT' | translate }}
     </span>
   </ng-template>
-  <p>
-    {{ 'ACCOUNT_DELETE_CONFIRM' | translate }}
-    <span style="font-weight: bold;">{{ ' ' + currentAccountFullName }}</span> ?
-  </p>
+
+  <ng-template pTemplate="body">
+    <p>
+      {{ 'ACCOUNT_DELETE_CONFIRM' | translate }}
+      <span style="font-weight: bold;">{{ ' ' + currentAccountFullName }}</span> ?
+    </p>
+  </ng-template>
+
   <ng-template pTemplate="footer">
     <app-confirm-cancel-footer
+      styleClass="p-10"
       (onCancel)="hideDeleteAccountDialog()"
       (onConfirm)="deleteSelectedUser($event)"
       [confirmIsLoading]="deleteIsLoading"
@@ -175,7 +185,7 @@
   <ng-template pTemplate="body">
     <form [formGroup]="userDetailsForm">
       <div class="row">
-        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="firstName">{{ 'FIRSTNAME' | translate }} <span class="required"> :</span></label>
           <input
             id="firstName"
@@ -195,7 +205,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="lastName">{{ 'LASTNAME' | translate }} <span class="required"> :</span></label>
           <input
             id="lastName"
@@ -215,7 +225,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="firstName">{{ 'EMAIL' | translate }} <span class="required"> :</span></label>
           <input
             id="email"
@@ -226,7 +236,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="role">{{ 'ROLE' | translate }} <span class="required"> :</span></label>
           <p-dropdown
             class="w-100"
@@ -252,6 +262,7 @@
       </div>
     </form>
   </ng-template>
+
   <ng-template pTemplate="footer">
     <app-save-cancel-footer
       (onCancel)="hideAddAccountDialog()"
