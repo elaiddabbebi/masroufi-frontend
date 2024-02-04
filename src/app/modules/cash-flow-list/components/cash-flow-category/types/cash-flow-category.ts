@@ -5,7 +5,7 @@ export interface CashFlowCategory {
   name: string;
   gain: boolean;
   expense: boolean;
-  systemCategory?: boolean;
+  published?: boolean;
   status?: CashFlowCategoryStatus;
   createdBy?: string;
 }

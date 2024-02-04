@@ -140,5 +140,9 @@
   "CASH": "Cash",
   "ROLES_AND_PERMISSIONS": "Roles and permissions",
   "CASH_FLOW_REGISTRY": "Cash flow registry",
-  "CATEGORY_ALREADY_EXIST": "Category already exist"
+  "CATEGORY_ALREADY_EXIST": "Category already exist",
+  "VISIBILITY": "Visibility",
+  "PUBLIC": "Public",
+  "CASH_FLOW_TYPE": "Cash flow type",
+  "CASH_FLOW_CATEGORY_TYPE": "Type"
 }

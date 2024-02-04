@@ -140,5 +140,9 @@
   "CASH": "Caisse",
   "ROLES_AND_PERMISSIONS": "Rôles et permissions",
   "CASH_FLOW_REGISTRY": "Registre de caisse",
-  "CATEGORY_ALREADY_EXIST": "Cette catégorie existe déjà"
+  "CATEGORY_ALREADY_EXIST": "Cette catégorie existe déjà",
+  "VISIBILITY": "Visibilité",
+  "PUBLIC": "Publique",
+  "CASH_FLOW_TYPE": "Type du flux",
+  "CASH_FLOW_CATEGORY_TYPE": "Type"
 }

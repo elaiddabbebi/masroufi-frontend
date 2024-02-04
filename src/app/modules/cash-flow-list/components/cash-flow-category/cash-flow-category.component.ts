@@ -39,6 +39,7 @@ export class CashFlowCategoryComponent implements OnInit {
       name: new FormControl('', [Validators.required], [CategoryValidators.checkExisting(this.categoryService, this)]),
       gain: new FormControl(false, []),
       expense: new FormControl(false, []),
+      published: new FormControl(false, []),
     });
   }
 
@@ -77,6 +78,7 @@ export class CashFlowCategoryComponent implements OnInit {
     this.categoryDetailsForm.get('name')?.setValue(category.name);
     this.categoryDetailsForm.get('gain')?.setValue(category.gain);
     this.categoryDetailsForm.get('expense')?.setValue(category.expense);
+    this.categoryDetailsForm.get('published')?.setValue(category.published);
     this.categoryDetailsDialogHeader = 'EDIT_CATEGORY';
     this.mode = 'EDIT';
     this.showCategoryDetailsDialog();
@@ -123,7 +125,7 @@ export class CashFlowCategoryComponent implements OnInit {
       name: this.categoryDetailsForm.value.name,
       gain: this.categoryDetailsForm.value.gain,
       expense: this.categoryDetailsForm.value.expense,
-      systemCategory: true,
+      published: this.categoryDetailsForm.value.published,
       status: CashFlowCategoryStatus.VALIDATED
     }
     this.categoryService.createCategory(category).pipe(
@@ -152,6 +154,7 @@ export class CashFlowCategoryComponent implements OnInit {
       name: this.categoryDetailsForm.value.name,
       gain: this.categoryDetailsForm.value.gain,
       expense: this.categoryDetailsForm.value.expense,
+      published: this.categoryDetailsForm.value.published,
     }
     this.categoryService.updateCategory(this.currentCategoryUuid, category).pipe(
       tap({

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {CashFlowCategory} from "../cash-flow-category/types/cash-flow-category";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
@@ -9,6 +9,7 @@ import {tap} from "rxjs";
 import {CashFlowService} from "./services/cash-flow.service";
 import {CashFlow} from "./types/cash-flow";
 import {CashFlowStatus} from "./types/cash-flow-status";
+import {CashFlowCategoryStatus} from "../cash-flow-category/types/cash-flow-category-status";
 
 @Component({
   selector: 'app-cash-flow',
@@ -27,6 +28,7 @@ export class CashFlowComponent {
   mode: string = '';
   currentCashFlowUuid: string = '';
   currentCashFlowName: string = '';
+  filteredCategories: CashFlowCategory[] = [];
 
   constructor(
     private router: Router,
@@ -37,9 +39,11 @@ export class CashFlowComponent {
     private formBuilder: FormBuilder,
   ) {
     this.cashFlowDetailsForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl(null, [Validators.required]),
+      category: new FormControl(null, [Validators.required]),
       gain: new FormControl(false, []),
       expense: new FormControl(false, []),
+      published: new FormControl(false, []),
     });
   }
 
@@ -70,11 +74,13 @@ export class CashFlowComponent {
     this.showCashFlowDetailsDialog();
   }
 
-  editCashFlow(category: any): void {
-    this.currentCashFlowUuid = category.uuid;
-    this.cashFlowDetailsForm.get('name')?.setValue(category.name);
-    this.cashFlowDetailsForm.get('gain')?.setValue(category.gain);
-    this.cashFlowDetailsForm.get('expense')?.setValue(category.expense);
+  editCashFlow(cashFlow: any): void {
+    this.currentCashFlowUuid = cashFlow.uuid;
+    this.cashFlowDetailsForm.get('name')?.setValue(cashFlow.name);
+    this.cashFlowDetailsForm.get('category')?.setValue(cashFlow.category);
+    this.cashFlowDetailsForm.get('gain')?.setValue(cashFlow.gain);
+    this.cashFlowDetailsForm.get('expense')?.setValue(cashFlow.expense);
+    this.cashFlowDetailsForm.get('published')?.setValue(cashFlow.published);
     this.cashFlowDetailsDialogHeader = 'EDIT_CASH_FLOW';
     this.mode = 'EDIT';
     this.showCashFlowDetailsDialog();
@@ -112,18 +118,54 @@ export class CashFlowComponent {
     ).subscribe();
   }
 
+  getSelectedCategory(): CashFlowCategory {
+    if (typeof this.cashFlowDetailsForm.value.category === 'string') {
+      return {
+        name: this.cashFlowDetailsForm.value.category,
+        gain: false,
+        expense: false,
+        published: false,
+      }
+    } else if (typeof this.cashFlowDetailsForm.value.category === 'object') {
+      return this.cashFlowDetailsForm.value.category;
+    } else {
+      return {
+        name: '',
+        gain: false,
+        expense: false,
+        published: false,
+      }
+    }
+  }
+
+  buildCashFlowToBeSaved(): CashFlow {
+    const category: CashFlowCategory = this.getSelectedCategory();
+    if (this.cashFlowDetailsForm.value.expense) {
+      category.expense = true;
+    }
+    if (this.cashFlowDetailsForm.value.gain) {
+      category.gain = true;
+    }
+    if (this.cashFlowDetailsForm.value.published) {
+      category.published = true;
+    }
+    return {
+      name: this.cashFlowDetailsForm.value.name,
+      category: category,
+      gain: this.cashFlowDetailsForm.value.gain,
+      expense: this.cashFlowDetailsForm.value.expense,
+      published: this.cashFlowDetailsForm.value.published,
+      status: CashFlowStatus.VALIDATED
+    }
+
+  }
+
   createCashFlow(): void {
     if (this.cashFlowDetailsForm.invalid) {
       return;
     }
     this.saveIsLoading = true;
-    const cashFlow: CashFlow = {
-      name: this.cashFlowDetailsForm.value.name,
-      gain: this.cashFlowDetailsForm.value.gain,
-      expense: this.cashFlowDetailsForm.value.expense,
-      systemCashFlow: true,
-      status: CashFlowStatus.VALIDATED
-    }
+    const cashFlow: CashFlow = this.buildCashFlowToBeSaved();
     this.cashFlowService.createCashFlow(cashFlow).pipe(
       tap({
         next: response => {
@@ -146,11 +188,7 @@ export class CashFlowComponent {
       return;
     }
     this.saveIsLoading = true;
-    const cashFlow: CashFlow = {
-      name: this.cashFlowDetailsForm.value.name,
-      gain: this.cashFlowDetailsForm.value.gain,
-      expense: this.cashFlowDetailsForm.value.expense,
-    }
+    const cashFlow: CashFlow = this.buildCashFlowToBeSaved();
     this.cashFlowService.updateCashFlow(this.currentCashFlowUuid, cashFlow).pipe(
       tap({
         next: response => {
@@ -186,6 +224,15 @@ export class CashFlowComponent {
         }
       })
     ).subscribe();
+  }
+
+  findTop10CategoriesByName(name: string): void {
+    if (name) {
+      this.categoryService.findTop10CategoriesByName(name)
+        .pipe().subscribe(response => {
+          this.filteredCategories = response;
+        })
+    }
   }
 
   protected readonly CashFlowStatus = CashFlowStatus;

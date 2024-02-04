@@ -281,6 +281,10 @@ input:read-only {
   background: white !important;
 }
 
+/*.p-element.p-autocomplete-input.p-inputtext.p-component {*/
+/*  width: 100%;*/
+/*}*/
+
 .text-green-500 {
   color: green;
 }

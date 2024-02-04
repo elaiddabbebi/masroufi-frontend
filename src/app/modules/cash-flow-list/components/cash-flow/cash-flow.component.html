@@ -43,7 +43,7 @@
         <th class="text-center">{{ 'CATEGORY' | translate }}</th>
         <th class="text-center">{{ 'GAIN' | translate }}</th>
         <th class="text-center">{{ 'EXPENSE' | translate }}</th>
-        <th class="text-center">{{ 'SYSTEM' | translate }}</th>
+        <th class="text-center">{{ 'PUBLIC' | translate }}</th>
         <th class="text-center">{{ 'CREATED_BY' | translate }}</th>
         <th class="text-center">{{ 'STATUS' | translate }}</th>
         <th class="text-center" style="width: 200px !important;">{{ 'ACTIONS' | translate }}</th>
@@ -81,8 +81,8 @@
           <i
             class="pi"
             [ngClass]="{
-              'text-green-500 pi-check-circle': cashFlow.systemCashFlow,
-              'text-red-500 pi-times-circle': !cashFlow.systemCashFlow
+              'text-green-500 pi-check-circle': cashFlow.published,
+              'text-red-500 pi-times-circle': !cashFlow.published
             }"
           ></i>
         </td>
@@ -140,7 +140,7 @@
   <ng-template pTemplate="body">
     <form [formGroup]="cashFlowDetailsForm">
       <div class="row">
-        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="name">{{ 'NAME' | translate }} <span class="required"> :</span></label>
           <input
             id="name"
@@ -161,6 +161,20 @@
       </div>
 
       <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
+          <label for="category">{{ 'CATEGORY' | translate }} <span class="required"> :</span></label>
+          <p-autoComplete
+            id="category"
+            formControlName="category"
+            [suggestions]="filteredCategories"
+            (completeMethod)="findTop10CategoriesByName($event.query)"
+            field="name"
+          ></p-autoComplete>
+        </div>
+      </div>
+
+      <div class="p-t-10 p-b-5"><label><b>{{ 'CASH_FLOW_TYPE' | translate }} <span> :</span></b></label></div>
+      <div class="row p-l-30">
         <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
           <p-checkbox
             [label]="'GAIN' | translate"
@@ -171,13 +185,25 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row p-l-30">
         <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
           <p-checkbox
             [label]="'EXPENSE' | translate"
             [binary]="true"
             name="expense"
             formControlName="expense"
+          ></p-checkbox>
+        </div>
+      </div>
+
+      <div class="p-t-10 p-b-5"><label><b>{{ 'VISIBILITY' | translate }} <span> :</span></b></label></div>
+      <div class="row p-l-30">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+          <p-checkbox
+            [label]="'PUBLIC' | translate"
+            [binary]="true"
+            name="published"
+            formControlName="published"
           ></p-checkbox>
         </div>
       </div>

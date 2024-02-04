@@ -20,6 +20,14 @@ export class CashFlowCategoryService {
     return this.httpClient.get<CashFlowCategory[]>(url);
   }
 
+  public findTop10CategoriesByName(name: string): Observable<CashFlowCategory[]>{
+    const url = cashFlowCategoryEndpoints.top10ByName;
+    const options = {
+      params: new HttpParams().append('categoryName', name)
+    }
+    return this.httpClient.get<CashFlowCategory[]>(url, options);
+  }
+
   public createCategory(categoryDetails: CashFlowCategory): Observable<CashFlowCategory>{
     const url = cashFlowCategoryEndpoints.createCategory;
     return this.httpClient.post<CashFlowCategory>(url, categoryDetails);

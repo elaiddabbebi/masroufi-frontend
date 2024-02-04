@@ -20,6 +20,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import {TagModule} from "primeng/tag";
 import { ChipModule } from 'primeng/chip';
 import {CashFlowComponent} from "./components/cash-flow/cash-flow.component";
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {CashFlowComponent} from "./components/cash-flow/cash-flow.component";
     CheckboxModule,
     TagModule,
     ChipModule,
+    AutoCompleteModule,
   ]
 })
 export class CashFlowListModule { }
