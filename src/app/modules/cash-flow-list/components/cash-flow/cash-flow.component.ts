@@ -21,9 +21,12 @@ export class CashFlowComponent {
   cashFlowList: CashFlow[] = [];
   cashFlowDetailsDialog: boolean = false;
   deleteCashFlowDialog: boolean = false;
+  cashFlowValidationDialog: boolean = false;
   cashFlowDetailsForm: FormGroup;
   saveIsLoading: boolean = false;
   deleteIsLoading: boolean = false;
+  isValidation: boolean = false;
+  validationIsLoading: boolean = false;
   cashFlowDetailsDialogHeader: string = '';
   mode: string = '';
   currentCashFlowUuid: string = '';
@@ -67,6 +70,14 @@ export class CashFlowComponent {
     this.deleteCashFlowDialog = true;
   }
 
+  hideCashFlowValidationDialog(): void {
+    this.cashFlowValidationDialog = false;
+  }
+
+  showCashFlowValidationDialog(): void {
+    this.cashFlowValidationDialog = true;
+  }
+
   addCashFlow(): void {
     this.cashFlowDetailsForm.reset();
     this.cashFlowDetailsForm.get('published')?.setValue(true);
@@ -91,6 +102,20 @@ export class CashFlowComponent {
     this.currentCashFlowName = cashFlow.name;
     this.currentCashFlowUuid = cashFlow.uuid;
     this.showDeleteCashFlowDialog();
+  }
+
+  validateCashFlow(cashFlow: any): void {
+    this.currentCashFlowName = cashFlow.name;
+    this.currentCashFlowUuid = cashFlow.uuid;
+    this.isValidation = true;
+    this.showCashFlowValidationDialog();
+  }
+
+  rejectCashFlow(cashFlow: any): void {
+    this.currentCashFlowName = cashFlow.name;
+    this.currentCashFlowUuid = cashFlow.uuid;
+    this.isValidation = false;
+    this.showCashFlowValidationDialog();
   }
 
   saveCashFlow(event: Event): void {
@@ -234,6 +259,28 @@ export class CashFlowComponent {
           this.filteredCategories = response;
         })
     }
+  }
+
+  confirmCashFlowValidation(event: Event): void {
+    event.stopPropagation();
+    this.validationIsLoading = true;
+    this.cashFlowService.validateRejectCashFlow(this.currentCashFlowUuid, this.isValidation)
+      .pipe(
+        tap({
+          next: response => {
+            this.validationIsLoading = false;
+            this.hideCashFlowValidationDialog();
+            this.notificationService.notifySuccess(this.isValidation ? 'CASH_FLOW_VALIDATION_SUCCESS' : 'CASH_FLOW_REJECTION_SUCCESS');
+            this.searchCashFlow();
+          },
+          error: error => {
+            console.log(error);
+            this.notificationService.notifyError('ERROR_OCCURRED');
+            this.validationIsLoading = false;
+          }
+        })
+      )
+      .subscribe();
   }
 
   protected readonly CashFlowStatus = CashFlowStatus;

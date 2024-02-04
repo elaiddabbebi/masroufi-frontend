@@ -144,5 +144,13 @@
   "VISIBILITY": "Visibilité",
   "PUBLIC": "Publique",
   "CASH_FLOW_TYPE": "Type du flux",
-  "CASH_FLOW_CATEGORY_TYPE": "Type"
+  "CASH_FLOW_CATEGORY_TYPE": "Type",
+  "REJECT": "Rejeter",
+  "VALIDATE": "Valider",
+  "REJECT_CASH_FLOW": "Rejeter un flux",
+  "REJECT_CASH_FLOW_CONFIRM": "Voulez vous vraiment rejeter le flux",
+  "VALIDATE_CASH_FLOW": "Valider un flux",
+  "VALIDATE_CASH_FLOW_CONFIRM": "Voulez vous vraiment valider le flux",
+  "CASH_FLOW_VALIDATION_SUCCESS": "Flux validé avec succès",
+  "CASH_FLOW_REJECTION_SUCCESS": "Flux rejeté avec succès"
 }

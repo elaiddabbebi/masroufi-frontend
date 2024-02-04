@@ -144,5 +144,13 @@
   "VISIBILITY": "Visibility",
   "PUBLIC": "Public",
   "CASH_FLOW_TYPE": "Cash flow type",
-  "CASH_FLOW_CATEGORY_TYPE": "Type"
+  "CASH_FLOW_CATEGORY_TYPE": "Type",
+  "REJECT": "Reject",
+  "VALIDATE": "Validate",
+  "REJECT_CASH_FLOW": "Reject cash flow",
+  "REJECT_CASH_FLOW_CONFIRM": "Are you sure you want to reject the cash flow",
+  "VALIDATE_CASH_FLOW": "Validate cash flow",
+  "VALIDATE_CASH_FLOW_CONFIRM": "Are you sure you want to validate the cash flow",
+  "CASH_FLOW_VALIDATION_SUCCESS": "Cash flow validated successfully",
+  "CASH_FLOW_REJECTION_SUCCESS": "Cash flow rejected successfully"
 }

@@ -97,6 +97,26 @@
         </td>
         <td class="text-center non-responsive-row" style="justify-content: center; width: 200px;">
           <p-button
+            *ngIf="cashFlow.status !== CashFlowStatus.VALIDATED"
+            styleClass="m-r-5 m-l-5"
+            icon="pi pi-check"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'VALIDATE' | translate"
+            tooltipPosition="top"
+            (onClick)="validateCashFlow(cashFlow)"
+          ></p-button>
+          <p-button
+            *ngIf="cashFlow.status !== CashFlowStatus.REJECTED"
+            styleClass="m-r-5 m-l-5"
+            icon="pi pi-times"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'REJECT' | translate"
+            tooltipPosition="top"
+            (onClick)="rejectCashFlow(cashFlow)"
+          ></p-button>
+          <p-button
             icon="pi pi-pencil"
             styleClass="m-r-5 m-l-5"
             [rounded]="true"
@@ -239,6 +259,35 @@
       (onCancel)="hideCashFlowCategoryDialog()"
       (onConfirm)="confirmDeleteCashFlow($event)"
       [confirmIsLoading]="deleteIsLoading"
+    ></app-confirm-cancel-footer>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="header"
+  [(visible)]="cashFlowValidationDialog"
+  [style]="{ width: '600px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ isValidation ? ('VALIDATE_CASH_FLOW' | translate) : ('REJECT_CASH_FLOW' | translate) }}
+    </span>
+  </ng-template>
+
+  <ng-template pTemplate="body">
+    <p>
+      {{ (isValidation ? ('VALIDATE_CASH_FLOW_CONFIRM' | translate) : ('REJECT_CASH_FLOW_CONFIRM' | translate)) }}
+      <span style="font-weight: bold;">{{ ' ' + currentCashFlowName }}</span> ?
+    </p>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <app-confirm-cancel-footer
+      styleClass="p-10"
+      (onCancel)="hideCashFlowValidationDialog()"
+      (onConfirm)="confirmCashFlowValidation($event)"
+      [confirmIsLoading]="validationIsLoading"
     ></app-confirm-cancel-footer>
   </ng-template>
 </p-dialog>
