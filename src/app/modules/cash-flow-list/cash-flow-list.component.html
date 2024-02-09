@@ -1,5 +1,8 @@
-
-<p-tabView styleClass="tabview-custom">
+<p-tabView
+  styleClass="tabview-custom"
+  (onChange)="onTabChanged($event)"
+  [(activeIndex)]="tabIndex"
+>
   <p-toast></p-toast>
   <p-tabPanel [headerStyle]="{'width': '100%'}">
     <ng-template pTemplate="header">
