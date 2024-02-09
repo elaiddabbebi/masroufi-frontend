@@ -20,9 +20,12 @@ export class CashFlowCategoryComponent implements OnInit {
   cashFlowCategoryList: CashFlowCategory[] = [];
   categoryDetailsDialog: boolean = false;
   deleteCategoryDialog: boolean = false;
+  cashFlowCategoryValidationDialog: boolean = false;
   categoryDetailsForm: FormGroup;
   saveIsLoading: boolean = false;
   deleteIsLoading: boolean = false;
+  isValidation: boolean = false;
+  validationIsLoading: boolean = false;
   categoryDetailsDialogHeader: string = '';
   mode: string = '';
   currentCategoryUuid: string = '';
@@ -63,6 +66,14 @@ export class CashFlowCategoryComponent implements OnInit {
     this.deleteCategoryDialog = true;
   }
 
+  hideCashFlowCategoryValidationDialog(): void {
+    this.cashFlowCategoryValidationDialog = false;
+  }
+
+  showCashFlowCategoryValidationDialog(): void {
+    this.cashFlowCategoryValidationDialog = true;
+  }
+
   addCategory(): void {
     this.currentCategoryName = '';
     this.currentCategoryUuid = '';
@@ -89,6 +100,20 @@ export class CashFlowCategoryComponent implements OnInit {
     this.currentCategoryName = category.name;
     this.currentCategoryUuid = category.uuid;
     this.showDeleteCategoryDialog();
+  }
+
+  validateCashFlowCategory(category: any): void {
+    this.currentCategoryName = category.name;
+    this.currentCategoryUuid = category.uuid;
+    this.isValidation = true;
+    this.showCashFlowCategoryValidationDialog();
+  }
+
+  rejectCashFlowCategory(category: any): void {
+    this.currentCategoryName = category.name;
+    this.currentCategoryUuid = category.uuid;
+    this.isValidation = false;
+    this.showCashFlowCategoryValidationDialog();
   }
 
   saveCategory(event: Event): void {
@@ -192,6 +217,28 @@ export class CashFlowCategoryComponent implements OnInit {
         }
       })
     ).subscribe();
+  }
+
+  confirmCashFlowCategoryValidation(event: Event): void {
+    event.stopPropagation();
+    this.validationIsLoading = true;
+    this.categoryService.validateRejectCategory(this.currentCategoryUuid, this.isValidation)
+      .pipe(
+        tap({
+          next: response => {
+            this.validationIsLoading = false;
+            this.hideCashFlowCategoryValidationDialog();
+            this.notificationService.notifySuccess(this.isValidation ? 'CASH_FLOW_CATEGORY_VALIDATION_SUCCESS' : 'CASH_FLOW_CATEGORY_REJECTION_SUCCESS');
+            this.searchCategories();
+          },
+          error: error => {
+            console.log(error);
+            this.notificationService.notifyError('ERROR_OCCURRED');
+            this.validationIsLoading = false;
+          }
+        })
+      )
+      .subscribe();
   }
 
   protected readonly CashFlowCategoryStatus = CashFlowCategoryStatus;

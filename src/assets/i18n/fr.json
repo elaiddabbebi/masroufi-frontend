@@ -152,5 +152,11 @@
   "VALIDATE_CASH_FLOW": "Valider un flux",
   "VALIDATE_CASH_FLOW_CONFIRM": "Voulez vous vraiment valider le flux",
   "CASH_FLOW_VALIDATION_SUCCESS": "Flux validé avec succès",
-  "CASH_FLOW_REJECTION_SUCCESS": "Flux rejeté avec succès"
+  "CASH_FLOW_REJECTION_SUCCESS": "Flux rejeté avec succès",
+  "REJECT_CASH_FLOW_CATEGORY": "Rejeter une catégorie",
+  "REJECT_CASH_FLOW_CATEGORY_CONFIRM": "Voulez vous vraiment rejeter la catégorie",
+  "VALIDATE_CASH_FLOW_CATEGORY": "Valider une catégorie",
+  "VALIDATE_CASH_FLOW_CATEGORY_CONFIRM": "Voulez vous vraiment valider la catégorie",
+  "CASH_FLOW_CATEGORY_VALIDATION_SUCCESS": "Catégorie validée avec succès",
+  "CASH_FLOW_CATEGORY_REJECTION_SUCCESS": "Catégorie rejetée avec succès"
 }

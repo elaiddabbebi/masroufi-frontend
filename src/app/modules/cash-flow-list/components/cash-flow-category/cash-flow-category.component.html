@@ -93,6 +93,26 @@
         </td>
         <td class="text-center non-responsive-row" style="justify-content: center; width: 200px;">
           <p-button
+            *ngIf="category.status !== CashFlowCategoryStatus.VALIDATED"
+            styleClass="m-r-5 m-l-5"
+            icon="pi pi-check"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'VALIDATE' | translate"
+            tooltipPosition="top"
+            (onClick)="validateCashFlowCategory(category)"
+          ></p-button>
+          <p-button
+            *ngIf="category.status !== CashFlowCategoryStatus.REJECTED"
+            styleClass="m-r-5 m-l-5"
+            icon="pi pi-times"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'REJECT' | translate"
+            tooltipPosition="top"
+            (onClick)="rejectCashFlowCategory(category)"
+          ></p-button>
+          <p-button
             icon="pi pi-pencil"
             styleClass="m-r-5 m-l-5"
             [rounded]="true"
@@ -223,6 +243,35 @@
       (onCancel)="hideDeleteCategoryDialog()"
       (onConfirm)="confirmDeleteCategory($event)"
       [confirmIsLoading]="deleteIsLoading"
+    ></app-confirm-cancel-footer>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="header"
+  [(visible)]="cashFlowCategoryValidationDialog"
+  [style]="{ width: '600px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ isValidation ? ('VALIDATE_CASH_FLOW_CATEGORY' | translate) : ('REJECT_CASH_FLOW_CATEGORY' | translate) }}
+    </span>
+  </ng-template>
+
+  <ng-template pTemplate="body">
+    <p>
+      {{ (isValidation ? ('VALIDATE_CASH_FLOW_CATEGORY_CONFIRM' | translate) : ('REJECT_CASH_FLOW_CATEGORY_CONFIRM' | translate)) }}
+      <span style="font-weight: bold;">{{ ' ' + currentCategoryName }}</span> ?
+    </p>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <app-confirm-cancel-footer
+      styleClass="p-10"
+      (onCancel)="hideCashFlowCategoryValidationDialog()"
+      (onConfirm)="confirmCashFlowCategoryValidation($event)"
+      [confirmIsLoading]="validationIsLoading"
     ></app-confirm-cancel-footer>
   </ng-template>
 </p-dialog>
