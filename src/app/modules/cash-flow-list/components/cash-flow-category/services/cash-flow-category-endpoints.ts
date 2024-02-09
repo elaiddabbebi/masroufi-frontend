@@ -1,4 +1,4 @@
-import {environment} from "../../../../../../Environments/app.environment";
+import {environment} from "../../../../../../environments/app.environment";
 
 const baseUrl = environment.apiBaseUrl;
 

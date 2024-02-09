@@ -16,6 +16,34 @@ const routes: Routes = [
     },
   },
   {
+    path: 'users',
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    data: {
+      breadcrumb: 'USERS'
+    },
+  },
+  {
+    path: 'roles',
+    loadChildren: () => import('./role/role.module').then((m) => m.RoleModule),
+    data: {
+      breadcrumb: 'ROLES'
+    },
+  },
+  {
+    path: 'cash-flow',
+    loadChildren: () => import('./cash-flow-list/cash-flow-list.module').then((m) => m.CashFlowListModule),
+    data: {
+      breadcrumb: 'LISTS'
+    },
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),
+    data: {
+      breadcrumb: 'MY_PROFILE'
+    },
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then((m) => m.SettingsModule),
     data: {

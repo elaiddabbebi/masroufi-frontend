@@ -43,7 +43,7 @@ export class NavBarComponent implements OnInit, OnChanges {
             label: this.translate.transform('MY_PROFILE'),
             icon: 'pi pi-fw pi-user',
             command: (event: MenuItemCommandEvent): void => {
-              this.router.navigate(['/main/settings/profile']);
+              this.router.navigate(['/main/profile']);
             }
           },
           {

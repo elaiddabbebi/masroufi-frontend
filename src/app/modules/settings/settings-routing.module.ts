@@ -5,36 +5,8 @@ import {NotFoundComponent} from "../../shared/components/not-found/not-found.com
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'profile',
+    redirectTo: 'not-fount',
     pathMatch: 'full',
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('../profile/profile.module').then((m) => m.ProfileModule),
-    data: {
-      breadcrumb: 'MY_PROFILE'
-    },
-  },
-  {
-    path: 'users',
-    loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
-    data: {
-      breadcrumb: 'USERS'
-    },
-  },
-  {
-    path: 'roles',
-    loadChildren: () => import('../role/role.module').then((m) => m.RoleModule),
-    data: {
-      breadcrumb: 'ROLES'
-    },
-  },
-  {
-    path: 'lists',
-    loadChildren: () => import('../cash-flow-list/cash-flow-list.module').then((m) => m.CashFlowListModule),
-    data: {
-      breadcrumb: 'LISTS'
-    },
   },
   {
     path: '**',
