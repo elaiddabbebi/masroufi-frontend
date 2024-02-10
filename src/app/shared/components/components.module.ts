@@ -19,6 +19,7 @@ import { ConfirmCancelFooterComponent } from './confirm-cancel-footer/confirm-ca
 import { LoaderComponent } from './loader/loader.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import {TabViewModule} from "primeng/tabview";
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {TabViewModule} from "primeng/tabview";
     ConfirmBtnComponent,
     ConfirmCancelFooterComponent,
     LoaderComponent,
+    SplashScreenComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ import {TabViewModule} from "primeng/tabview";
     SaveCancelFooterComponent,
     ConfirmCancelFooterComponent,
     LoaderComponent,
+    SplashScreenComponent,
   ]
 })
 export class ComponentsModule { }

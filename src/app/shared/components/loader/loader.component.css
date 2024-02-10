@@ -1,7 +1,7 @@
 .app-loader-spinner {
-  margin-left: calc(50% - 2rem);
-  margin-top:  calc(30% - 10rem);
-  color: var(--primary-color-500);
+  margin-left: calc(50% - 1.25rem);
+  margin-top:  calc(50vh - 4rem);
+  color: var(--primary-color-700);
 }
 
 .pi-spin {
