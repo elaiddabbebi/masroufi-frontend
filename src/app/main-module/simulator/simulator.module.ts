@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SimulatorComponent } from './simulator.component';
+import {SimulatorRoutingModule} from "./simulator-routing.module";
 
 
 
@@ -9,7 +10,8 @@ import { SimulatorComponent } from './simulator.component';
     SimulatorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SimulatorRoutingModule,
   ]
 })
 export class SimulatorModule { }

@@ -33,7 +33,28 @@ const routes: Routes = [
     path: 'cash-flow',
     loadChildren: () => import('./cash-flow-list/cash-flow-list.module').then((m) => m.CashFlowListModule),
     data: {
-      breadcrumb: 'LISTS'
+      breadcrumb: 'CASH_FLOW'
+    },
+  },
+  {
+    path: 'cash-flow-registry',
+    loadChildren: () => import('./cash-flow-registry/cash-flow-registry.module').then((m) => m.CashFlowRegistryModule),
+    data: {
+      breadcrumb: 'CASH_FLOW_REGISTRY'
+    },
+  },
+  {
+    path: 'statistics',
+    loadChildren: () => import('./statistics/statistics.module').then((m) => m.StatisticsModule),
+    data: {
+      breadcrumb: 'STATISTICS'
+    },
+  },
+  {
+    path: 'simulator',
+    loadChildren: () => import('./simulator/simulator.module').then((m) => m.SimulatorModule),
+    data: {
+      breadcrumb: 'SIMULATOR'
     },
   },
   {
@@ -47,7 +68,7 @@ const routes: Routes = [
     path: 'configuration',
     loadChildren: () => import('./configuration/configuration.module').then((m) => m.ConfigurationModule),
     data: {
-      breadcrumb: 'SETTINGS'
+      breadcrumb: 'CONFIGURATION'
     }
   },
   {

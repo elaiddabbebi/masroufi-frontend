@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CashFlowRegistryComponent } from './cash-flow-registry.component';
+import {CashFlowRegistryRoutingModule} from "./cash-flow-registry-routing.module";
 
 
 
@@ -9,7 +10,8 @@ import { CashFlowRegistryComponent } from './cash-flow-registry.component';
     CashFlowRegistryComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CashFlowRegistryRoutingModule,
   ]
 })
 export class CashFlowRegistryModule { }

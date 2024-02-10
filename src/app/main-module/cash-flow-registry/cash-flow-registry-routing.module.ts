@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NotFoundComponent} from "../../shared/components/not-found/not-found.component";
-import {ConfigurationComponent} from "./configuration.component";
+import {CashFlowRegistryComponent} from "./cash-flow-registry.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: ConfigurationComponent,
+    component: CashFlowRegistryComponent,
     pathMatch: 'full',
   },
   {
@@ -22,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ConfigurationRoutingModule { }
+export class CashFlowRegistryRoutingModule { }

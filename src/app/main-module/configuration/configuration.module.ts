@@ -9,7 +9,7 @@ import { ConfigurationComponent } from './configuration.component';
   ],
   imports: [
     CommonModule,
-    ConfigurationRoutingModule
+    ConfigurationRoutingModule,
   ]
 })
 export class ConfigurationModule { }
