@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AccountDetails} from "../types/account-details";
+import {AccountDetails} from "../../app-security/types/account-details";
 import {NotificationService} from "../../../shared/services/notification.service";
 import {TranslatePipe} from "../../../shared/pipes/translate.pipe";
 import {tap} from "rxjs";
-import {AccountPasswordModel} from "../../profile/types/account-password-model";
+import {AccountPasswordModel} from "../../app-security/types/account-password-model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {Role} from "../../role/types/role";

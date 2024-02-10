@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {tap} from "rxjs";
-import {AccountDetails} from "../user/types/account-details";
-import {ProfileService} from "./services/profile.service";
+import {AccountDetails} from "../app-security/types/account-details";
+import {AppSecurityService} from "../app-security/services/app-security.service";
 import {NotificationService} from "../../shared/services/notification.service";
 import {TranslatePipe} from "../../shared/pipes/translate.pipe";
-import {AccountPasswordModel} from "./types/account-password-model";
+import {AccountPasswordModel} from "../app-security/types/account-password-model";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [ProfileService, NotificationService, TranslatePipe]
+  providers: [AppSecurityService, NotificationService, TranslatePipe]
 })
 export class ProfileComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: ProfileService,
+    private service: AppSecurityService,
     private notificationService: NotificationService,
     private translate: TranslatePipe
   ) {
@@ -101,7 +101,7 @@ export class ProfileComponent implements OnInit {
       phoneNumber: this.profileDetailsForm.value.phoneNumber,
       birthDate: this.profileDetailsForm.value.birthDate,
     }
-    this.service.updateProfileDetails(details).pipe(
+    this.service.updateAccountDetails(details).pipe(
       tap({
         next: (response: AccountDetails) => {
           this.profileDetails = response;

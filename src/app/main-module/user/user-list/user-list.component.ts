@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {TranslatePipe} from "../../../shared/pipes/translate.pipe";
 import {UserService} from "../services/user.service";
 import {tap} from "rxjs";
-import {AccountDetails} from "../types/account-details";
+import {AccountDetails} from "../../app-security/types/account-details";
 import {NotificationService} from "../../../shared/services/notification.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {RoleService} from "../../role/services/role.service";
@@ -186,7 +186,7 @@ export class UserListComponent implements OnInit {
   }
 
   editUser(user: any): void {
-    this.router.navigate(['/main/settings/users/details'], {queryParams: {uuid: user.uuid}});
+    this.router.navigate(['/main/configuration/users/details'], {queryParams: {uuid: user.uuid}});
   }
 
   createUser(event: Event): void {

@@ -3,27 +3,24 @@ import {MenuItem} from "primeng/api";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter, tap} from "rxjs";
 import {TranslatePipe} from "../shared/pipes/translate.pipe";
-import {AccountDetails} from "./user/types/account-details";
-import {ProfileService} from "./profile/services/profile.service";
+import {AppSecurityContext} from "./app-security/app-security-context";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
-  providers: [TranslatePipe, ProfileService]
+  providers: [TranslatePipe]
 })
 export class MainComponent implements OnInit {
 
   breadcrumbItems: MenuItem[] = [];
-  sidebarItems: MenuItem[] | undefined = [];
-  home: MenuItem = { icon: 'pi pi-home', routerLink: '/' };
-  fullName: string = '';
+  contextIsLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslatePipe,
-    private profileService: ProfileService
+    private appSecurityContext: AppSecurityContext,
   ) {
     this.router.events
       .pipe(
@@ -37,26 +34,12 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAccountInfo();
-  }
-
-  getAccountInfo(): void {
-    this.profileService.getAccountInfo().pipe(
-      tap({
-        next: (response: AccountDetails) => {
-          this.fullName = response.fullName ? response.fullName : 'Unknown User';
-          this.sidebarItems = response.items;
-        },
-        error: (error) => {
-          this.logout();
-        }
-      })
-    ).subscribe();
-  }
-
-  logout(): void {
-    localStorage.clear();
-    this.router.navigate(['/auth/login']);
+    this.contextIsLoading = true;
+    this.appSecurityContext.initContext().pipe()
+      .subscribe(response => {
+        this.contextIsLoading = false;
+      }
+    )
   }
 
   initBreadCrumbs(): void {

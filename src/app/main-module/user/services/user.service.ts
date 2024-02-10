@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {AppHttpClient} from "../../../shared/http/app-http-client";
-import {AccountDetails} from "../types/account-details";
+import {AccountDetails} from "../../app-security/types/account-details";
 import {userEndpoints} from "./user-endpoints";
-import {AccountPasswordModel} from "../../profile/types/account-password-model";
+import {AccountPasswordModel} from "../../app-security/types/account-password-model";
 
 @Injectable()
 export class UserService {

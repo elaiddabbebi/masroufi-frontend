@@ -6,6 +6,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'not-fount',
+    // component: null,
     pathMatch: 'full',
   },
   {
@@ -21,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SettingsRoutingModule { }
+export class ConfigurationRoutingModule { }

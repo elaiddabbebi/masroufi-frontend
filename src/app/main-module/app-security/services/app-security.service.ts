@@ -1,26 +1,26 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {AppHttpClient} from "../../../shared/http/app-http-client";
-import {AccountDetails} from "../../user/types/account-details";
-import {profileEndpoints} from "./profile-endpoints";
+import {AccountDetails} from "../types/account-details";
+import {appSecurityEndpoints} from "./app-security-endpoints";
 import {AccountPasswordModel} from "../types/account-password-model";
 
 @Injectable()
-export class ProfileService {
+export class AppSecurityService {
   constructor(private httpClient: AppHttpClient) {}
 
   public getAccountInfo(): Observable<AccountDetails> {
-    const url = profileEndpoints.getInfo;
+    const url = appSecurityEndpoints.getInfo;
     return this.httpClient.get<AccountDetails>(url);
   }
 
-  public updateProfileDetails(details: AccountDetails): Observable<AccountDetails> {
-    const url = profileEndpoints.updateDetails;
+  public updateAccountDetails(details: AccountDetails): Observable<AccountDetails> {
+    const url = appSecurityEndpoints.updateDetails;
     return this.httpClient.put<AccountDetails>(url, details);
   }
 
   public updatePassword(accountPassword: AccountPasswordModel): Observable<AccountDetails> {
-    const url = profileEndpoints.updatePassword;
+    const url = appSecurityEndpoints.updatePassword;
     return this.httpClient.put<AccountDetails>(url, accountPassword);
   }
 }

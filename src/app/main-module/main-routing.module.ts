@@ -44,8 +44,8 @@ const routes: Routes = [
     },
   },
   {
-    path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then((m) => m.SettingsModule),
+    path: 'configuration',
+    loadChildren: () => import('./configuration/configuration.module').then((m) => m.ConfigurationModule),
     data: {
       breadcrumb: 'SETTINGS'
     }

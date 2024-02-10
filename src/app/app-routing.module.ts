@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NotFoundComponent} from "./shared/components/not-found/not-found.component";
-import {MainComponent} from "./modules/main.component";
-import {AuthenticationComponent} from "./authentication/authentication.component";
+import {MainComponent} from "./main-module/main.component";
+import {AuthenticationComponent} from "./authentication-module/authentication.component";
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./authentication/authentication.module').then((m) => m.AuthenticationModule),
+        loadChildren: () => import('./authentication-module/authentication.module').then((m) => m.AuthenticationModule),
       }
     ]
   },
@@ -26,7 +26,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./modules/main.module').then((m) => m.MainModule),
+        loadChildren: () => import('./main-module/main.module').then((m) => m.MainModule),
       }
     ],
   },

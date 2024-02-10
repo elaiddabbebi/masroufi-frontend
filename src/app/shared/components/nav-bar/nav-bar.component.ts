@@ -3,6 +3,7 @@ import {MenuItem, MenuItemCommandEvent} from "primeng/api";
 import {TranslatePipe} from "../../pipes/translate.pipe";
 import {Locale} from "../../enums/locale";
 import {Router} from "@angular/router";
+import {AppSecurityContext} from "../../../main-module/app-security/app-security-context";
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,11 +14,11 @@ import {Router} from "@angular/router";
 export class NavBarComponent implements OnInit, OnChanges {
   items: MenuItem[] | undefined;
   aboutDialogVisible: boolean = false;
-  @Input() username: string = '';
 
   constructor(
     private translate: TranslatePipe,
-    private router: Router
+    private router: Router,
+    private appSecurityContext: AppSecurityContext,
   ) {
   }
 
@@ -36,7 +37,7 @@ export class NavBarComponent implements OnInit, OnChanges {
         ]
       },
       {
-        label: this.username,
+        label: this.appSecurityContext.fullName,
         icon: 'pi pi-fw pi-user',
         items: [
           {

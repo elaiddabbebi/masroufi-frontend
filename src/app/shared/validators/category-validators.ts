@@ -1,11 +1,11 @@
 import {
   CashFlowCategoryService
-} from "../../modules/cash-flow-list/components/cash-flow-category/services/cash-flow-category.service";
+} from "../../main-module/cash-flow-list/components/cash-flow-category/services/cash-flow-category.service";
 import {AbstractControl, AsyncValidatorFn, ValidationErrors} from "@angular/forms";
 import {map, Observable, of} from "rxjs";
 import {
   CashFlowCategoryComponent
-} from "../../modules/cash-flow-list/components/cash-flow-category/cash-flow-category.component";
+} from "../../main-module/cash-flow-list/components/cash-flow-category/cash-flow-category.component";
 
 export class CategoryValidators {
   public static checkExisting(service: CashFlowCategoryService, categoryComponent: CashFlowCategoryComponent): AsyncValidatorFn {

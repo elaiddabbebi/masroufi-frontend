@@ -1,14 +1,10 @@
-<div class="z-index-0">
+<div *ngIf="contextIsLoading">55555555555555555555555555</div>
+<div class="z-index-0" *ngIf="!contextIsLoading">
   <div class="position-fixed z-index-3" style="width: calc(100% - 15px);">
-    <app-nav-bar
-      [username]="fullName"
-    >
-    </app-nav-bar>
+    <app-nav-bar></app-nav-bar>
   </div>
   <div class="non-responsive-row p-t-65 z-index-0">
-    <app-side-bar
-      [items]="sidebarItems"
-    ></app-side-bar>
+    <app-side-bar></app-side-bar>
     <div class="p-t-10 p-l-300 w-100">
 <!--      <div class="card flex justify-content-center p-l-10 w-100">-->
 <!--        <p-breadcrumb-->
