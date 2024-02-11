@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NotFoundComponent} from "./shared/components/not-found/not-found.component";
 import {MainComponent} from "./main-module/main.component";
-import {AuthenticationComponent} from "./authentication-module/authentication.component";
+import {AuthComponent} from "./auth-module/auth.component";
 
 const routes: Routes = [
   {
@@ -12,11 +12,11 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    component: AuthenticationComponent,
+    component: AuthComponent,
     children: [
       {
         path: '',
-        loadChildren: () => import('./authentication-module/authentication.module').then((m) => m.AuthenticationModule),
+        loadChildren: () => import('./auth-module/auth.module').then((m) => m.AuthModule),
       }
     ]
   },

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import {LoginComponent} from "./login/login.component";
 import {CommonModule} from "@angular/common";
-import { AuthenticationComponent } from './authentication.component';
-import {AuthenticationRoutingModule} from "./authentication-routing.module";
+import { AuthComponent } from './auth.component';
+import {AuthRoutingModule} from "./auth-routing.module";
 import {CardModule} from "primeng/card";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { InputTextModule } from 'primeng/inputtext';
@@ -19,13 +19,13 @@ import {MessageModule} from "primeng/message";
 @NgModule({
   declarations: [
     LoginComponent,
-    AuthenticationComponent,
+    AuthComponent,
     RecoveryComponent,
     ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
-    AuthenticationRoutingModule,
+    AuthRoutingModule,
     CardModule,
     ReactiveFormsModule,
     InputTextModule,
@@ -41,4 +41,4 @@ import {MessageModule} from "primeng/message";
   providers: [],
   bootstrap: [LoginComponent]
 })
-export class AuthenticationModule { }
+export class AuthModule { }

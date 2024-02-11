@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthenticationService} from "../services/authentication.service";
+import {AuthService} from "../services/auth.service";
 import {LoginRequestModel} from "./types/login-request-model";
 import {catchError, tap} from "rxjs";
 import {Router} from "@angular/router";
@@ -12,7 +12,7 @@ import {TranslatePipe} from "../../shared/pipes/translate.pipe";
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthenticationService, TranslatePipe]
+  providers: [AuthService, TranslatePipe]
 })
 export class LoginComponent implements OnInit {
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: AuthenticationService,
+    private service: AuthService,
     private router: Router,
     private translate: TranslatePipe
   ) {
