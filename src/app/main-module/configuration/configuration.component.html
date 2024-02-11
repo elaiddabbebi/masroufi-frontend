@@ -1,1 +1,18 @@
-<p>configuration works!</p>
+<p-tabView styleClass="tabview-custom">
+  <p-toast></p-toast>
+  <p-tabPanel [headerStyle]="{'width': '100%'}">
+    <ng-template pTemplate="header" class="text-center">
+      <i class="pi pi-bitcoin"></i>
+      <span class="m-l-10">{{ 'CASH' | translate }}</span>
+    </ng-template>
+    <app-cash-flow-config></app-cash-flow-config>
+  </p-tabPanel>
+
+  <p-tabPanel [headerStyle]="{'width': '100%'}">
+    <ng-template pTemplate="header" class="text-center">
+      <i class="pi pi-calendar"></i>
+      <span class="m-l-10">{{ 'SUBSCRIPTION' | translate }}</span>
+    </ng-template>
+    <app-subscription-config></app-subscription-config>
+  </p-tabPanel>
+</p-tabView>

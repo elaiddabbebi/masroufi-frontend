@@ -2,7 +2,7 @@
   <p-toast></p-toast>
   <p-tabPanel [headerStyle]="{'width': '100%'}">
     <ng-template pTemplate="header" class="text-center">
-      <i class="pi pi-list"></i>
+      <i class="pi pi-info-circle"></i>
       <span class="m-l-10">{{ 'GENERAL_INFO' | translate }}</span>
     </ng-template>
     <form [formGroup]="userDetailsForm">
@@ -129,7 +129,7 @@
   </p-tabPanel>
   <p-tabPanel [headerStyle]="{'width': '100%'}">
     <ng-template pTemplate="header">
-      <i class="pi pi-verified"></i>
+      <i class="pi pi-key"></i>
       <span class="m-l-10">{{ 'SECURITY' | translate }}</span>
     </ng-template>
     <form [formGroup]="passwordForm">

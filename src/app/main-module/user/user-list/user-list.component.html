@@ -49,7 +49,7 @@
     <ng-template pTemplate="body" let-user>
       <tr>
         <td class="text-center">
-          <a class="basic-link" routerLink="/main/settings/users/details" [queryParams]="{uuid: user.uuid}">
+          <a class="basic-link" routerLink="/main/users/details" [queryParams]="{uuid: user.uuid}">
             {{ user.fullName }}
           </a>
         </td>

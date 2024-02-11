@@ -186,7 +186,7 @@ export class UserListComponent implements OnInit {
   }
 
   editUser(user: any): void {
-    this.router.navigate(['/main/configuration/users/details'], {queryParams: {uuid: user.uuid}});
+    this.router.navigate(['/main/users/details'], {queryParams: {uuid: user.uuid}});
   }
 
   createUser(event: Event): void {
