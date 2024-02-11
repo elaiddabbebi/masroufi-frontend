@@ -159,5 +159,6 @@
   "VALIDATE_CASH_FLOW_CATEGORY_CONFIRM": "Are you sure you want to validate the cash flow category",
   "CASH_FLOW_CATEGORY_VALIDATION_SUCCESS": "Cash flow category validated successfully",
   "CASH_FLOW_CATEGORY_REJECTION_SUCCESS": "Cash flow category rejected successfully",
-  "SUBSCRIPTION": "Subscription"
+  "SUBSCRIPTION": "Subscription",
+  "INITIAL_CASH_AMOUNT": "Initial amount"
 }

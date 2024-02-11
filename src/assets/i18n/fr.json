@@ -159,5 +159,6 @@
   "VALIDATE_CASH_FLOW_CATEGORY_CONFIRM": "Voulez vous vraiment valider la catégorie",
   "CASH_FLOW_CATEGORY_VALIDATION_SUCCESS": "Catégorie validée avec succès",
   "CASH_FLOW_CATEGORY_REJECTION_SUCCESS": "Catégorie rejetée avec succès",
-  "SUBSCRIPTION": "Abonnement"
+  "SUBSCRIPTION": "Abonnement",
+  "INITIAL_CASH_AMOUNT": "Montant initial"
 }

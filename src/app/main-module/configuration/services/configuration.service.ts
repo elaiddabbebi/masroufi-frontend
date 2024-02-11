@@ -5,7 +5,7 @@ import {configurationEndpoints} from "./configuration-endpoints";
 import {CashFlowConfig} from "../types/cash-flow-config";
 
 @Injectable()
-export class AppSecurityService {
+export class ConfigurationService {
   constructor(private httpClient: AppHttpClient) {
   }
 

@@ -1,1 +1,28 @@
-
+<form [formGroup]="cashFlowConfigFrom">
+  <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+    <label for="initialCashAmount">{{ 'INITIAL_CASH_AMOUNT' | translate }} <span class="required"> :</span></label>
+    <input
+      id="initialCashAmount"
+      type="text"
+      pInputText
+      formControlName="initialCashAmount"
+    />
+    <small
+      *ngIf="
+                controls['initialCashAmount'].errors &&
+                (controls['initialCashAmount'].dirty || controls['initialCashAmount'].touched)
+              "
+      class="col-12 p-t-4 form-text text-danger"
+    >
+      <div *ngIf="controls['initialCashAmount'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+    </small>
+  </div>
+  <app-save-cancel-footer
+    *ngIf="showSaveFooter"
+    [saveIsLoading]="saveIsLoading"
+    [saveIsDisabled]="cashFlowConfigFrom.invalid"
+    (onCancel)="cancelUpdateCashFlowConfig()"
+    (onSave)="updateCashFlowConfig($event)"
+  >
+  </app-save-cancel-footer>
+</form>

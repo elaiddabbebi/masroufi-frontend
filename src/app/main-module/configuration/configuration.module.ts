@@ -8,6 +8,10 @@ import {PipesModule} from "../../shared/pipes/pipes.module";
 import {SharedModule} from "primeng/api";
 import {TabViewModule} from "primeng/tabview";
 import {ToastModule} from "primeng/toast";
+import {ReactiveFormsModule} from "@angular/forms";
+import {PasswordModule} from "primeng/password";
+import {ComponentsModule} from "../../shared/components/components.module";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
   declarations: [
@@ -15,13 +19,17 @@ import {ToastModule} from "primeng/toast";
     CashFlowConfigComponent,
     SubscriptionConfigComponent
   ],
-    imports: [
-        CommonModule,
-        ConfigurationRoutingModule,
-        PipesModule,
-        SharedModule,
-        TabViewModule,
-        ToastModule,
-    ]
+  imports: [
+    CommonModule,
+    ConfigurationRoutingModule,
+    PipesModule,
+    SharedModule,
+    TabViewModule,
+    ToastModule,
+    ReactiveFormsModule,
+    PasswordModule,
+    ComponentsModule,
+    InputTextModule,
+  ]
 })
 export class ConfigurationModule { }
