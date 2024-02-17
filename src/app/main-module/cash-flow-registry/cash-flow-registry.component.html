@@ -1,1 +1,264 @@
-<p>cash-flow-registry works!</p>
+<p-toast></p-toast>
+<div class="m-t-20">
+  <p-table
+    [value]="cashFlowRegistries"
+    styleClass="p-datatable-gridlines p-datatable-sm"
+    [tableStyle]="{'min-width': '50rem'}"
+    dataKey="uuid"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="false"
+    [paginator]="true"
+    currentPageReportTemplate="{{ ('SHOWING' | translate) + ' {first} ' +  ('TO' | translate) + ' {last} ' +  ('OF' | translate) + ' {totalRecords} ' + ('CASH_FLOW' | translate) }}"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputTextarea
+                  type="text"
+                  (input)="null"
+                  placeholder="{{ 'SEARCH' | translate }}"
+                  class="min-w-400"
+                />
+          </span>
+
+        <div class="float-right">
+          <button
+            type="button" pButton pRipple
+            icon="pi pi-plus"
+            (click)="addCashFlow()"
+            class="mr-2"
+            pTooltip="{{ 'ADD_CASH_FLOW_REGISTRY_TOOL_TIP' | translate }}"
+            tooltipPosition="top"
+          ></button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="text-center">{{ 'CATEGORY' | translate }}</th>
+        <th class="text-center">{{ 'NAME' | translate }}</th>
+        <th class="text-center">{{ 'DATE' | translate }}</th>
+        <th class="text-center">{{ 'AMOUNT_DT' | translate }}</th>
+        <th class="text-center" style="width: 200px !important;">{{ 'ACTIONS' | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cashFlow>
+      <tr>
+        <td class="text-center">
+          <a class="basic-link cursor-pointer" (click)="editCashFlow(cashFlow)">
+            {{ cashFlow.category }}
+          </a>
+        </td>
+        <td class="text-center">
+          <a class="basic-link cursor-pointer" (click)="editCashFlow(cashFlow)">
+            {{ cashFlow.name }}
+          </a>
+        </td>
+        <td class="text-center">
+          {{ cashFlow.date ? (cashFlow.date | date : 'dd/MM/YYYY') : '' }}
+        </td>
+        <td class="text-center">
+          <div [ngClass]="{
+                            'expense-amount': (cashFlow.type === CashFlowType.EXPENSE && cashFlow.amount >= 25),
+                            'low-expense-amount': (cashFlow.type === CashFlowType.EXPENSE && cashFlow.amount < 25),
+                            'gain-amount': cashFlow.type === CashFlowType.GAIN
+                          }">
+            {{ cashFlow.type === CashFlowType.EXPENSE ? '-' : '' }}
+            {{ cashFlow.amount | number : '.3-3' | spaceSeparator }}
+          </div>
+        </td>
+        <td class="text-center non-responsive-row" style="justify-content: center; width: 200px;">
+          <p-button
+            icon="pi pi-pencil"
+            styleClass="m-r-5 m-l-5"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'EDIT' | translate"
+            tooltipPosition="top"
+            (onClick)="editCashFlow(cashFlow)"
+          ></p-button>
+          <p-button
+            icon="pi pi-trash"
+            styleClass="m-r-5 m-l-5"
+            [rounded]="true"
+            [outlined]="true"
+            [pTooltip]="'DELETE' | translate"
+            tooltipPosition="top"
+            (onClick)="deleteCashFlow(cashFlow)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">{{ 'NO_RESULT_FOUND' | translate }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  header="header"
+  [(visible)]="cashFlowDetailsDialog"
+  [style]="{ width: '650px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ cashFlowDetailsDialogHeader | translate }}
+    </span>
+  </ng-template>
+
+  <ng-template pTemplate="body">
+    <form [formGroup]="cashFlowDetailsForm">
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
+          <label for="type">{{ 'TYPE' | translate }} <span class="required"> :</span></label>
+          <p-dropdown
+            class="w-100"
+            id="type"
+            [options]="cashFlowTypeList"
+            formControlName="type"
+            optionLabel="key"
+            optionValue="value"
+            [showClear]="true"
+            placeholder="{{ 'TYPE' | translate }}"
+            appendTo="body"
+          ></p-dropdown>
+          <small
+            *ngIf="
+                cashFlowDetailsControls['type'].errors &&
+                (cashFlowDetailsControls['type'].dirty || cashFlowDetailsControls['type'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="cashFlowDetailsControls['type'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
+          <label for="category">{{ 'CATEGORY' | translate }} <span class="required"> :</span></label>
+          <p-autoComplete
+            id="category"
+            formControlName="category"
+            [suggestions]="cashFlowCategories"
+            (completeMethod)="null"
+          ></p-autoComplete>
+          <small
+            *ngIf="
+                cashFlowDetailsControls['category'].errors &&
+                (cashFlowDetailsControls['category'].dirty || cashFlowDetailsControls['category'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="cashFlowDetailsControls['category'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
+          <label for="name">{{ 'NAME' | translate }} <span class="required"> :</span></label>
+          <p-autoComplete
+            id="name"
+            formControlName="name"
+            [suggestions]="cashFlowList"
+            (completeMethod)="null"
+          ></p-autoComplete>
+          <small
+            *ngIf="
+                cashFlowDetailsControls['name'].errors &&
+                (cashFlowDetailsControls['name'].dirty || cashFlowDetailsControls['name'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="cashFlowDetailsControls['name'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
+          <label for="date">{{ 'DATE' | translate }} <span class="required"> :</span></label>
+          <p-calendar
+            id="date"
+            formControlName="date"
+            [showIcon]="true"
+            styleClass="col-12"
+            appendTo="body"
+
+          ></p-calendar>
+          <small
+            *ngIf="
+                cashFlowDetailsControls['date'].errors &&
+                (cashFlowDetailsControls['date'].dirty || cashFlowDetailsControls['date'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="cashFlowDetailsControls['date'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
+          <label for="amount">{{ 'AMOUNT_DT' | translate }} <span class="required"> :</span></label>
+          <input
+            id="amount"
+            type="number"
+            pInputText
+            formControlName="amount"
+            min="0"
+          />
+          <small
+            *ngIf="
+                cashFlowDetailsControls['amount'].errors &&
+                (cashFlowDetailsControls['amount'].dirty || cashFlowDetailsControls['amount'].touched)
+              "
+            class="col-12 p-t-4 form-text text-danger"
+          >
+            <div *ngIf="cashFlowDetailsControls['amount'].errors?.['required']">{{ 'EMPTY_FIELD_ERROR' | translate }}</div>
+          </small>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <app-save-cancel-footer
+      (onCancel)="hideCashFlowDetailsDialog()"
+      (onSave)="saveCashFlow($event)"
+      [saveIsDisabled]="cashFlowDetailsForm.invalid"
+      [saveIsLoading]="saveIsLoading"
+    ></app-save-cancel-footer>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="header"
+  [(visible)]="deleteCashFlowDialog"
+  [style]="{ width: '600px' }"
+  [modal]="true"
+>
+  <ng-template pTemplate="header">
+    <span style="font-weight: bold; font-size: large;">
+      {{ 'DELETE_CASH_FLOW_REGISTRY' | translate }}
+    </span>
+  </ng-template>
+  <p>
+    {{ 'DELETE_CASH_FLOW_REGISTRY_CONFIRM_Q' | translate }}
+    <span style="font-weight: bold;">{{ ' ' + currentCashFlowName }}</span> ?
+  </p>
+  <ng-template pTemplate="footer">
+    <app-confirm-cancel-footer
+      (onCancel)="hideCashFlowCategoryDialog()"
+      (onConfirm)="confirmDeleteCashFlow($event)"
+      [confirmIsLoading]="deleteIsLoading"
+    ></app-confirm-cancel-footer>
+  </ng-template>
+</p-dialog>

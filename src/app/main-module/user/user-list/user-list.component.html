@@ -54,7 +54,7 @@
           </a>
         </td>
         <td class="text-center">{{ user.email }}</td>
-        <td class="text-center">{{ user.birthDate ? (user.birthDate | date : 'dd/MM/YYYY') : '' }}</td>
+        <td class="text-center">{{ user.birthDate ? (user.birthDate | date : 'dd-MM-YYYY') : '' }}</td>
         <td class="text-center">{{ user.role?.type | translate }}</td>
         <td class="text-center">
           <p-tag

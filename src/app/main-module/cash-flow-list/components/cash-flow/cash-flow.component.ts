@@ -9,7 +9,6 @@ import {tap} from "rxjs";
 import {CashFlowService} from "./services/cash-flow.service";
 import {CashFlow} from "./types/cash-flow";
 import {CashFlowStatus} from "./types/cash-flow-status";
-import {CashFlowCategoryStatus} from "../cash-flow-category/types/cash-flow-category-status";
 
 @Component({
   selector: 'app-cash-flow',

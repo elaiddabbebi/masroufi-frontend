@@ -160,5 +160,17 @@
   "CASH_FLOW_CATEGORY_VALIDATION_SUCCESS": "Catégorie validée avec succès",
   "CASH_FLOW_CATEGORY_REJECTION_SUCCESS": "Catégorie rejetée avec succès",
   "SUBSCRIPTION": "Abonnement",
-  "INITIAL_CASH_AMOUNT": "Montant initial"
+  "INITIAL_CASH_AMOUNT": "Montant initial",
+  "DATE": "Date",
+  "AMOUNT": "Montant",
+  "AMOUNT_DT": "Montant (DT)",
+  "ADD_CASH_FLOW_REGISTRY": "Ajouter un flux de caisse",
+  "DELETE_CASH_FLOW_REGISTRY": "Supprimer un flux de caisse",
+  "DELETE_CASH_FLOW_REGISTRY_CONFIRM_Q": "Voulez vous vraiment supprimer le flux",
+  "EDIT_CASH_FLOW_REGISTRY": "Modifier un flux de caisse",
+  "CASH_FLOW_REGISTRY_CREATION_SUCCESS": "Flux ajoutée avec succès",
+  "CASH_FLOW_REGISTRY_CREATION_ERROR": "L'opération d'ajout du flux a échouée",
+  "DELETE_CASH_FLOW_REGISTRY_SUCCESS": "Flux supprimée avec succès",
+  "DELETE_CASH_FLOW_REGISTRY_ERROR": "La suppression du flux à échouée!",
+  "ADD_CASH_FLOW_REGISTRY_TOOL_TIP": "Ajouter"
 }

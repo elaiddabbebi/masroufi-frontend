@@ -160,5 +160,17 @@
   "CASH_FLOW_CATEGORY_VALIDATION_SUCCESS": "Cash flow category validated successfully",
   "CASH_FLOW_CATEGORY_REJECTION_SUCCESS": "Cash flow category rejected successfully",
   "SUBSCRIPTION": "Subscription",
-  "INITIAL_CASH_AMOUNT": "Initial amount"
+  "INITIAL_CASH_AMOUNT": "Initial amount",
+  "DATE": "Date",
+  "AMOUNT": "Amount",
+  "AMOUNT_DT": "Amount (TND)",
+  "ADD_CASH_FLOW_REGISTRY": "Add cash flow",
+  "DELETE_CASH_FLOW_REGISTRY": "Delete cash flow",
+  "DELETE_CASH_FLOW_REGISTRY_CONFIRM_Q": "Are you sure you want to delete the cash flow",
+  "EDIT_CASH_FLOW_REGISTRY": "Edit cash flow",
+  "CASH_FLOW_REGISTRY_CREATION_SUCCESS": "Cash flow created successfully",
+  "CASH_FLOW_REGISTRY_CREATION_ERROR": "Cash flow creation failed",
+  "DELETE_CASH_FLOW_REGISTRY_SUCCESS": "Cash flow deleted successfully",
+  "DELETE_CASH_FLOW_REGISTRY_ERROR": "Cash flow deletion failed!",
+  "ADD_CASH_FLOW_REGISTRY_TOOL_TIP": "Add"
 }

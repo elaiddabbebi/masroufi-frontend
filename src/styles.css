@@ -1643,3 +1643,88 @@ span.required::before {
 .p-t-65 {
   padding-top: 65px;
 }
+
+.expense-amount {
+  font-weight: 700;
+  color: #ff5252;
+}
+
+.low-expense-amount {
+  font-weight: 700;
+  color: #ffa726;
+}
+
+.gain-amount {
+  font-weight: 700;
+  color: #66bb6a;
+}
+
+.p-datepicker-header {
+  padding: 0 !important;
+}
+
+body .p-datepicker table th {
+  padding: 0 !important;
+  text-align: center;
+}
+
+::ng-deep .p-datepicker table th{
+  padding: 0 !important;
+}
+
+body .p-datepicker table td {
+  padding: 0 !important;
+}
+
+::ng-deep .p-datepicker table td {
+  padding: 0 !important;
+}
+
+.p-datepicker table td.p-datepicker-today > span.p-highlight {
+  color: var(--primary-color-900);
+  background: var(--primary-color-001);
+}
+
+.p-datepicker table td > span.p-highlight {
+  color: var(--primary-color-900);
+  background: var(--primary-color-001);
+}
+
+.p-datepicker table td > span.p-highlight {
+  color: var(--primary-color-900);
+  background: var(--primary-color-001);
+}
+
+.p-datepicker:hover .p-datepicker-header:hover .p-datepicker-title:hover .p-datepicker-month:hover {
+  color: var(--primary-color-900);
+}
+
+.p-datepicker:hover .p-datepicker-header:hover .p-datepicker-title:hover .p-datepicker-year:hover {
+  color: var(--primary-color-900);
+}
+
+.p-datepicker .p-monthpicker .p-monthpicker-month.p-highlight {
+  color: var(--primary-color-900) !important;
+  background: var(--primary-color-001) !important;
+}
+
+.p-datepicker .p-yearpicker .p-yearpicker-year.p-highlight {
+  color: var(--primary-color-900) !important;
+  background: var(--primary-color-001) !important;
+}
+
+.p-datepicker:not(.p-disabled) .p-monthpicker .p-monthpicker-month:not(.p-disabled):focus {
+  box-shadow: none !important;
+}
+
+.p-datepicker:not(.p-disabled) .p-yearpicker .p-yearpicker-year:not(.p-disabled):focus {
+  box-shadow: none !important;
+}
+
+.p-datepicker:not(.p-disabled):focus table td span:not(.p-disabled):focus {
+  box-shadow: none !important;
+}
+
+.p-datepicker:not(.p-datepicker-inline) {
+  box-shadow: none !important;
+}
