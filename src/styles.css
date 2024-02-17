@@ -343,6 +343,18 @@ input:read-only {
   border-left: 1px solid rgba(0, 0, 0, 0.13);
 }
 
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: var(--primary-color-001);
+  border-color: var(--primary-color-001);
+  color: var(--primary-color-900);
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: var(--primary-color-001);
+  border-color: var(--primary-color-001);
+  color: var(--primary-color-900);
+}
+
 .text-green-500 {
   color: green;
 }
