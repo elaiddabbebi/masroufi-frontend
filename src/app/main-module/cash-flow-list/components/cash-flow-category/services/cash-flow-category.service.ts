@@ -28,6 +28,11 @@ export class CashFlowCategoryService {
     return this.httpClient.get<CashFlowCategory[]>(url, options);
   }
 
+  public getAllNameList(): Observable<string[]>{
+    const url = cashFlowCategoryEndpoints.getAllNameList;
+    return this.httpClient.get<string[]>(url);
+  }
+
   public createCategory(categoryDetails: CashFlowCategory): Observable<CashFlowCategory>{
     const url = cashFlowCategoryEndpoints.createCategory;
     return this.httpClient.post<CashFlowCategory>(url, categoryDetails);

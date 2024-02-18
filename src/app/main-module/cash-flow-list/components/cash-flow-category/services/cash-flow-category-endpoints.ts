@@ -11,4 +11,5 @@ export const cashFlowCategoryEndpoints = {
   validateRejectCategory: (uuid: string): string => baseUrl + `/cash-flow-category/${uuid}`,
   checkIfCategoryExist: baseUrl + '/cash-flow-category/check-exist',
   top10ByName: baseUrl + `/cash-flow-category/top-10-by-name`,
+  getAllNameList: baseUrl + '/cash-flow-category/name-list',
 }

@@ -41,4 +41,9 @@ export class CashFlowService {
     }
     return this.httpClient.patch<CashFlow>(url, validity);
   }
+
+  public getAllNameList(): Observable<string[]>{
+    const url = cashFlowEndpoints.getAllNameList;
+    return this.httpClient.get<string[]>(url);
+  }
 }

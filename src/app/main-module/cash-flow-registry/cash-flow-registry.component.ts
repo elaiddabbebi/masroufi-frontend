@@ -9,12 +9,18 @@ import {CashFlowRegistry} from "./types/cash-flow-registry";
 import {CashFlowRegistryService} from "./services/cash-flow-registry.service";
 import {GenericObject} from "../../shared/types/generic-object";
 import {CashFlowType} from "./types/cash-flow-type";
+import {CashFlowService} from "../cash-flow-list/components/cash-flow/services/cash-flow.service";
+import {
+  CashFlowCategoryService
+} from "../cash-flow-list/components/cash-flow-category/services/cash-flow-category.service";
+import {AutoCompleteCompleteEvent} from "primeng/autocomplete";
+import {AutoCompleteItem} from "../../shared/types/auto-complete-item";
 
 @Component({
   selector: 'app-cash-flow-registry',
   templateUrl: './cash-flow-registry.component.html',
   styleUrls: ['./cash-flow-registry.component.css'],
-  providers: [CashFlowRegistryService, NotificationService]
+  providers: [CashFlowRegistryService, NotificationService, CashFlowService, CashFlowCategoryService]
 })
 export class CashFlowRegistryComponent {
   cashFlowRegistries: CashFlowRegistry[] = [];
@@ -27,14 +33,18 @@ export class CashFlowRegistryComponent {
   mode: string = '';
   currentCashFlowUuid: string = '';
   currentCashFlowName: string = '';
-  cashFlowCategories: string[] = [];
-  cashFlowList: string[] = [];
+  allCashFlowCategories: AutoCompleteItem[] = [];
+  allCashFlowList: AutoCompleteItem[] = [];
+  filteredCashFlowCategories: AutoCompleteItem[] = [];
+  filteredCashFlowList: AutoCompleteItem[] = [];
   cashFlowTypeList: GenericObject[] = [];
 
   constructor(
     private router: Router,
     private translate: TranslatePipe,
     private cashFlowRegistryService: CashFlowRegistryService,
+    private cashFlowService: CashFlowService,
+    private cashFlowCategoryService: CashFlowCategoryService,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
   ) {
@@ -59,6 +69,36 @@ export class CashFlowRegistryComponent {
 
   ngOnInit(): void {
     this.searchCashFlow();
+    this.getCashFlowCategoryNameList();
+    this.getCashFlowNameList();
+  }
+
+  filterCashFlowItems(event: AutoCompleteCompleteEvent): void {
+    let filtered: AutoCompleteItem[] = [];
+    let query: string = event.query;
+
+    for (let i = 0; i < this.allCashFlowList.length; i++) {
+      let item: AutoCompleteItem = this.allCashFlowList[i];
+      if (item.label.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(item);
+      }
+    }
+
+    this.filteredCashFlowList = filtered;
+  }
+
+  filterCategoryItems(event: AutoCompleteCompleteEvent): void {
+    let filtered: AutoCompleteItem[] = [];
+    let query: string = event.query;
+
+    for (let i = 0; i < this.allCashFlowCategories.length; i++) {
+      let item: AutoCompleteItem = this.allCashFlowCategories[i];
+      if (item.label.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(item);
+      }
+    }
+
+    this.filteredCashFlowCategories = filtered;
   }
 
   hideCashFlowDetailsDialog(): void {
@@ -87,8 +127,14 @@ export class CashFlowRegistryComponent {
 
   editCashFlow(cashFlow: any): void {
     this.currentCashFlowUuid = cashFlow.uuid;
-    this.cashFlowDetailsForm.get('name')?.setValue(cashFlow.name);
-    this.cashFlowDetailsForm.get('category')?.setValue(cashFlow.category);
+    this.cashFlowDetailsForm.get('name')?.setValue({
+      label: cashFlow.name,
+      value: cashFlow.name
+    });
+    this.cashFlowDetailsForm.get('category')?.setValue({
+      label: cashFlow.category,
+      value: cashFlow.category
+    });
     this.cashFlowDetailsForm.get('type')?.setValue(cashFlow.type);
     this.cashFlowDetailsForm.get('date')?.setValue(new Date(cashFlow.date));
     this.cashFlowDetailsForm.get('amount')?.setValue(cashFlow.amount);
@@ -129,30 +175,38 @@ export class CashFlowRegistryComponent {
     ).subscribe();
   }
 
-  getSelectedCategory(): CashFlowCategory {
+  getCashFlowNameList(): void {
+    this.cashFlowService.getAllNameList().pipe().subscribe((response: string[]): void => {
+      this.allCashFlowList = response.map(item => ({ label: item, value: item }));
+    })
+  }
+
+  getCashFlowCategoryNameList(): void {
+    this.cashFlowCategoryService.getAllNameList().pipe().subscribe((response: string[]): void => {
+      this.allCashFlowCategories = response.map(item => ({ label: item, value: item }));
+    })
+  }
+
+  getSelectedCashFlowName(): string {
+    if (typeof this.cashFlowDetailsForm.value.name === 'string') {
+      return this.cashFlowDetailsForm.value.name;
+    } else {
+      return this.cashFlowDetailsForm.value.name?.value;
+    }
+  }
+
+  getSelectedCashFlowCategoryName(): string {
     if (typeof this.cashFlowDetailsForm.value.category === 'string') {
-      return {
-        name: this.cashFlowDetailsForm.value.category,
-        gain: false,
-        expense: false,
-        published: false,
-      }
-    } else if (typeof this.cashFlowDetailsForm.value.category === 'object') {
       return this.cashFlowDetailsForm.value.category;
     } else {
-      return {
-        name: '',
-        gain: false,
-        expense: false,
-        published: false,
-      }
+      return this.cashFlowDetailsForm.value.category?.value;
     }
   }
 
   buildCashFlowToBeSaved(): CashFlowRegistry {
     return {
-      name: this.cashFlowDetailsForm.value.name,
-      category: this.cashFlowDetailsForm.value.category,
+      name: this.getSelectedCashFlowName(),
+      category: this.getSelectedCashFlowCategoryName(),
       type: this.cashFlowDetailsForm.value.type,
       date: this.cashFlowDetailsForm.value.date,
       amount: this.cashFlowDetailsForm.value.amount,
