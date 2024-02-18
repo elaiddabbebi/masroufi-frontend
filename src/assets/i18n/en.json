@@ -172,5 +172,6 @@
   "CASH_FLOW_REGISTRY_CREATION_ERROR": "Cash flow creation failed",
   "DELETE_CASH_FLOW_REGISTRY_SUCCESS": "Cash flow deleted successfully",
   "DELETE_CASH_FLOW_REGISTRY_ERROR": "Cash flow deletion failed!",
-  "ADD_CASH_FLOW_REGISTRY_TOOL_TIP": "Add"
+  "ADD_CASH_FLOW_REGISTRY_TOOL_TIP": "Add",
+  "CURRENT_CASH_AMOUNT": "Cash amount"
 }

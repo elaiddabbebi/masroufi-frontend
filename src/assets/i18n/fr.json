@@ -172,5 +172,6 @@
   "CASH_FLOW_REGISTRY_CREATION_ERROR": "L'opération d'ajout du flux a échouée",
   "DELETE_CASH_FLOW_REGISTRY_SUCCESS": "Flux supprimée avec succès",
   "DELETE_CASH_FLOW_REGISTRY_ERROR": "La suppression du flux à échouée!",
-  "ADD_CASH_FLOW_REGISTRY_TOOL_TIP": "Ajouter"
+  "ADD_CASH_FLOW_REGISTRY_TOOL_TIP": "Ajouter",
+  "CURRENT_CASH_AMOUNT": "Montant restant"
 }

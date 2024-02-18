@@ -7,8 +7,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component';
 import { SupperAdminDashboardComponent } from './components/supper-admin-dashboard/supper-admin-dashboard.component';
 import {DashboardService} from "./services/dashboard.service";
-import {AppSecurityContext} from "../app-security/app-security-context";
-
+import {FieldsetModule} from "primeng/fieldset";
 
 
 @NgModule({
@@ -18,11 +17,12 @@ import {AppSecurityContext} from "../app-security/app-security-context";
     CustomerDashboardComponent,
     SupperAdminDashboardComponent
   ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        SharedModule,
-    ],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    SharedModule,
+    FieldsetModule,
+  ],
   providers: [
     DashboardService,
   ]
