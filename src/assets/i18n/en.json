@@ -173,5 +173,10 @@
   "DELETE_CASH_FLOW_REGISTRY_SUCCESS": "Cash flow deleted successfully",
   "DELETE_CASH_FLOW_REGISTRY_ERROR": "Cash flow deletion failed!",
   "ADD_CASH_FLOW_REGISTRY_TOOL_TIP": "Add",
-  "CURRENT_CASH_AMOUNT": "Cash amount"
+  "CURRENT_CASH_AMOUNT": "Cash amount",
+  "LAST_WEEK_CONSUMPTION": "Last week consumption",
+  "LAST_MONTH_BALANCE": "Month balance",
+  "INCOME_EVOLUTION": "Income evolution",
+  "TND_CURRENCY": "TND",
+  "PERCENT": "%"
 }

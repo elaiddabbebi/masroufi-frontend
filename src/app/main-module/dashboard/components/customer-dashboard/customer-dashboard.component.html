@@ -11,7 +11,7 @@
           <span class="font-bold dash-card-title">{{ 'CURRENT_CASH_AMOUNT' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ currentCashAmount }}</span>
+          <span class="dash-amount">{{ currentCashAmount | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
         </div>
       </p-fieldset>
     </div>
@@ -24,10 +24,10 @@
           </div>
         </ng-template>
         <div class="dash-card-title-container">
-          <span class="font-bold dash-card-title">{{ 'CURRENT_CASH_AMOUNT' | translate }}</span><br /><br />
+          <span class="font-bold dash-card-title">{{ 'LAST_WEEK_CONSUMPTION' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ currentCashAmount }}</span>
+          <span class="dash-amount">{{ lastWeekConsumption | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
         </div>
       </p-fieldset>
     </div>
@@ -40,10 +40,10 @@
           </div>
         </ng-template>
         <div class="dash-card-title-container">
-          <span class="font-bold dash-card-title">{{ 'CURRENT_CASH_AMOUNT' | translate }}</span><br /><br />
+          <span class="font-bold dash-card-title">{{ 'LAST_MONTH_BALANCE' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ currentCashAmount }}</span>
+          <span class="dash-amount">{{ lastMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
         </div>
       </p-fieldset>
     </div>
@@ -56,10 +56,10 @@
           </div>
         </ng-template>
         <div class="dash-card-title-container">
-          <span class="font-bold dash-card-title">{{ 'CURRENT_CASH_AMOUNT' | translate }}</span><br /><br />
+          <span class="font-bold dash-card-title">{{ 'INCOME_EVOLUTION' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ currentCashAmount }}</span>
+          <span class="dash-amount">{{ incomeEvolution }} {{ 'PERCENT' | translate }}</span>
         </div>
       </p-fieldset>
     </div>

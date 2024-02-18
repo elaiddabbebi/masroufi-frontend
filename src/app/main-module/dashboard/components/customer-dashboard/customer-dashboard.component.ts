@@ -9,6 +9,9 @@ import {DashboardService} from "../../services/dashboard.service";
 export class CustomerDashboardComponent implements OnInit {
 
   currentCashAmount: number = 0;
+  lastWeekConsumption: number = 0;
+  lastMonthBalance: number = 0;
+  incomeEvolution: number = 0;
   currentCashAmountIsLoading: boolean = false;
   constructor(
     private dashboardService: DashboardService
