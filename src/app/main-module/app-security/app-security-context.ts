@@ -8,7 +8,9 @@ import {AppSecurityService} from "./services/app-security.service";
 import {MenuItem} from "primeng/api";
 import {TranslatePipe} from "../../shared/pipes/translate.pipe";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AppSecurityContext {
   currentUser: AccountDetails | undefined;
   sidebarItems: MenuItem[] | undefined = [];

@@ -1,1 +1,9 @@
-<p>{{ 'DASHBOARD' | translate }}</p>
+<app-supper-admin-dashboard
+  *ngIf="isSupperAdmin"
+></app-supper-admin-dashboard>
+<app-admin-dashboard
+  *ngIf="isAdmin"
+></app-admin-dashboard>
+<app-customer-dashboard
+  *ngIf="isCustomer"
+></app-customer-dashboard>

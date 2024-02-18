@@ -45,7 +45,7 @@
         <th class="text-center">{{ 'PUBLIC' | translate }}</th>
         <th class="text-center">{{ 'CREATED_BY' | translate }}</th>
         <th class="text-center">{{ 'STATUS' | translate }}</th>
-        <th class="text-center" style="width: 200px !important;">{{ 'ACTIONS' | translate }}</th>
+        <th class="text-center" style="width: 250px !important;">{{ 'ACTIONS' | translate }}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-category>
@@ -91,7 +91,7 @@
             [severity]="category.status === CashFlowCategoryStatus.VALIDATED ? 'success' : category.status === CashFlowCategoryStatus.REJECTED ? 'danger' : 'warning'"
           ></p-tag>
         </td>
-        <td class="text-center non-responsive-row" style="justify-content: center; width: 200px;">
+        <td class="text-center non-responsive-row" style="justify-content: center; width: 250px;">
           <p-button
             *ngIf="category.status !== CashFlowCategoryStatus.VALIDATED"
             styleClass="m-r-5 m-l-5"

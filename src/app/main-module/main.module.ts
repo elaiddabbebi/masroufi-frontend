@@ -14,7 +14,9 @@ import {AppSecurityService} from "./app-security/services/app-security.service";
 import {TranslatePipe} from "../shared/pipes/translate.pipe";
 
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [
+    MainComponent,
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -25,7 +27,14 @@ import {TranslatePipe} from "../shared/pipes/translate.pipe";
     CardModule,
     ToastModule
   ],
-  providers: [MessageService, AppSecurityService, AppSecurityContext, TranslatePipe],
-  bootstrap: [MainComponent]
+  providers: [
+    MessageService,
+    AppSecurityService,
+    AppSecurityContext,
+    TranslatePipe
+  ],
+  bootstrap: [
+    MainComponent,
+  ]
 })
 export class MainModule { }
