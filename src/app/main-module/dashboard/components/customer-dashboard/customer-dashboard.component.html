@@ -20,14 +20,14 @@
       <p-fieldset>
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
-            <img class="dash-logo" src="assets/img/money-bag-increase.png">
+            <img class="dash-logo" src="assets/img/gold-money.png">
           </div>
         </ng-template>
         <div class="dash-card-title-container">
-          <span class="font-bold dash-card-title">{{ 'LAST_WEEK_CONSUMPTION' | translate }}</span><br /><br />
+          <span class="font-bold dash-card-title">{{ 'CURRENT_WEEK_CONSUMPTION' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ lastWeekConsumption | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          <span class="dash-amount">{{ currentWeekConsumption | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
         </div>
       </p-fieldset>
     </div>
@@ -40,10 +40,10 @@
           </div>
         </ng-template>
         <div class="dash-card-title-container">
-          <span class="font-bold dash-card-title">{{ 'LAST_MONTH_BALANCE' | translate }}</span><br /><br />
+          <span class="font-bold dash-card-title">{{ 'LAST_WEEK' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ lastMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          <span class="dash-amount">{{ lastWeekConsumption | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
         </div>
       </p-fieldset>
     </div>
@@ -52,14 +52,14 @@
       <p-fieldset>
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
-            <img class="dash-logo" src="assets/img/money-evolution.png">
+            <img class="dash-logo" src="assets/img/balance-money.png">
           </div>
         </ng-template>
         <div class="dash-card-title-container">
-          <span class="font-bold dash-card-title">{{ 'INCOME_EVOLUTION' | translate }}</span><br /><br />
+          <span class="font-bold dash-card-title">{{ 'LAST_MONTH_BALANCE' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ incomeEvolution }} {{ 'PERCENT' | translate }}</span>
+          <span class="dash-amount">{{ lastMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
         </div>
       </p-fieldset>
     </div>

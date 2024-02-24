@@ -11,7 +11,7 @@ export class CustomerDashboardComponent implements OnInit {
   currentCashAmount: number = 0;
   lastWeekConsumption: number = 0;
   lastMonthBalance: number = 0;
-  incomeEvolution: number = 0;
+  currentWeekConsumption: number = 0;
   currentCashAmountIsLoading: boolean = false;
   constructor(
     private dashboardService: DashboardService
