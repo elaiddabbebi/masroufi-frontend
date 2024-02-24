@@ -179,5 +179,18 @@
   "LAST_MONTH_BALANCE": "Month balance",
   "INCOME_EVOLUTION": "Income evolution",
   "TND_CURRENCY": "TND",
-  "PERCENT": "%"
+  "PERCENT": "%",
+  "EXPENSE_EVOLUTION": "Expense evolution per day",
+  "JANUARY": "January",
+  "FEBRUARY": "February",
+  "MARCH": "March",
+  "APRIL": "April",
+  "MAY": "May",
+  "JUNE": "June",
+  "JULY": "July",
+  "AUGUST": "August",
+  "SEPTEMBER": "September",
+  "OCTOBER": "October",
+  "NOVEMBER": "November",
+  "DECEMBER": "December"
 }

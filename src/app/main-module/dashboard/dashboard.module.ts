@@ -8,7 +8,7 @@ import { CustomerDashboardComponent } from './components/customer-dashboard/cust
 import { SupperAdminDashboardComponent } from './components/supper-admin-dashboard/supper-admin-dashboard.component';
 import {DashboardService} from "./services/dashboard.service";
 import {FieldsetModule} from "primeng/fieldset";
-
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import {FieldsetModule} from "primeng/fieldset";
     DashboardRoutingModule,
     SharedModule,
     FieldsetModule,
+    ChartModule,
   ],
   providers: [
     DashboardService,

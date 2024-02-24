@@ -179,5 +179,18 @@
   "LAST_MONTH_BALANCE": "Balance du mois",
   "INCOME_EVOLUTION": "Évolution du revenu",
   "TND_CURRENCY": "DT",
-  "PERCENT": "%"
+  "PERCENT": "%",
+  "EXPENSE_EVOLUTION": "Évolution de la consommation par jour",
+  "JANUARY": "Janvier",
+  "FEBRUARY": "Février",
+  "MARCH": "Mars",
+  "APRIL": "Avril",
+  "MAY": "May",
+  "JUNE": "Juin",
+  "JULY": "Juillet",
+  "AUGUST": "Août",
+  "SEPTEMBER": "Septembre",
+  "OCTOBER": "Octobre",
+  "NOVEMBER": "Novembre",
+  "DECEMBER": "Décembre"
 }
