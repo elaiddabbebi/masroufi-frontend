@@ -119,6 +119,7 @@ export class CashFlowRegistryComponent {
 
   addCashFlow(): void {
     this.cashFlowDetailsForm.reset();
+    this.cashFlowDetailsForm.get('type')?.setValue(CashFlowType.EXPENSE);
     this.cashFlowDetailsForm.get('date')?.setValue(new Date());
     this.cashFlowDetailsDialogHeader = 'ADD_CASH_FLOW_REGISTRY';
     this.mode = 'ADD';
