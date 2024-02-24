@@ -100,7 +100,7 @@ export class CustomerDashboardComponent implements OnInit {
     // const currentMonth: string = consumptionData?.currentMonthData.month ? consumptionData?.currentMonthData.month.toString() : '';
     // const lastMonth: string = consumptionData?.lastMonthData.month ? consumptionData?.lastMonthData.month.toString() : '';
     // this.data = {
-    //   labels: consumptionData?.labels,
+    //   labels: consumptionData?.daysOfMonth,
     //   datasets: [
     //     {
     //       label: this.translatePipe.transform(currentMonth),
