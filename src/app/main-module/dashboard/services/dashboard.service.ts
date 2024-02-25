@@ -24,6 +24,11 @@ export class DashboardService {
     return this.httpClient.get<number>(url);
   }
 
+  public getCurrentMonthBalance(): Observable<number> {
+    const url = dashboardEndpoints.getCurrentMonthBalance;
+    return this.httpClient.get<number>(url);
+  }
+
   public getLastMonthBalance(): Observable<number> {
     const url = dashboardEndpoints.getLastMonthBalance;
     return this.httpClient.get<number>(url);

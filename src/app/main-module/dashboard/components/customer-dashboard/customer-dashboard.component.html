@@ -59,7 +59,13 @@
           <span class="font-bold dash-card-title">{{ 'LAST_MONTH_BALANCE' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ lastMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          <div [ngClass]="{
+                            'positive-balance': currentMonthBalance > 0,
+                            'null-balance': currentMonthBalance === 0,
+                            'negative-balance':currentMonthBalance < 0
+                          }">
+            <span class="dash-balance-amount">{{ currentMonthBalance > 0 ? '+' : '' }} {{ currentMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          </div>
         </div>
       </p-fieldset>
     </div>

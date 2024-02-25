@@ -52,6 +52,10 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  selectDate(dateMeta: Date): void {
+    this.profileDetailsForm.get('birthDate')?.setValue(new Date(Date.UTC(dateMeta.getFullYear(), dateMeta.getMonth(), dateMeta.getDate())));
+  }
+
   get profileControls() {
     return this.profileDetailsForm.controls;
   }

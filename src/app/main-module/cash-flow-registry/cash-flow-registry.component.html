@@ -196,6 +196,7 @@
             [showIcon]="true"
             styleClass="col-12"
             appendTo="body"
+            (onSelect)="selectDate($event)"
           ></p-calendar>
           <small
             *ngIf="

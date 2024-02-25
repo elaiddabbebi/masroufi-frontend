@@ -73,6 +73,10 @@ export class CashFlowRegistryComponent {
     });
   }
 
+  selectDate(dateMeta: Date): void {
+    this.cashFlowDetailsForm.get('date')?.setValue(new Date(Date.UTC(dateMeta.getFullYear(), dateMeta.getMonth(), dateMeta.getDate())));
+  }
+
   ngOnInit(): void {
     this.searchCashFlow();
     this.getCashFlowCategoryNameList();

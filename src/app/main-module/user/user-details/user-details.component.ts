@@ -62,6 +62,10 @@ export class UserDetailsComponent implements OnInit {
     })
   }
 
+  selectDate(dateMeta: Date): void {
+    this.userDetailsForm.get('birthDate')?.setValue(new Date(Date.UTC(dateMeta.getFullYear(), dateMeta.getMonth(), dateMeta.getDate())));
+  }
+
   get userControls() {
     return this.userDetailsForm.controls;
   }

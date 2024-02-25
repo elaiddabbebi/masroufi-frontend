@@ -82,6 +82,7 @@
             formControlName="birthDate"
             [showIcon]="true"
             styleClass="col-12"
+            (onSelect)="selectDate($event)"
           ></p-calendar>
           <small
             *ngIf="

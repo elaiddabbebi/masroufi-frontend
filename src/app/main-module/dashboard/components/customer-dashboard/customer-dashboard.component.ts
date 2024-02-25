@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DashboardService} from "../../services/dashboard.service";
 import {TranslatePipe} from "../../../../shared/pipes/translate.pipe";
 import {ConsumptionEvolutionData} from "../../types/consumption-evolution-data";
+import {CashFlowType} from "../../../cash-flow-registry/types/cash-flow-type";
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -13,12 +14,12 @@ export class CustomerDashboardComponent implements OnInit {
 
   currentCashAmount: number = 0;
   lastWeekConsumption: number = 0;
-  lastMonthBalance: number = 0;
+  currentMonthBalance: number = 0;
   currentWeekConsumption: number = 0;
 
   currentCashAmountIsLoading: boolean = false;
   lastWeekConsumptionIsLoading: boolean = false;
-  lastMonthBalanceIsLoading: boolean = false;
+  currentMonthBalanceIsLoading: boolean = false;
   currentWeekConsumptionIsLoading: boolean = false;
   consumptionEvolutionDataIsLoading: boolean = false;
 
@@ -34,7 +35,7 @@ export class CustomerDashboardComponent implements OnInit {
     this.getCurrentCashAmount();
     this.getCurrentWeekConsumption();
     this.getLastWeekConsumption();
-    this.getLastMonthBalance();
+    this.getCurrentMonthBalance();
     this.getConsumptionEvolution();
   }
 
@@ -62,11 +63,11 @@ export class CustomerDashboardComponent implements OnInit {
     });
   }
 
-  getLastMonthBalance(): void {
-    this.lastMonthBalanceIsLoading = true;
-    this.dashboardService.getLastMonthBalance().pipe().subscribe((response: number): void => {
-      this.lastMonthBalance = response;
-      this.lastMonthBalanceIsLoading = false;
+  getCurrentMonthBalance(): void {
+    this.currentMonthBalanceIsLoading = true;
+    this.dashboardService.getCurrentMonthBalance().pipe().subscribe((response: number): void => {
+      this.currentMonthBalance = response;
+      this.currentMonthBalanceIsLoading = false;
     });
   }
 
@@ -140,4 +141,5 @@ export class CustomerDashboardComponent implements OnInit {
     };
   }
 
+  protected readonly CashFlowType = CashFlowType;
 }

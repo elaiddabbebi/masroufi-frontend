@@ -15,6 +15,12 @@
   padding: 20px;
 }
 
+.dash-balance-amount {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px;
+}
+
 .dash-card-title {
   font-size: 14px;
   color: #756b52;
@@ -25,4 +31,16 @@
   text-align: right;
   margin-top: -46px;
   margin-bottom: 15px;
+}
+
+.negative-balance {
+  color: #ff5252;
+}
+
+.null-balance {
+  color: #ffa726;
+}
+
+.positive-balance {
+  color: #66bb6a;
 }
