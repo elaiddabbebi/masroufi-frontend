@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {AppHttpClient} from "../../../shared/http/app-http-client";
 import {Observable} from "rxjs";
 import {dashboardEndpoints} from "./dashboard-endpoints";
+import {ConsumptionEvolutionData} from "../types/consumption-evolution-data";
 
 @Injectable()
 export class DashboardService {
@@ -26,5 +27,10 @@ export class DashboardService {
   public getLastMonthBalance(): Observable<number> {
     const url = dashboardEndpoints.getLastMonthBalance;
     return this.httpClient.get<number>(url);
+  }
+
+  public getConsumptionEvolution(): Observable<ConsumptionEvolutionData> {
+    const url = dashboardEndpoints.getConsumptionEvolution;
+    return this.httpClient.get<ConsumptionEvolutionData>(url);
   }
 }

@@ -20,6 +20,7 @@ export class CustomerDashboardComponent implements OnInit {
   lastWeekConsumptionIsLoading: boolean = false;
   lastMonthBalanceIsLoading: boolean = false;
   currentWeekConsumptionIsLoading: boolean = false;
+  consumptionEvolutionDataIsLoading: boolean = false;
 
   data: any;
   options: any;
@@ -34,7 +35,7 @@ export class CustomerDashboardComponent implements OnInit {
     this.getCurrentWeekConsumption();
     this.getLastWeekConsumption();
     this.getLastMonthBalance();
-    this.fillExpenseEvolutionChart();
+    this.getConsumptionEvolution();
   }
 
   getCurrentCashAmount(): void {
@@ -69,57 +70,44 @@ export class CustomerDashboardComponent implements OnInit {
     });
   }
 
+  getConsumptionEvolution(): void {
+    this.consumptionEvolutionDataIsLoading = true;
+    this.dashboardService.getConsumptionEvolution().pipe().subscribe((response: ConsumptionEvolutionData): void => {
+      this.fillExpenseEvolutionChart(response);
+      this.consumptionEvolutionDataIsLoading = false;
+    });
+  }
+
   fillExpenseEvolutionChart(consumptionData?: ConsumptionEvolutionData): void {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
     const textColor: string = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary: string = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder: string = documentStyle.getPropertyValue('--surface-border');
 
+    const currentMonth: string = consumptionData?.currentMonthData.month ? consumptionData?.currentMonthData.month.toString() : '';
+    const lastMonth: string = consumptionData?.lastMonthData.month ? consumptionData?.lastMonthData.month.toString() : '';
     this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: consumptionData?.daysOfMonth,
       datasets: [
         {
-          label: 'Févirier',
-          data: [28, 48, 40, 19, 86],
-          fill: false,
-          borderDash: [5, 5],
-          tension: 0.4,
-          borderColor: documentStyle.getPropertyValue('--teal-500')
-        },
-        {
-          label: 'Janvier',
-          data: [12, 51, 62, 33, 21, 62, 45],
+          label: this.translatePipe.transform(currentMonth),
+          data: consumptionData?.currentMonthData?.data,
           fill: true,
           borderColor: documentStyle.getPropertyValue('--primary-color-900'),
-          tension: 0.4,
+          tension: 0.3,
           backgroundColor: 'rgba(164,118,23,0.2)'
+        },
+        {
+          label: this.translatePipe.transform(lastMonth),
+          data: consumptionData?.lastMonthData?.data,
+          fill: false,
+          borderDash: [9, 2],
+          tension: 0.3,
+          borderColor: documentStyle.getPropertyValue('--primary-color-300'),
+          backgroundColor: 'rgba(252,173,17,0.2)'
         }
       ]
     };
-
-    // const currentMonth: string = consumptionData?.currentMonthData.month ? consumptionData?.currentMonthData.month.toString() : '';
-    // const lastMonth: string = consumptionData?.lastMonthData.month ? consumptionData?.lastMonthData.month.toString() : '';
-    // this.data = {
-    //   labels: consumptionData?.daysOfMonth,
-    //   datasets: [
-    //     {
-    //       label: this.translatePipe.transform(currentMonth),
-    //       data: consumptionData?.currentMonthData?.data,
-    //       fill: false,
-    //       borderDash: [5, 5],
-    //       tension: 0.4,
-    //       borderColor: documentStyle.getPropertyValue('--teal-500')
-    //     },
-    //     {
-    //       label: this.translatePipe.transform(lastMonth),
-    //       data: consumptionData?.lastMonthData?.data,
-    //       fill: true,
-    //       borderColor: documentStyle.getPropertyValue('--primary-color-900'),
-    //       tension: 0.4,
-    //       backgroundColor: 'rgba(164,118,23,0.2)'
-    //     }
-    //   ]
-    // };
 
     this.options = {
       maintainAspectRatio: false,

@@ -1,7 +1,7 @@
-import {ConsumptionMonthData} from "./consumption-month-data";
+import {MonthConsumptionData} from "./month-consumption-data";
 
 export interface ConsumptionEvolutionData {
   daysOfMonth: string[];
-  currentMonthData: ConsumptionMonthData;
-  lastMonthData: ConsumptionMonthData;
+  currentMonthData: MonthConsumptionData;
+  lastMonthData: MonthConsumptionData;
 }

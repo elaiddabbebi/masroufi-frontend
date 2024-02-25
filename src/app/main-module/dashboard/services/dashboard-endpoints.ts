@@ -7,4 +7,5 @@ export const dashboardEndpoints = {
   getCurrentWeekConsumption: baseUrl + '/dashboard/current-week-consumption',
   getLastWeekConsumption: baseUrl + '/dashboard/last-week-consumption',
   getLastMonthBalance: baseUrl + '/dashboard/last-month-balance',
+  getConsumptionEvolution: baseUrl + '/dashboard/consumption-evolution',
 }
