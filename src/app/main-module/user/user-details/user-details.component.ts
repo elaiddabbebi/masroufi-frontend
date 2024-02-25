@@ -10,6 +10,8 @@ import {UserService} from "../services/user.service";
 import {Role} from "../../role/types/role";
 import {RoleService} from "../../role/services/role.service";
 import {RoleType} from "../../role/types/role-type";
+import {PrimeNgLocaleSettingsBuilder} from "../../../shared/utils/prime-ng-locale-settings-builder";
+import {PrimeNGConfig} from "primeng/api";
 
 @Component({
   selector: 'app-user-details',
@@ -37,8 +39,10 @@ export class UserDetailsComponent implements OnInit {
     private notificationService: NotificationService,
     private translate: TranslatePipe,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private primeNGConfig: PrimeNGConfig
   ) {
+    this.primeNGConfig.setTranslation(PrimeNgLocaleSettingsBuilder.getLocaleSettings());
     this.userDetailsForm = this.formBuilder.group({
       email: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [Validators.required]),

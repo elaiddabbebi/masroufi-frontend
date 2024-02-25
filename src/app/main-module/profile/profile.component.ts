@@ -6,6 +6,8 @@ import {AppSecurityService} from "../app-security/services/app-security.service"
 import {NotificationService} from "../../shared/services/notification.service";
 import {TranslatePipe} from "../../shared/pipes/translate.pipe";
 import {AccountPasswordModel} from "../app-security/types/account-password-model";
+import {PrimeNgLocaleSettingsBuilder} from "../../shared/utils/prime-ng-locale-settings-builder";
+import {PrimeNGConfig} from "primeng/api";
 
 @Component({
   selector: 'app-profile',
@@ -26,8 +28,10 @@ export class ProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: AppSecurityService,
     private notificationService: NotificationService,
-    private translate: TranslatePipe
+    private translate: TranslatePipe,
+    private primeNGConfig: PrimeNGConfig
   ) {
+    this.primeNGConfig.setTranslation(PrimeNgLocaleSettingsBuilder.getLocaleSettings());
     this.profileDetailsForm = this.formBuilder.group({
       email: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [Validators.required]),
