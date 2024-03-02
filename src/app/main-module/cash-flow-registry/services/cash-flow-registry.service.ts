@@ -6,6 +6,7 @@ import {CashFlowRegistry} from "../types/cash-flow-registry";
 import {CustomerCashFlowRegistrySearchCriteria} from "../types/customer-cash-flow-registry-search-criteria";
 import {ResultSetResponse} from "../../../shared/types/result-set-response";
 import {HttpParams} from "@angular/common/http";
+import {buildHttpParamsFrom} from "../../../shared/utils/utils-functions";
 
 @Injectable()
 export class CashFlowRegistryService {
@@ -21,22 +22,10 @@ export class CashFlowRegistryService {
     return this.httpClient.get<CashFlowRegistry[]>(url);
   }
 
-  private convertThisToHttpParams(object: any): HttpParams {
-    let httpParams: HttpParams = new HttpParams();
-    if (object) {
-      Object.keys(object).forEach((key: string): void => {
-        if (object[key]) {
-          httpParams = httpParams.append(key, object[key].toString());
-        }
-      });
-    }
-    return httpParams;
-  }
-
   public search(searchCriteria: CustomerCashFlowRegistrySearchCriteria): Observable<ResultSetResponse<CashFlowRegistry>> {
     const url = cashFlowRegistryEndpoints.search;
     const options = {
-      params: this.convertThisToHttpParams(searchCriteria)
+      params: buildHttpParamsFrom(searchCriteria)
     };
 
     return this.httpClient.get<ResultSetResponse<CashFlowRegistry>>(url, options);
