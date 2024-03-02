@@ -1,7 +1,8 @@
-import {Sort} from "./sort";
+import {SortOrder} from "./sort-order";
 
-export interface AbstractSearchCriteria {
-  page: number;
-  size: number;
-  orderBy: Sort[];
+export abstract class AbstractSearchCriteria {
+  page: number = 1;
+  size: number = 10;
+  sortField?: string;
+  sortOrder?: SortOrder;
 }

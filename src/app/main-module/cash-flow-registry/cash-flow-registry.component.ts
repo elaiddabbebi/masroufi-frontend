@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {CashFlowCategory} from "../cash-flow-list/components/cash-flow-category/types/cash-flow-category";
 import {Router} from "@angular/router";
 import {TranslatePipe} from "../../shared/pipes/translate.pipe";
 import {NotificationService} from "../../shared/services/notification.service";
@@ -15,9 +14,11 @@ import {
 } from "../cash-flow-list/components/cash-flow-category/services/cash-flow-category.service";
 import {AutoCompleteCompleteEvent} from "primeng/autocomplete";
 import {AutoCompleteItem} from "../../shared/types/auto-complete-item";
-import {LocaleSettings} from "primeng/calendar";
 import {PrimeNGConfig} from "primeng/api";
 import {PrimeNgLocaleSettingsBuilder} from "../../shared/utils/prime-ng-locale-settings-builder";
+import {CustomerCashFlowRegistrySearchCriteria} from "./types/customer-cash-flow-registry-search-criteria";
+import {SortOrder} from "../../shared/types/sort-order";
+import {ResultSetResponse} from "../../shared/types/result-set-response";
 
 @Component({
   selector: 'app-cash-flow-registry',
@@ -41,7 +42,7 @@ export class CashFlowRegistryComponent {
   filteredCashFlowCategories: AutoCompleteItem[] = [];
   filteredCashFlowList: AutoCompleteItem[] = [];
   cashFlowTypeList: GenericObject[] = [];
-
+  searchCriteria: CustomerCashFlowRegistrySearchCriteria = new CustomerCashFlowRegistrySearchCriteria();
 
   constructor(
     private router: Router,
@@ -78,6 +79,7 @@ export class CashFlowRegistryComponent {
   }
 
   ngOnInit(): void {
+    // this.findAllCashFlows();
     this.searchCashFlow();
     this.getCashFlowCategoryNameList();
     this.getCashFlowNameList();
@@ -173,11 +175,24 @@ export class CashFlowRegistryComponent {
     return this.cashFlowDetailsForm.controls;
   }
 
-  searchCashFlow(): void {
-    this.cashFlowRegistryService.search().pipe(
+  findAllCashFlows(): void {
+    this.cashFlowRegistryService.findAll().pipe(
       tap({
         next: (response: CashFlowRegistry[]): void => {
           this.cashFlowRegistries = response;
+        },
+        error: error => {
+          console.log(error);
+        }
+      })
+    ).subscribe();
+  }
+
+  searchCashFlow(): void {
+    this.cashFlowRegistryService.search(this.searchCriteria).pipe(
+      tap({
+        next: (response: ResultSetResponse<CashFlowRegistry>): void => {
+          this.cashFlowRegistries = response.result;
         },
         error: error => {
           console.log(error);
@@ -236,7 +251,7 @@ export class CashFlowRegistryComponent {
         next: response => {
           this.hideCashFlowDetailsDialog();
           this.notificationService.notifySuccess('CASH_FLOW_REGISTRY_CREATION_SUCCESS');
-          this.searchCashFlow();
+          this.findAllCashFlows();
           this.saveIsLoading = false;
         },
         error: error => {
@@ -259,7 +274,7 @@ export class CashFlowRegistryComponent {
         next: response => {
           this.hideCashFlowDetailsDialog();
           this.notificationService.notifySuccess('UPDATE_SUCCESS');
-          this.searchCashFlow();
+          this.findAllCashFlows();
           this.saveIsLoading = false;
         },
         error: error => {
@@ -278,7 +293,7 @@ export class CashFlowRegistryComponent {
       tap({
         next: response => {
           this.hideCashFlowCategoryDialog();
-          this.searchCashFlow();
+          this.findAllCashFlows();
           this.notificationService.notifySuccess('DELETE_CASH_FLOW_REGISTRY_SUCCESS');
           this.deleteIsLoading = false;
         },
