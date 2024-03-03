@@ -72,6 +72,11 @@ export class CashFlowRegistryComponent {
       key: this.translate.transform(CashFlowType.EXPENSE.toString()),
       value: CashFlowType.EXPENSE.toString()
     });
+
+    this.searchCriteria.primarySortField = 'date';
+    this.searchCriteria.primarySortOrder = SortOrder.DESC;
+    this.searchCriteria.secondarySortField = 'id';
+    this.searchCriteria.secondarySortOrder = SortOrder.DESC;
   }
 
   selectDate(dateMeta: Date): void {
