@@ -20,7 +20,6 @@ import {TooltipModule} from "primeng/tooltip";
 import {CalendarModule} from "primeng/calendar";
 
 
-
 @NgModule({
   declarations: [
     CashFlowRegistryComponent

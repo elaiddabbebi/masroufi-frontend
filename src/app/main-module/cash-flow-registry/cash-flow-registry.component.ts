@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
 import {TranslatePipe} from "../../shared/pipes/translate.pipe";
 import {NotificationService} from "../../shared/services/notification.service";
 import {tap} from "rxjs";
@@ -19,6 +18,8 @@ import {PrimeNgLocaleSettingsBuilder} from "../../shared/utils/prime-ng-locale-s
 import {CustomerCashFlowRegistrySearchCriteria} from "./types/customer-cash-flow-registry-search-criteria";
 import {SortOrder} from "../../shared/types/sort-order";
 import {ResultSetResponse} from "../../shared/types/result-set-response";
+import {PageChangeEvent} from "../../shared/types/page-change-event";
+import {EmptyResultSet} from "../../shared/utils/empty-result-set";
 
 @Component({
   selector: 'app-cash-flow-registry',
@@ -27,7 +28,7 @@ import {ResultSetResponse} from "../../shared/types/result-set-response";
   providers: [CashFlowRegistryService, NotificationService, CashFlowService, CashFlowCategoryService]
 })
 export class CashFlowRegistryComponent {
-  cashFlowRegistries: CashFlowRegistry[] = [];
+  cashFlowResultSet: ResultSetResponse<CashFlowRegistry> = EmptyResultSet;
   cashFlowDetailsDialog: boolean = false;
   deleteCashFlowDialog: boolean = false;
   cashFlowDetailsForm: FormGroup;
@@ -45,7 +46,6 @@ export class CashFlowRegistryComponent {
   searchCriteria: CustomerCashFlowRegistrySearchCriteria = new CustomerCashFlowRegistrySearchCriteria();
 
   constructor(
-    private router: Router,
     private translate: TranslatePipe,
     private cashFlowRegistryService: CashFlowRegistryService,
     private cashFlowService: CashFlowService,
@@ -84,7 +84,6 @@ export class CashFlowRegistryComponent {
   }
 
   ngOnInit(): void {
-    // this.findAllCashFlows();
     this.searchCashFlow();
     this.getCashFlowCategoryNameList();
     this.getCashFlowNameList();
@@ -180,11 +179,11 @@ export class CashFlowRegistryComponent {
     return this.cashFlowDetailsForm.controls;
   }
 
-  findAllCashFlows(): void {
-    this.cashFlowRegistryService.findAll().pipe(
+  searchCashFlow(): void {
+    this.cashFlowRegistryService.search(this.searchCriteria).pipe(
       tap({
-        next: (response: CashFlowRegistry[]): void => {
-          this.cashFlowRegistries = response;
+        next: (response: ResultSetResponse<CashFlowRegistry>): void => {
+          this.cashFlowResultSet = response;
         },
         error: error => {
           console.log(error);
@@ -193,17 +192,10 @@ export class CashFlowRegistryComponent {
     ).subscribe();
   }
 
-  searchCashFlow(): void {
-    this.cashFlowRegistryService.search(this.searchCriteria).pipe(
-      tap({
-        next: (response: ResultSetResponse<CashFlowRegistry>): void => {
-          this.cashFlowRegistries = response.result;
-        },
-        error: error => {
-          console.log(error);
-        }
-      })
-    ).subscribe();
+  onPageChange(event: PageChangeEvent): void {
+    this.searchCriteria.page = event.page;
+    this.searchCriteria.size = event.size;
+    this.searchCashFlow();
   }
 
   getCashFlowNameList(): void {
@@ -256,7 +248,7 @@ export class CashFlowRegistryComponent {
         next: response => {
           this.hideCashFlowDetailsDialog();
           this.notificationService.notifySuccess('CASH_FLOW_REGISTRY_CREATION_SUCCESS');
-          this.findAllCashFlows();
+          this.searchCashFlow();
           this.saveIsLoading = false;
         },
         error: error => {
@@ -279,7 +271,7 @@ export class CashFlowRegistryComponent {
         next: response => {
           this.hideCashFlowDetailsDialog();
           this.notificationService.notifySuccess('UPDATE_SUCCESS');
-          this.findAllCashFlows();
+          this.searchCashFlow();
           this.saveIsLoading = false;
         },
         error: error => {
@@ -298,7 +290,7 @@ export class CashFlowRegistryComponent {
       tap({
         next: response => {
           this.hideCashFlowCategoryDialog();
-          this.findAllCashFlows();
+          this.searchCashFlow();
           this.notificationService.notifySuccess('DELETE_CASH_FLOW_REGISTRY_SUCCESS');
           this.deleteIsLoading = false;
         },

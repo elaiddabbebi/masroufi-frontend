@@ -20,6 +20,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import {TabViewModule} from "primeng/tabview";
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { PaginatorComponent } from './paginator/paginator.component';
+import {PaginatorModule} from "primeng/paginator";
 
 @NgModule({
   declarations: [
@@ -35,18 +37,20 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
     ConfirmCancelFooterComponent,
     LoaderComponent,
     SplashScreenComponent,
+    PaginatorComponent,
   ],
-  imports: [
-    CommonModule,
-    PanelMenuModule,
-    MenubarModule,
-    CardModule,
-    DialogModule,
-    PipesModule,
-    ButtonModule,
-    ProgressSpinnerModule,
-    TabViewModule,
-  ],
+    imports: [
+        CommonModule,
+        PanelMenuModule,
+        MenubarModule,
+        CardModule,
+        DialogModule,
+        PipesModule,
+        ButtonModule,
+        ProgressSpinnerModule,
+        TabViewModule,
+        PaginatorModule,
+    ],
   exports: [
     NavBarComponent,
     SideBarComponent,
@@ -58,6 +62,7 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
     ConfirmCancelFooterComponent,
     LoaderComponent,
     SplashScreenComponent,
+    PaginatorComponent,
   ]
 })
 export class ComponentsModule { }
