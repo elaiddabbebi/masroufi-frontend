@@ -62,7 +62,10 @@ export class CashFlowRegistryComponent {
       amount: new FormControl(0, [Validators.required]),
       date: new FormControl(new Date(), [Validators.required]),
     });
+    this.prepareCashFlowTypeList();
+  }
 
+  prepareCashFlowTypeList(): void {
     this.cashFlowTypeList.push({
       key: this.translate.transform(CashFlowType.GAIN.toString()),
       value: CashFlowType.GAIN.toString()
@@ -72,21 +75,28 @@ export class CashFlowRegistryComponent {
       key: this.translate.transform(CashFlowType.EXPENSE.toString()),
       value: CashFlowType.EXPENSE.toString()
     });
+  }
 
-    this.searchCriteria.primarySortField = 'date';
-    this.searchCriteria.primarySortOrder = SortOrder.DESC;
-    this.searchCriteria.secondarySortField = 'id';
-    this.searchCriteria.secondarySortOrder = SortOrder.DESC;
+  ngOnInit(): void {
+    this.initSearchCriteria();
+    this.searchCashFlow();
+    this.getCashFlowCategoryNameList();
+    this.getCashFlowNameList();
+  }
+
+  initSearchCriteria(): void {
+    this.searchCriteria = {
+      page: 1,
+      size: 10,
+      primarySortField: 'date',
+      primarySortOrder: SortOrder.DESC,
+      secondarySortField: 'id',
+      secondarySortOrder: SortOrder.DESC,
+    }
   }
 
   selectDate(dateMeta: Date): void {
     this.cashFlowDetailsForm.get('date')?.setValue(new Date(Date.UTC(dateMeta.getFullYear(), dateMeta.getMonth(), dateMeta.getDate())));
-  }
-
-  ngOnInit(): void {
-    this.searchCashFlow();
-    this.getCashFlowCategoryNameList();
-    this.getCashFlowNameList();
   }
 
   filterCashFlowItems(event: AutoCompleteCompleteEvent): void {
