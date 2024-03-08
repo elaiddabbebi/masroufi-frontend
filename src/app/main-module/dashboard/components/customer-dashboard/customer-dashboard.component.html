@@ -46,10 +46,110 @@
           </div>
         </ng-template>
         <div class="dash-card-title-container">
-          <span class="font-bold dash-card-title">{{ 'LAST_WEEK' | translate }}</span><br /><br />
+          <span class="font-bold dash-card-title">{{ 'CURRENT_MONTH_CONSUMPTION' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ lastWeekConsumption | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          <span class="dash-amount">{{ currentMonthConsumption | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+        </div>
+      </p-fieldset>
+    </div>
+
+    <div class="card col-3 p-10">
+      <p-fieldset>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
+            <img class="dash-logo" src="assets/img/gold-money.png">
+          </div>
+        </ng-template>
+        <div class="dash-card-title-container">
+          <span class="font-bold dash-card-title">{{ 'LAST_MONTH_CONSUMPTION' | translate }}</span><br /><br />
+        </div>
+        <div class="text-center">
+          <span class="dash-amount">{{ lastMonthConsumption | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+        </div>
+      </p-fieldset>
+    </div>
+  </div>
+</div>
+
+<div class="m-t-20">
+  <div class="row">
+    <div class="card col-12 p-10">
+      <p-fieldset>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
+            <img class="dash-logo" src="assets/img/money-bag-increase.png">
+          </div>
+        </ng-template>
+        <div class="dash-card-title-container">
+          <span class="font-bold dash-card-title">{{ 'EXPENSE_EVOLUTION' | translate }}</span><br /><br />
+        </div>
+        <div>
+          <p-chart type="line" [data]="data" [options]="options"></p-chart>
+        </div>
+      </p-fieldset>
+    </div>
+  </div>
+</div>
+
+<div class="m-t-20">
+  <div class="row">
+    <div class="card col-3 p-10">
+      <p-fieldset>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
+            <img class="dash-logo" src="assets/img/money-bag.png">
+          </div>
+        </ng-template>
+        <div class="dash-card-title-container">
+          <span class="font-bold dash-card-title">{{ 'CURRENT_YEAR_REVENUE' | translate }}</span><br /><br />
+        </div>
+        <div class="text-center">
+          <span class="dash-amount">{{ currentYearRevenue | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+        </div>
+      </p-fieldset>
+    </div>
+
+    <div class="card col-3 p-10">
+      <p-fieldset>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
+            <img class="dash-logo" src="assets/img/balance-money.png">
+          </div>
+        </ng-template>
+        <div class="dash-card-title-container">
+          <span class="font-bold dash-card-title">{{ 'CURRENT_YEAR_BALANCE' | translate }}</span><br /><br />
+        </div>
+        <div class="text-center">
+          <div [ngClass]="{
+                            'positive-amount': currentYearBalance > 0,
+                            'null-amount': currentYearBalance === 0,
+                            'negative-amount':currentYearBalance < 0
+                          }">
+            <span class="dash-non-colored-amount">{{ currentYearBalance > 0 ? '+' : '' }} {{ currentYearBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+
+    <div class="card col-3 p-10">
+      <p-fieldset>
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
+            <img class="dash-logo" src="assets/img/balance-money.png">
+          </div>
+        </ng-template>
+        <div class="dash-card-title-container">
+          <span class="font-bold dash-card-title">{{ 'CURRENT_MONTH_BALANCE' | translate }}</span><br /><br />
+        </div>
+        <div class="text-center">
+          <div [ngClass]="{
+                            'positive-amount': currentMonthBalance > 0,
+                            'null-amount': currentMonthBalance === 0,
+                            'negative-amount':currentMonthBalance < 0
+                          }">
+            <span class="dash-non-colored-amount">{{ currentMonthBalance > 0 ? '+' : '' }} {{ currentMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          </div>
         </div>
       </p-fieldset>
     </div>
@@ -66,11 +166,11 @@
         </div>
         <div class="text-center">
           <div [ngClass]="{
-                            'positive-amount': currentMonthBalance > 0,
-                            'null-amount': currentMonthBalance === 0,
-                            'negative-amount':currentMonthBalance < 0
+                            'positive-amount': lastMonthBalance > 0,
+                            'null-amount': lastMonthBalance === 0,
+                            'negative-amount':lastMonthBalance < 0
                           }">
-            <span class="dash-non-colored-amount">{{ currentMonthBalance > 0 ? '+' : '' }} {{ currentMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+            <span class="dash-non-colored-amount">{{ lastMonthBalance > 0 ? '+' : '' }} {{ lastMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
           </div>
         </div>
       </p-fieldset>

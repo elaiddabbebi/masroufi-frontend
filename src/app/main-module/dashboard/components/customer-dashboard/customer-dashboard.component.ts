@@ -13,14 +13,29 @@ import {CashFlowType} from "../../../cash-flow-registry/types/cash-flow-type";
 export class CustomerDashboardComponent implements OnInit {
 
   currentCashAmount: number = 0;
-  lastWeekConsumption: number = 0;
-  currentMonthBalance: number = 0;
   currentWeekConsumption: number = 0;
+  lastWeekConsumption: number = 0;
+  currentWeekBalance: number = 0;
+  lastWeekBalance: number = 0;
+  currentMonthConsumption: number = 0;
+  lastMonthConsumption: number = 0;
+  currentMonthBalance: number = 0;
+  lastMonthBalance: number = 0;
+  currentYearRevenue: number = 0;
+  currentYearBalance: number = 0;
 
   currentCashAmountIsLoading: boolean = false;
-  lastWeekConsumptionIsLoading: boolean = false;
-  currentMonthBalanceIsLoading: boolean = false;
   currentWeekConsumptionIsLoading: boolean = false;
+  lastWeekConsumptionIsLoading: boolean = false;
+  currentWeekBalanceIsLoading: boolean = false;
+  lastWeekBalanceIsLoading: boolean = false;
+  currentMonthConsumptionIsLoading: boolean = false;
+  lastMonthConsumptionIsLoading: boolean = false;
+  currentMonthBalanceIsLoading: boolean = false;
+  lastMonthBalanceIsLoading: boolean = false;
+  currentYearRevenueIsLoading: boolean = false;
+  currentYearBalanceIsLoading: boolean = false;
+
   consumptionEvolutionDataIsLoading: boolean = false;
 
   data: any;
@@ -34,8 +49,14 @@ export class CustomerDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentCashAmount();
     this.getCurrentWeekConsumption();
-    this.getLastWeekConsumption();
+    this.getCurrentMonthConsumption();
+    this.getLastMonthConsumption();
+
+    this.getCurrentYearRevenue();
+    this.getCurrentYearBalance();
     this.getCurrentMonthBalance();
+    this.getLastMonthBalance();
+
     this.getConsumptionEvolution();
   }
 
@@ -63,11 +84,51 @@ export class CustomerDashboardComponent implements OnInit {
     });
   }
 
+  getCurrentMonthConsumption(): void {
+    this.currentMonthConsumptionIsLoading = true;
+    this.dashboardService.getCurrentMonthConsumption().pipe().subscribe((response: number): void => {
+      this.currentMonthConsumption = response;
+      this.currentMonthConsumptionIsLoading = false;
+    });
+  }
+
+  getLastMonthConsumption(): void {
+    this.lastMonthConsumptionIsLoading = true;
+    this.dashboardService.getLastMonthConsumption().pipe().subscribe((response: number): void => {
+      this.lastMonthConsumption = response;
+      this.lastMonthConsumptionIsLoading = false;
+    });
+  }
+
   getCurrentMonthBalance(): void {
     this.currentMonthBalanceIsLoading = true;
     this.dashboardService.getCurrentMonthBalance().pipe().subscribe((response: number): void => {
       this.currentMonthBalance = response;
       this.currentMonthBalanceIsLoading = false;
+    });
+  }
+
+  getLastMonthBalance(): void {
+    this.lastMonthBalanceIsLoading = true;
+    this.dashboardService.getLastMonthBalance().pipe().subscribe((response: number): void => {
+      this.lastMonthBalance = response;
+      this.lastMonthBalanceIsLoading = false;
+    });
+  }
+
+  getCurrentYearRevenue(): void {
+    this.currentYearRevenueIsLoading = true;
+    this.dashboardService.getCurrentYearRevenue().pipe().subscribe((response: number): void => {
+      this.currentYearRevenue = response;
+      this.currentYearRevenueIsLoading = false;
+    });
+  }
+
+  getCurrentYearBalance(): void {
+    this.currentYearBalanceIsLoading = true;
+    this.dashboardService.getCurrentYearBalance().pipe().subscribe((response: number): void => {
+      this.currentYearBalance = response;
+      this.currentYearBalanceIsLoading = false;
     });
   }
 

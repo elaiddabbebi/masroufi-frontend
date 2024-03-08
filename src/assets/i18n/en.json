@@ -176,7 +176,7 @@
   "CURRENT_CASH_AMOUNT": "Cash amount",
   "CURRENT_WEEK_CONSUMPTION": "Week consumption",
   "LAST_WEEK": "Last week",
-  "LAST_MONTH_BALANCE": "Month balance",
+  "LAST_MONTH_BALANCE": "Last month balance",
   "INCOME_EVOLUTION": "Income evolution",
   "TND_CURRENCY": "TND",
   "PERCENT": "%",
@@ -201,5 +201,10 @@
     "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     "today": "Today",
     "weekHeader": "Wk"
-  }
+  },
+  "CURRENT_MONTH_CONSUMPTION": "Current month consumption",
+  "LAST_MONTH_CONSUMPTION": "Last month consumption",
+  "CURRENT_YEAR_REVENUE": "Current year revenue",
+  "CURRENT_YEAR_BALANCE": "Current year balance",
+  "CURRENT_MONTH_BALANCE": "Current month balance"
 }

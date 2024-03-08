@@ -176,7 +176,7 @@
   "CURRENT_CASH_AMOUNT": "Montant de caisse",
   "CURRENT_WEEK_CONSUMPTION": "Consommation de semaine",
   "LAST_WEEK": "Semaine dernière",
-  "LAST_MONTH_BALANCE": "Balance du mois",
+  "LAST_MONTH_BALANCE": "Balance du mois dernier",
   "INCOME_EVOLUTION": "Évolution du revenu",
   "TND_CURRENCY": "DT",
   "PERCENT": "%",
@@ -201,5 +201,10 @@
     "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     "today": "Today",
     "weekHeader": "Wk"
-  }
+  },
+  "CURRENT_MONTH_CONSUMPTION": "Consommation du mois",
+  "LAST_MONTH_CONSUMPTION": "Consommation du mois dernier",
+  "CURRENT_YEAR_REVENUE": "Revenue de l'année",
+  "CURRENT_YEAR_BALANCE": "Balance de l'année",
+  "CURRENT_MONTH_BALANCE": "Balance du mois"
 }

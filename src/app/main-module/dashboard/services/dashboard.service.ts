@@ -24,6 +24,26 @@ export class DashboardService {
     return this.httpClient.get<number>(url);
   }
 
+  public getCurrentWeekBalance(): Observable<number> {
+    const url = dashboardEndpoints.getCurrentWeekBalance;
+    return this.httpClient.get<number>(url);
+  }
+
+  public getLastWeekBalance(): Observable<number> {
+    const url = dashboardEndpoints.getLastWeekBalance;
+    return this.httpClient.get<number>(url);
+  }
+
+  public getCurrentMonthConsumption(): Observable<number> {
+    const url = dashboardEndpoints.getCurrentMonthConsumption;
+    return this.httpClient.get<number>(url);
+  }
+
+  public getLastMonthConsumption(): Observable<number> {
+    const url = dashboardEndpoints.getLastMonthConsumption;
+    return this.httpClient.get<number>(url);
+  }
+
   public getCurrentMonthBalance(): Observable<number> {
     const url = dashboardEndpoints.getCurrentMonthBalance;
     return this.httpClient.get<number>(url);
@@ -31,6 +51,16 @@ export class DashboardService {
 
   public getLastMonthBalance(): Observable<number> {
     const url = dashboardEndpoints.getLastMonthBalance;
+    return this.httpClient.get<number>(url);
+  }
+
+  public getCurrentYearRevenue(): Observable<number> {
+    const url = dashboardEndpoints.getCurrentYearRevenue;
+    return this.httpClient.get<number>(url);
+  }
+
+  public getCurrentYearBalance(): Observable<number> {
+    const url = dashboardEndpoints.getCurrentYearBalance;
     return this.httpClient.get<number>(url);
   }
 
