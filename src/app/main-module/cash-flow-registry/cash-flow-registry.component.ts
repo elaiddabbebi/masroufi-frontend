@@ -20,6 +20,7 @@ import {SortOrder} from "../../shared/types/sort-order";
 import {ResultSetResponse} from "../../shared/types/result-set-response";
 import {PageChangeEvent} from "../../shared/types/page-change-event";
 import {EmptyResultSet} from "../../shared/utils/empty-result-set";
+import {getUTCDateFrom} from "../../shared/utils/utils-functions";
 
 @Component({
   selector: 'app-cash-flow-registry',
@@ -60,7 +61,7 @@ export class CashFlowRegistryComponent {
       category: new FormControl(null, [Validators.required]),
       type: new FormControl(null, [Validators.required]),
       amount: new FormControl(0, [Validators.required]),
-      date: new FormControl(new Date(), [Validators.required]),
+      date: new FormControl(getUTCDateFrom(new Date()), [Validators.required]),
     });
     this.prepareCashFlowTypeList();
   }
@@ -95,8 +96,8 @@ export class CashFlowRegistryComponent {
     }
   }
 
-  selectDate(dateMeta: Date): void {
-    this.cashFlowDetailsForm.get('date')?.setValue(new Date(Date.UTC(dateMeta.getFullYear(), dateMeta.getMonth(), dateMeta.getDate())));
+  selectDate(date: Date): void {
+    this.cashFlowDetailsForm.get('date')?.setValue(getUTCDateFrom(date));
   }
 
   filterCashFlowItems(event: AutoCompleteCompleteEvent): void {
@@ -146,7 +147,7 @@ export class CashFlowRegistryComponent {
   addCashFlow(): void {
     this.cashFlowDetailsForm.reset();
     this.cashFlowDetailsForm.get('type')?.setValue(CashFlowType.EXPENSE);
-    this.cashFlowDetailsForm.get('date')?.setValue(new Date());
+    this.cashFlowDetailsForm.get('date')?.setValue(getUTCDateFrom(new Date()));
     this.cashFlowDetailsDialogHeader = 'ADD_CASH_FLOW_REGISTRY';
     this.mode = 'ADD';
     this.showCashFlowDetailsDialog();

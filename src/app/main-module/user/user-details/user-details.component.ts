@@ -12,6 +12,7 @@ import {RoleService} from "../../role/services/role.service";
 import {RoleType} from "../../role/types/role-type";
 import {PrimeNgLocaleSettingsBuilder} from "../../../shared/utils/prime-ng-locale-settings-builder";
 import {PrimeNGConfig} from "primeng/api";
+import {getUTCDateFrom} from "../../../shared/utils/utils-functions";
 
 @Component({
   selector: 'app-user-details',
@@ -62,8 +63,8 @@ export class UserDetailsComponent implements OnInit {
     })
   }
 
-  selectDate(dateMeta: Date): void {
-    this.userDetailsForm.get('birthDate')?.setValue(new Date(Date.UTC(dateMeta.getFullYear(), dateMeta.getMonth(), dateMeta.getDate())));
+  selectDate(date: Date): void {
+    this.userDetailsForm.get('birthDate')?.setValue(getUTCDateFrom(date));
   }
 
   get userControls() {

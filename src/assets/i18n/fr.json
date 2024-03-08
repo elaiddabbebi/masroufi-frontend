@@ -173,7 +173,7 @@
   "DELETE_CASH_FLOW_REGISTRY_SUCCESS": "Flux supprimée avec succès",
   "DELETE_CASH_FLOW_REGISTRY_ERROR": "La suppression du flux à échouée!",
   "ADD_CASH_FLOW_REGISTRY_TOOL_TIP": "Ajouter",
-  "CURRENT_CASH_AMOUNT": "Montant restant",
+  "CURRENT_CASH_AMOUNT": "Montant de caisse",
   "CURRENT_WEEK_CONSUMPTION": "Consommation de semaine",
   "LAST_WEEK": "Semaine dernière",
   "LAST_MONTH_BALANCE": "Balance du mois",

@@ -11,3 +11,11 @@ export function buildHttpParamsFrom(object: any): HttpParams {
   }
   return httpParams;
 }
+
+export function getUTCDateFrom(date: Date): Date {
+  if (date) {
+    return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 12, 0, 0));
+  } else {
+    return new Date();
+  }
+}

@@ -11,7 +11,13 @@
           <span class="font-bold dash-card-title">{{ 'CURRENT_CASH_AMOUNT' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ currentCashAmount | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          <div [ngClass]="{
+                            'positive-amount': currentCashAmount > 0,
+                            'null-amount': currentCashAmount === 0,
+                            'negative-amount':currentCashAmount < 0
+                          }">
+            <span class="dash-non-colored-amount">{{ currentCashAmount > 0 ? '+' : '' }} {{ currentCashAmount | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          </div>
         </div>
       </p-fieldset>
     </div>
@@ -60,11 +66,11 @@
         </div>
         <div class="text-center">
           <div [ngClass]="{
-                            'positive-balance': currentMonthBalance > 0,
-                            'null-balance': currentMonthBalance === 0,
-                            'negative-balance':currentMonthBalance < 0
+                            'positive-amount': currentMonthBalance > 0,
+                            'null-amount': currentMonthBalance === 0,
+                            'negative-amount':currentMonthBalance < 0
                           }">
-            <span class="dash-balance-amount">{{ currentMonthBalance > 0 ? '+' : '' }} {{ currentMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+            <span class="dash-non-colored-amount">{{ currentMonthBalance > 0 ? '+' : '' }} {{ currentMonthBalance | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
           </div>
         </div>
       </p-fieldset>

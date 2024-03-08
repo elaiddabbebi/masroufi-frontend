@@ -15,7 +15,7 @@
   padding: 20px;
 }
 
-.dash-balance-amount {
+.dash-non-colored-amount {
   font-size: 24px;
   font-weight: bold;
   padding: 20px;
@@ -33,14 +33,14 @@
   margin-bottom: 15px;
 }
 
-.negative-balance {
+.negative-amount {
   color: #ff5252;
 }
 
-.null-balance {
+.null-amount {
   color: #ffa726;
 }
 
-.positive-balance {
+.positive-amount {
   color: #66bb6a;
 }

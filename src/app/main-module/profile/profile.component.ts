@@ -8,6 +8,7 @@ import {TranslatePipe} from "../../shared/pipes/translate.pipe";
 import {AccountPasswordModel} from "../app-security/types/account-password-model";
 import {PrimeNgLocaleSettingsBuilder} from "../../shared/utils/prime-ng-locale-settings-builder";
 import {PrimeNGConfig} from "primeng/api";
+import {getUTCDateFrom} from "../../shared/utils/utils-functions";
 
 @Component({
   selector: 'app-profile',
@@ -52,8 +53,8 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  selectDate(dateMeta: Date): void {
-    this.profileDetailsForm.get('birthDate')?.setValue(new Date(Date.UTC(dateMeta.getFullYear(), dateMeta.getMonth(), dateMeta.getDate())));
+  selectDate(date: Date): void {
+    this.profileDetailsForm.get('birthDate')?.setValue(getUTCDateFrom(date));
   }
 
   get profileControls() {
