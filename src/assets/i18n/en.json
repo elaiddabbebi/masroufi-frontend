@@ -206,5 +206,6 @@
   "LAST_MONTH_CONSUMPTION": "Last month consumption",
   "CURRENT_YEAR_REVENUE": "Current year revenue",
   "CURRENT_YEAR_BALANCE": "Current year balance",
-  "CURRENT_MONTH_BALANCE": "Current month balance"
+  "CURRENT_MONTH_BALANCE": "Current month balance",
+  "ELEMENTS": "Elements"
 }

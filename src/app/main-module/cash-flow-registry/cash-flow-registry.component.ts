@@ -164,7 +164,7 @@ export class CashFlowRegistryComponent {
       value: cashFlow.category
     });
     this.cashFlowDetailsForm.get('type')?.setValue(cashFlow.type);
-    this.cashFlowDetailsForm.get('date')?.setValue(new Date(cashFlow.date));
+    this.cashFlowDetailsForm.get('date')?.setValue(getUTCDateFrom(new Date(cashFlow.date)));
     this.cashFlowDetailsForm.get('amount')?.setValue(cashFlow.amount);
     this.cashFlowDetailsDialogHeader = 'EDIT_CASH_FLOW_REGISTRY';
     this.mode = 'EDIT';

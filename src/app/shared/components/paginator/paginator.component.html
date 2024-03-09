@@ -5,5 +5,7 @@
     [rows]="rows"
     [totalRecords]="resultSet.total"
     [rowsPerPageOptions]="[10, 20, 30]"
+    [showCurrentPageReport]="showPageReport"
+    [currentPageReportTemplate]="('SHOWING' | translate) + ' {first} ' +  ('TO' | translate) + ' {last} ' +  ('OF' | translate) + ' {totalRecords} ' + (rowName | translate)"
   ></p-paginator>
 </div>

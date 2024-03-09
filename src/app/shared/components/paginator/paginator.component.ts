@@ -9,6 +9,8 @@ import {PageChangeEvent} from "../../types/page-change-event";
 })
 export class PaginatorComponent {
 
+  @Input() showPageReport: boolean = false;
+  @Input() rowName: string = 'ELEMENTS';
   @Input() resultSet: ResultSetResponse<any> = {
     result: [],
     total: 0,
