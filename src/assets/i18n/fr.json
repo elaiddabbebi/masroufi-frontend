@@ -208,5 +208,6 @@
   "CURRENT_YEAR_BALANCE": "Balance de l'année",
   "CURRENT_MONTH_BALANCE": "Balance du mois",
   "ELEMENTS": "Elements",
-  "REVENUE": "Revenue"
+  "REVENUE": "Revenue",
+  "REVENUE_EXPENSE_PER_MONTH": "Revenue et dépense par mois"
 }

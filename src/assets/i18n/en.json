@@ -208,5 +208,6 @@
   "CURRENT_YEAR_BALANCE": "Current year balance",
   "CURRENT_MONTH_BALANCE": "Current month balance",
   "ELEMENTS": "Elements",
-  "REVENUE": "Revenue"
+  "REVENUE": "Revenue",
+  "REVENUE_EXPENSE_PER_MONTH": "Revenue and expense per month"
 }
