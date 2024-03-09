@@ -7,3 +7,11 @@
 .breadcrumb-full-width .p-breadcrumb {
   width: 100%;
 }
+
+.app-container {
+  padding-top: 52px;
+}
+
+.component-container {
+  padding-left: 280px;
+}

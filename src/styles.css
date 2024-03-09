@@ -163,11 +163,12 @@ input:read-only {
   font-weight: unset !important;
   padding: 1.0rem !important;
 }
+
 .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content {
-  border: 1px solid rgba(234, 235, 236, 0.5);
+  border-top: 1px solid rgba(246, 246, 246, 0.2);
   color: #6c757d;
-  background: rgba(248, 247, 247, 0.5);
-  border-radius: 6px;
+  background: rgba(248, 247, 247, 0.2);
+  border-radius: 0px;
   transition: box-shadow 0.2s;
 }
 
@@ -1727,4 +1728,14 @@ body .p-datepicker table td {
 
 .p-datepicker:not(.p-datepicker-inline) {
   box-shadow: none !important;
+}
+
+body {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.p-panelmenu .p-panelmenu-panel {
+  margin: 0px !important;
+  border-radius: 0px;
 }

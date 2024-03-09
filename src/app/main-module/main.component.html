@@ -1,11 +1,11 @@
 <app-splash-screen *ngIf="contextIsLoading"></app-splash-screen>
 <div class="z-index-0" *ngIf="!contextIsLoading">
-  <div class="position-fixed z-index-3" style="width: calc(100% - 15px);">
+  <div class="position-fixed z-index-3" style="width: 100%;">
     <app-nav-bar></app-nav-bar>
   </div>
-  <div class="non-responsive-row p-t-65 z-index-0">
+  <div class="non-responsive-row z-index-0 app-container">
     <app-side-bar></app-side-bar>
-    <div class="p-t-10 p-l-300 w-100">
+    <div class="p-t-10 component-container w-100">
 <!--      <div class="card flex justify-content-center p-l-10 w-100">-->
 <!--        <p-breadcrumb-->
 <!--          [model]="breadcrumbItems"-->
@@ -17,9 +17,10 @@
 <!--      </div>-->
         <p-card
           [style]="{
-            'width':'calc(100% - 10px)',
-            'min-height': 'calc(100vh - 96px)',
-            'margin-top': '0px',
+            'width':'calc(100% - 20px)',
+            'min-height': 'calc(100vh - 80px)',
+            'margin-top': '8px',
+            'margin-bottom': '10px',
             'margin-left': '10px',
             'padding-top': '2px',
             'padding-bottom': '10px',
