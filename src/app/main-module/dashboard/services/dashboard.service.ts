@@ -3,6 +3,8 @@ import {AppHttpClient} from "../../../shared/http/app-http-client";
 import {Observable} from "rxjs";
 import {dashboardEndpoints} from "./dashboard-endpoints";
 import {ConsumptionEvolutionData} from "../types/consumption-evolution-data";
+import {MonthAmount} from "../types/month-amount";
+import {ExpenseRevenueEvolutionData} from "../types/expense-revenue-evolution-data";
 
 @Injectable()
 export class DashboardService {
@@ -67,5 +69,20 @@ export class DashboardService {
   public getConsumptionEvolution(): Observable<ConsumptionEvolutionData> {
     const url = dashboardEndpoints.getConsumptionEvolution;
     return this.httpClient.get<ConsumptionEvolutionData>(url);
+  }
+
+  public getCurrentYearRevenueEvolution(): Observable<MonthAmount[]> {
+    const url = dashboardEndpoints.getCurrentYearRevenueEvolution;
+    return this.httpClient.get<MonthAmount[]>(url);
+  }
+
+  public getCurrentYearExpenseEvolution(): Observable<MonthAmount[]> {
+    const url = dashboardEndpoints.getCurrentYearExpenseEvolution;
+    return this.httpClient.get<MonthAmount[]>(url);
+  }
+
+  public getCurrentYearExpenseRevenueEvolution(): Observable<ExpenseRevenueEvolutionData> {
+    const url = dashboardEndpoints.getCurrentYearExpenseRevenueEvolution;
+    return this.httpClient.get<ExpenseRevenueEvolutionData>(url);
   }
 }

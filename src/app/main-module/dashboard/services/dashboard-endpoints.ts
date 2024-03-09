@@ -19,4 +19,7 @@ export const dashboardEndpoints = {
   getCurrentYearBalance: baseUrl + '/dashboard/current-year-balance',
 
   getConsumptionEvolution: baseUrl + '/dashboard/consumption-evolution',
+  getCurrentYearRevenueEvolution: baseUrl + '/dashboard/current-year-revenue-evolution',
+  getCurrentYearExpenseEvolution: baseUrl + '/dashboard/current-year-expense-evolution',
+  getCurrentYearExpenseRevenueEvolution: baseUrl + '/dashboard/current-year-expense-revenue-evolution',
 }

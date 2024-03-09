@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {DashboardService} from "../../services/dashboard.service";
 import {TranslatePipe} from "../../../../shared/pipes/translate.pipe";
 import {ConsumptionEvolutionData} from "../../types/consumption-evolution-data";
-import {CashFlowType} from "../../../cash-flow-registry/types/cash-flow-type";
+import {MonthAmount} from "../../types/month-amount";
+import {ExpenseRevenueEvolutionData} from "../../types/expense-revenue-evolution-data";
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -14,9 +15,6 @@ export class CustomerDashboardComponent implements OnInit {
 
   currentCashAmount: number = 0;
   currentWeekConsumption: number = 0;
-  lastWeekConsumption: number = 0;
-  currentWeekBalance: number = 0;
-  lastWeekBalance: number = 0;
   currentMonthConsumption: number = 0;
   lastMonthConsumption: number = 0;
   currentMonthBalance: number = 0;
@@ -26,9 +24,6 @@ export class CustomerDashboardComponent implements OnInit {
 
   currentCashAmountIsLoading: boolean = false;
   currentWeekConsumptionIsLoading: boolean = false;
-  lastWeekConsumptionIsLoading: boolean = false;
-  currentWeekBalanceIsLoading: boolean = false;
-  lastWeekBalanceIsLoading: boolean = false;
   currentMonthConsumptionIsLoading: boolean = false;
   lastMonthConsumptionIsLoading: boolean = false;
   currentMonthBalanceIsLoading: boolean = false;
@@ -37,8 +32,10 @@ export class CustomerDashboardComponent implements OnInit {
   currentYearBalanceIsLoading: boolean = false;
 
   consumptionEvolutionDataIsLoading: boolean = false;
+  currentYearExpenseRevenueEvolutionIsLoading: boolean = false;
 
-  data: any;
+  expenseEvolutionData: any;
+  expenseRevenueEvolutionData: any;
   options: any;
 
   constructor(
@@ -47,6 +44,8 @@ export class CustomerDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initChartOptions();
+
     this.getCurrentCashAmount();
     this.getCurrentWeekConsumption();
     this.getCurrentMonthConsumption();
@@ -58,6 +57,7 @@ export class CustomerDashboardComponent implements OnInit {
     this.getLastMonthBalance();
 
     this.getConsumptionEvolution();
+    this.getCurrentYearExpenseRevenueEvolution();
   }
 
   getCurrentCashAmount(): void {
@@ -73,14 +73,6 @@ export class CustomerDashboardComponent implements OnInit {
     this.dashboardService.getCurrentWeekConsumption().pipe().subscribe((response: number): void => {
       this.currentWeekConsumption = response;
       this.currentWeekConsumptionIsLoading = false;
-    });
-  }
-
-  getLastWeekConsumption(): void {
-    this.lastWeekConsumptionIsLoading = true;
-    this.dashboardService.getLastWeekConsumption().pipe().subscribe((response: number): void => {
-      this.lastWeekConsumption = response;
-      this.lastWeekConsumptionIsLoading = false;
     });
   }
 
@@ -140,15 +132,47 @@ export class CustomerDashboardComponent implements OnInit {
     });
   }
 
+  getCurrentYearExpenseRevenueEvolution(): void {
+    this.currentYearExpenseRevenueEvolutionIsLoading = true;
+    this.dashboardService.getCurrentYearExpenseRevenueEvolution().pipe().subscribe((response: ExpenseRevenueEvolutionData): void => {
+      this.fillExpenseRevenueEvolutionData(response);
+      this.currentYearExpenseRevenueEvolutionIsLoading = false;
+    });
+  }
+
+  fillExpenseRevenueEvolutionData(expenseRevenueEvolutionData: ExpenseRevenueEvolutionData): void {
+    const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
+
+    this.expenseRevenueEvolutionData = {
+      labels: expenseRevenueEvolutionData.months.map(month => this.translatePipe.transform(month)),
+      datasets: [
+        {
+          label: this.translatePipe.transform('REVENUE'),
+          data: expenseRevenueEvolutionData.revenueEvolution.map(monthAmount => monthAmount.amount),
+          fill: true,
+          borderColor: documentStyle.getPropertyValue('--primary-color-900'),
+          tension: 0.3,
+          backgroundColor: 'rgba(133,98,16,0.6)'
+        },
+        {
+          label: this.translatePipe.transform('EXPENSE'),
+          data: expenseRevenueEvolutionData.expenseEvolution.map(monthAmount => monthAmount.amount),
+          fill: false,
+          borderDash: [9, 2],
+          tension: 0.3,
+          borderColor: documentStyle.getPropertyValue('--primary-color-300'),
+          backgroundColor: 'rgba(253,177,32,0.6)'
+        }
+      ]
+    };
+  }
+
   fillExpenseEvolutionChart(consumptionData?: ConsumptionEvolutionData): void {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
-    const textColor: string = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary: string = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder: string = documentStyle.getPropertyValue('--surface-border');
 
     const currentMonth: string = consumptionData?.currentMonthData.month ? consumptionData?.currentMonthData.month.toString() : '';
     const lastMonth: string = consumptionData?.lastMonthData.month ? consumptionData?.lastMonthData.month.toString() : '';
-    this.data = {
+    this.expenseEvolutionData = {
       labels: consumptionData?.daysOfMonth,
       datasets: [
         {
@@ -170,6 +194,13 @@ export class CustomerDashboardComponent implements OnInit {
         }
       ]
     };
+  }
+
+  initChartOptions(): void {
+    const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
+    const textColor: string = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary: string = documentStyle.getPropertyValue('--text-color-secondary');
+    const surfaceBorder: string = documentStyle.getPropertyValue('--surface-border');
 
     this.options = {
       maintainAspectRatio: false,
@@ -202,5 +233,4 @@ export class CustomerDashboardComponent implements OnInit {
     };
   }
 
-  protected readonly CashFlowType = CashFlowType;
 }
