@@ -13,7 +13,6 @@ import {AppSecurityContext} from "../../../main-module/app-security/app-security
 })
 export class NavBarComponent implements OnInit, OnChanges {
   items: MenuItem[] | undefined;
-  aboutDialogVisible: boolean = false;
 
   constructor(
     private translate: TranslatePipe,
@@ -48,13 +47,6 @@ export class NavBarComponent implements OnInit, OnChanges {
             }
           },
           {
-            label: this.translate.transform('ABOUT'),
-            icon: 'pi pi-fw pi-info-circle',
-            command: (event: MenuItemCommandEvent): void => {
-              this.showAboutDialog();
-            }
-          },
-          {
             label: this.translate.transform('SIGN_OUT'),
             icon: 'pi pi-fw pi-power-off',
             command: (event: MenuItemCommandEvent): void => {
@@ -69,14 +61,6 @@ export class NavBarComponent implements OnInit, OnChanges {
   logout(): void {
     localStorage.clear();
     this.router.navigate(['/auth/login']);
-  }
-
-  showAboutDialog(): void {
-    this.aboutDialogVisible = true;
-  }
-
-  hideAboutDialog(): void {
-    this.aboutDialogVisible = false;
   }
 
   getCurrentLanguage() {

@@ -72,6 +72,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'about',
+    loadChildren: () => import('./about-us/about-us.module').then((m) => m.AboutUsModule),
+    data: {
+      breadcrumb: 'ABOUT_US'
+    }
+  },
+  {
     path: '**',
     component: NotFoundComponent,
     data: {

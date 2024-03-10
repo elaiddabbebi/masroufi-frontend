@@ -209,5 +209,6 @@
   "CURRENT_MONTH_BALANCE": "Balance du mois",
   "ELEMENTS": "Elements",
   "REVENUE": "Revenue",
-  "REVENUE_EXPENSE_PER_MONTH": "Revenue et dépense par mois"
+  "REVENUE_EXPENSE_PER_MONTH": "Revenue et dépense par mois",
+  "ABOUT_APPLICATION": "À propos de l'application"
 }

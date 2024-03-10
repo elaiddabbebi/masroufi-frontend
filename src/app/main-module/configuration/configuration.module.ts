@@ -12,12 +12,14 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {PasswordModule} from "primeng/password";
 import {ComponentsModule} from "../../shared/components/components.module";
 import {InputTextModule} from "primeng/inputtext";
+import { LanguageConfigComponent } from './components/language-config/language-config.component';
 
 @NgModule({
   declarations: [
     ConfigurationComponent,
     CashFlowConfigComponent,
-    SubscriptionConfigComponent
+    SubscriptionConfigComponent,
+    LanguageConfigComponent
   ],
   imports: [
     CommonModule,

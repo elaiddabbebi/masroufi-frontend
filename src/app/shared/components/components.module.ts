@@ -51,18 +51,19 @@ import {PaginatorModule} from "primeng/paginator";
         TabViewModule,
         PaginatorModule,
     ],
-  exports: [
-    NavBarComponent,
-    SideBarComponent,
-    NotFoundComponent,
-    CancelBtnComponent,
-    SaveBtnComponent,
-    FooterComponent,
-    SaveCancelFooterComponent,
-    ConfirmCancelFooterComponent,
-    LoaderComponent,
-    SplashScreenComponent,
-    PaginatorComponent,
-  ]
+    exports: [
+        NavBarComponent,
+        SideBarComponent,
+        NotFoundComponent,
+        CancelBtnComponent,
+        SaveBtnComponent,
+        FooterComponent,
+        SaveCancelFooterComponent,
+        ConfirmCancelFooterComponent,
+        LoaderComponent,
+        SplashScreenComponent,
+        PaginatorComponent,
+        AboutComponent,
+    ]
 })
 export class ComponentsModule { }

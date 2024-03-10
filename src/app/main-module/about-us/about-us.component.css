@@ -1,0 +1,23 @@
+.about-logo {
+  height: 26px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-logo-container {
+  width: 32px;
+  height: 32px;
+}
+
+.about-card-title-container {
+  text-align: right;
+  margin-top: -46px;
+  margin-bottom: 15px;
+  margin-right: -16px;
+}
+
+.about-card-title {
+  font-size: 14px;
+  color: #756b52;
+  font-weight: bold;
+}
