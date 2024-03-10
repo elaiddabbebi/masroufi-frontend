@@ -183,6 +183,15 @@ input:read-only {
 
 .p-menuitem-link-active {
   color: var(--primary-color-900) !important;
+  background-color: var(--primary-color-001);
+}
+
+.p-menuitem-link-active > .p-menuitem-text {
+  font-weight: 500;
+}
+
+.p-menuitem-link-active > .p-menuitem-icon {
+  font-weight: 800;
 }
 
 .p-panelmenu .p-panelmenu-content .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
