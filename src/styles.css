@@ -194,6 +194,10 @@ input:read-only {
   font-weight: 800;
 }
 
+.p-panelmenu-header-action:hover {
+  color: var(--primary-color-900) !important;
+}
+
 .p-panelmenu .p-panelmenu-content .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
   color: unset !important;
 }
