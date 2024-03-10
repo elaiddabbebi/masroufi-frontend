@@ -1,7 +1,7 @@
 <div class="m-t-20">
   <div class="row">
     <div class="card col-3 p-10">
-      <p-fieldset>
+      <p-fieldset [style]="{'background-color': 'var(--primary-color-001)'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
             <img class="dash-logo" src="assets/img/money-bag.png">
@@ -11,19 +11,13 @@
           <span class="font-bold dash-card-title">{{ 'CURRENT_CASH_AMOUNT' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <div [ngClass]="{
-                            'positive-amount': currentCashAmount > 0,
-                            'null-amount': currentCashAmount === 0,
-                            'negative-amount':currentCashAmount < 0
-                          }">
-            <span class="dash-non-colored-amount">{{ currentCashAmount > 0 ? '+' : '' }} {{ currentCashAmount | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
-          </div>
+          <span class="dash-amount">{{ currentCashAmount | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
         </div>
       </p-fieldset>
     </div>
 
     <div class="card col-3 p-10">
-      <p-fieldset>
+      <p-fieldset [style]="{'background-color': 'var(--primary-color-001)'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
             <img class="dash-logo" src="assets/img/gold-money.png">
@@ -39,7 +33,7 @@
     </div>
 
     <div class="card col-3 p-10">
-      <p-fieldset>
+      <p-fieldset [style]="{'background-color': 'var(--primary-color-001)'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
             <img class="dash-logo" src="assets/img/gold-money.png">
@@ -55,7 +49,7 @@
     </div>
 
     <div class="card col-3 p-10">
-      <p-fieldset>
+      <p-fieldset [style]="{'background-color': 'var(--primary-color-001)'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
             <img class="dash-logo" src="assets/img/gold-money.png">
@@ -95,7 +89,7 @@
 <div class="m-t-20">
   <div class="row">
     <div class="card col-3 p-10">
-      <p-fieldset>
+      <p-fieldset [style]="{'background-color': 'var(--primary-color-001)'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
             <img class="dash-logo" src="assets/img/money-bag.png">
@@ -111,7 +105,7 @@
     </div>
 
     <div class="card col-3 p-10">
-      <p-fieldset>
+      <p-fieldset [style]="{'background-color': 'var(--primary-color-001)'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
             <img class="dash-logo" src="assets/img/balance-money.png">
@@ -133,7 +127,7 @@
     </div>
 
     <div class="card col-3 p-10">
-      <p-fieldset>
+      <p-fieldset [style]="{'background-color': 'var(--primary-color-001)'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
             <img class="dash-logo" src="assets/img/balance-money.png">
@@ -155,7 +149,7 @@
     </div>
 
     <div class="card col-3 p-10">
-      <p-fieldset>
+      <p-fieldset [style]="{'background-color': 'var(--primary-color-001)'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
             <img class="dash-logo" src="assets/img/balance-money.png">

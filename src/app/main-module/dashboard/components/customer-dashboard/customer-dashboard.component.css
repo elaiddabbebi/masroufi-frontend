@@ -46,3 +46,7 @@
 .positive-amount {
   color: #66bb6a;
 }
+
+.dashboard-field {
+  background-color: var(--primary-color-001);
+}
