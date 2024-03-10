@@ -10,4 +10,5 @@ export const cashFlowEndpoints = {
   updateCashFlow: (uuid: string): string => baseUrl + `/cash-flow/${uuid}`,
   validateRejectCashFlow: (uuid: string): string => baseUrl + `/cash-flow/${uuid}`,
   getAllNameList: baseUrl + '/cash-flow/name-list',
+  searchByCategory: baseUrl + '/cash-flow/search',
 }

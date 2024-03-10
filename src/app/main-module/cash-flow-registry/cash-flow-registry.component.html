@@ -154,6 +154,8 @@
             (completeMethod)="filterCategoryItems($event)"
             [dropdown]="true"
             field="label"
+            (onSelect)="onSelectCategory()"
+            (input)="onInputCategory($event)"
           ></p-autoComplete>
           <small
             *ngIf="

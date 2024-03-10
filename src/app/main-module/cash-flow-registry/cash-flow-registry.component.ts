@@ -82,7 +82,7 @@ export class CashFlowRegistryComponent {
     this.initSearchCriteria();
     this.searchCashFlow();
     this.getCashFlowCategoryNameList();
-    this.getCashFlowNameList();
+    this.searchCashFlowListByCategory();
   }
 
   initSearchCriteria(): void {
@@ -211,6 +211,22 @@ export class CashFlowRegistryComponent {
 
   getCashFlowNameList(): void {
     this.cashFlowService.getAllNameList().pipe().subscribe((response: string[]): void => {
+      this.allCashFlowList = response.map(item => ({ label: item, value: item }));
+    })
+  }
+
+  onSelectCategory(): void {
+    const category: string = this.getSelectedCashFlowCategoryName();
+    this.searchCashFlowListByCategory(category);
+  }
+
+  onInputCategory(event: Event): void {
+    const category: string = this.getSelectedCashFlowCategoryName();
+    this.searchCashFlowListByCategory(category);
+  }
+
+  searchCashFlowListByCategory(category?: string): void {
+    this.cashFlowService.searchByCategory(category).pipe().subscribe((response: string[]): void => {
       this.allCashFlowList = response.map(item => ({ label: item, value: item }));
     })
   }

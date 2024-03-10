@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {ValidityModel} from "../../../../../shared/types/validity-model";
 import {CashFlow} from "../types/cash-flow";
 import {cashFlowEndpoints} from "./cash-flow-endpoints";
+import {HttpParams} from "@angular/common/http";
 
 @Injectable()
 export class CashFlowService {
@@ -45,5 +46,13 @@ export class CashFlowService {
   public getAllNameList(): Observable<string[]>{
     const url = cashFlowEndpoints.getAllNameList;
     return this.httpClient.get<string[]>(url);
+  }
+
+  public searchByCategory(category?: string): Observable<string[]>{
+    const url = cashFlowEndpoints.searchByCategory;
+    const options = {
+      params: category ? new HttpParams().append('category', category) : null
+    }
+    return this.httpClient.get<string[]>(url, options);
   }
 }
