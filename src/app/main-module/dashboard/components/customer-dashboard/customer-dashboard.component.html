@@ -79,7 +79,11 @@
           <span class="font-bold dash-card-title">{{ 'EXPENSE_EVOLUTION' | translate }}</span><br /><br />
         </div>
         <div>
-          <p-chart type="line" [data]="expenseEvolutionData" [options]="options"></p-chart>
+          <p-chart
+            type="line"
+            [data]="expenseEvolutionData"
+            [options]="options"
+          ></p-chart>
         </div>
       </p-fieldset>
     </div>
@@ -185,7 +189,11 @@
           <span class="font-bold dash-card-title">{{ 'REVENUE_EXPENSE_PER_MONTH' | translate }}</span><br /><br />
         </div>
         <div>
-          <p-chart type="bar" [data]="expenseRevenueEvolutionData" [options]="options"></p-chart>
+          <p-chart
+            type="bar"
+            [data]="expenseRevenueEvolutionData"
+            [options]="options"
+          ></p-chart>
         </div>
       </p-fieldset>
     </div>
