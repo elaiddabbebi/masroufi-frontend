@@ -11,7 +11,13 @@
           <span class="font-bold dash-card-title">{{ 'CURRENT_CASH_AMOUNT' | translate }}</span><br /><br />
         </div>
         <div class="text-center">
-          <span class="dash-amount">{{ currentCashAmount | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          <div [ngClass]="{
+                            'positive-amount': currentCashAmount > 0,
+                            'null-amount': currentCashAmount === 0,
+                            'negative-amount':currentCashAmount < 0
+                          }">
+            <span class="dash-non-colored-amount">{{ currentCashAmount | number : '.2-2' | spaceSeparator }} {{ 'TND_CURRENCY' | translate }}</span>
+          </div>
         </div>
       </p-fieldset>
     </div>

@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {DashboardService} from "../../services/dashboard.service";
 import {TranslatePipe} from "../../../../shared/pipes/translate.pipe";
 import {ConsumptionEvolutionData} from "../../types/consumption-evolution-data";
-import {MonthAmount} from "../../types/month-amount";
 import {ExpenseRevenueEvolutionData} from "../../types/expense-revenue-evolution-data";
 import {Month} from "../../../../shared/enums/month";
 
@@ -192,6 +191,7 @@ export class CustomerDashboardComponent implements OnInit {
           tension: 0.3,
           borderColor: documentStyle.getPropertyValue('--primary-color-300'),
           backgroundColor: 'rgba(252,173,17,0.2)',
+          hidden: true
         }
       ]
     };
