@@ -1,5 +1,5 @@
-<app-splash-screen *ngIf="contextIsLoading"></app-splash-screen>
-<div class="z-index-0" *ngIf="!contextIsLoading">
+<app-splash-screen *ngIf="!appSecurityContextIsReady"></app-splash-screen>
+<div class="z-index-0" *ngIf="appSecurityContextIsReady">
   <div class="position-fixed z-index-3" style="width: 100%;">
     <app-nav-bar></app-nav-bar>
   </div>

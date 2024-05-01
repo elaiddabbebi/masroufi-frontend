@@ -20,7 +20,8 @@ export class AppSecurityContext {
     private translate: TranslatePipe,
     private router: Router,
     private service: AppSecurityService,
-  ) {}
+  ) {
+  }
 
   initContext(): Observable<AccountDetails> {
     return this.service.getAccountInfo().pipe(
@@ -54,6 +55,12 @@ export class AppSecurityContext {
   logout(): void {
     localStorage.clear();
     this.router.navigate(['/auth/login']);
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('access_token') !== null &&
+            localStorage.getItem('access_token') !== undefined &&
+            localStorage.getItem('access_token') !== '';
   }
 
   isSupperAdmin(): boolean {

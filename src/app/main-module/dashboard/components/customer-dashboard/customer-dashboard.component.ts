@@ -205,7 +205,7 @@ export class CustomerDashboardComponent implements OnInit {
 
     this.options = {
       maintainAspectRatio: false,
-      aspectRatio: 0.7,
+      aspectRatio: 0.65,
       plugins: {
         legend: {
           labels: {

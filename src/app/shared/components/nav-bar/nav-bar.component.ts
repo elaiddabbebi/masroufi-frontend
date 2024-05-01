@@ -11,7 +11,7 @@ import {AppSecurityContext} from "../../../main-module/app-security/app-security
   styleUrls: ['./nav-bar.component.css'],
   providers: [TranslatePipe]
 })
-export class NavBarComponent implements OnInit, OnChanges {
+export class NavBarComponent implements OnInit {
   items: MenuItem[] | undefined;
 
   constructor(
@@ -89,9 +89,5 @@ export class NavBarComponent implements OnInit, OnChanges {
       localStorage.setItem('locale', 'FR');
     }
     window.location.reload();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.ngOnInit();
   }
 }

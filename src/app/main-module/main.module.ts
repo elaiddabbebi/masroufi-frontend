@@ -9,7 +9,6 @@ import {BreadcrumbModule} from "primeng/breadcrumb";
 import {CardModule} from "primeng/card";
 import { ToastModule } from 'primeng/toast';
 import {MessageService} from "primeng/api";
-import {AppSecurityContext} from "./app-security/app-security-context";
 import {AppSecurityService} from "./app-security/services/app-security.service";
 import {TranslatePipe} from "../shared/pipes/translate.pipe";
 
@@ -30,7 +29,6 @@ import {TranslatePipe} from "../shared/pipes/translate.pipe";
   providers: [
     MessageService,
     AppSecurityService,
-    AppSecurityContext,
     TranslatePipe
   ],
   bootstrap: [

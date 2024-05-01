@@ -1,9 +1,9 @@
 <app-supper-admin-dashboard
-  *ngIf="isSupperAdmin"
+  *ngIf="appSecurityContext.isSupperAdmin()"
 ></app-supper-admin-dashboard>
 <app-admin-dashboard
-  *ngIf="isAdmin"
+  *ngIf="appSecurityContext.isAdmin()"
 ></app-admin-dashboard>
 <app-customer-dashboard
-  *ngIf="isCustomer"
+  *ngIf="appSecurityContext.isCustomer()"
 ></app-customer-dashboard>

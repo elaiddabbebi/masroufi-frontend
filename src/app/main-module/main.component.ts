@@ -4,6 +4,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter, tap} from "rxjs";
 import {TranslatePipe} from "../shared/pipes/translate.pipe";
 import {AppSecurityContext} from "./app-security/app-security-context";
+import {AccountDetails} from "./app-security/types/account-details";
 
 @Component({
   selector: 'app-main',
@@ -14,32 +15,31 @@ import {AppSecurityContext} from "./app-security/app-security-context";
 export class MainComponent implements OnInit {
 
   breadcrumbItems: MenuItem[] = [];
-  contextIsLoading: boolean = false;
+  appSecurityContextIsReady: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslatePipe,
-    private appSecurityContext: AppSecurityContext,
+    public appSecurityContext: AppSecurityContext,
   ) {
     this.router.events
       .pipe(
-        filter((event) => event instanceof NavigationEnd),
+        filter((event): boolean => {
+          return event instanceof NavigationEnd;
+        }),
         tap(() => {
           this.initBreadCrumbs();
         })
-      )
-      .subscribe();
+      ).subscribe();
     this.initBreadCrumbs();
   }
 
   ngOnInit(): void {
-    this.contextIsLoading = true;
-    this.appSecurityContext.initContext().pipe()
-      .subscribe(response => {
-        this.contextIsLoading = false;
-      }
-    )
+    this.appSecurityContext.initContext()
+      .subscribe((response: AccountDetails): void => {
+        this.appSecurityContextIsReady = true;
+    });
   }
 
   initBreadCrumbs(): void {
