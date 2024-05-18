@@ -19,3 +19,11 @@ export function getUTCDateFrom(date: Date): Date {
     return new Date();
   }
 }
+
+export function getArrayFromNumber(lastItem: number): number[] {
+  const returnValue: number[] = [];
+  for (let i = 0; i < lastItem; i++) {
+    returnValue.push(i);
+  }
+  return returnValue;
+}

@@ -1752,3 +1752,9 @@ body {
   margin: 0px !important;
   border-radius: 0px;
 }
+
+.p-skeleton {
+  padding-top: 17px;
+  padding-bottom: 17px;
+  border-radius: 14px;
+}

@@ -35,11 +35,11 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th class="text-center">{{ 'CATEGORY' | translate }}</th>
-        <th class="text-center">{{ 'NAME' | translate }}</th>
-        <th class="text-center">{{ 'DATE' | translate }}</th>
-        <th class="text-center">{{ 'AMOUNT_DT' | translate }}</th>
-        <th class="text-center" style="width: 200px !important;">{{ 'ACTIONS' | translate }}</th>
+        <th class="text-center cash-flow-col">{{ 'CATEGORY' | translate }}</th>
+        <th class="text-center cash-flow-col">{{ 'NAME' | translate }}</th>
+        <th class="text-center cash-flow-col">{{ 'DATE' | translate }}</th>
+        <th class="text-center cash-flow-col">{{ 'AMOUNT_DT' | translate }}</th>
+        <th class="text-center cash-flow-table-action">{{ 'ACTIONS' | translate }}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-cashFlow>
@@ -90,9 +90,20 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="5">{{ 'NO_RESULT_FOUND' | translate }}</td>
-      </tr>
+      <ng-container *ngIf="searchCashFlowIsLoading else emptyMessage">
+        <tr *ngFor="let i of getArrayFromNumber(searchCriteria.size)">
+          <td class="p-t-10 p-b-10 cash-flow-col"><p-skeleton /></td>
+          <td class="p-t-10 p-b-10 cash-flow-col"><p-skeleton /></td>
+          <td class="p-t-10 p-b-10 cash-flow-col"><p-skeleton /></td>
+          <td class="p-t-10 p-b-10 cash-flow-col"><p-skeleton /></td>
+          <td class="p-t-10 p-b-10 cash-flow-table-action"><p-skeleton /></td>
+        </tr>
+      </ng-container>
+      <ng-template #emptyMessage>
+        <tr>
+          <td colspan="5">{{ 'NO_RESULT_FOUND' | translate }}</td>
+        </tr>
+      </ng-template>
     </ng-template>
   </p-table>
 

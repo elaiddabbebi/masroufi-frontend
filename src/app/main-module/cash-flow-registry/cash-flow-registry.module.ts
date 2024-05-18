@@ -18,7 +18,7 @@ import {TagModule} from "primeng/tag";
 import {ToastModule} from "primeng/toast";
 import {TooltipModule} from "primeng/tooltip";
 import {CalendarModule} from "primeng/calendar";
-
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import {CalendarModule} from "primeng/calendar";
     ToastModule,
     TooltipModule,
     CalendarModule,
+    SkeletonModule,
   ]
 })
 export class CashFlowRegistryModule { }

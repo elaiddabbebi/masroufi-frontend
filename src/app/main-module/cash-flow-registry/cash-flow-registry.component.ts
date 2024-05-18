@@ -20,7 +20,7 @@ import {SortOrder} from "../../shared/types/sort-order";
 import {ResultSetResponse} from "../../shared/types/result-set-response";
 import {PageChangeEvent} from "../../shared/types/page-change-event";
 import {EmptyResultSet} from "../../shared/utils/empty-result-set";
-import {getUTCDateFrom} from "../../shared/utils/utils-functions";
+import {getArrayFromNumber, getUTCDateFrom} from "../../shared/utils/utils-functions";
 
 @Component({
   selector: 'app-cash-flow-registry',
@@ -45,6 +45,7 @@ export class CashFlowRegistryComponent {
   filteredCashFlowList: AutoCompleteItem[] = [];
   cashFlowTypeList: GenericObject[] = [];
   searchCriteria: CustomerCashFlowRegistrySearchCriteria = new CustomerCashFlowRegistrySearchCriteria();
+  searchCashFlowIsLoading: boolean = false;
 
   constructor(
     private translate: TranslatePipe,
@@ -191,13 +192,17 @@ export class CashFlowRegistryComponent {
   }
 
   searchCashFlow(): void {
+    this.searchCashFlowIsLoading = true;
+    this.cashFlowResultSet.result = [];
     this.cashFlowRegistryService.search(this.searchCriteria).pipe(
       tap({
         next: (response: ResultSetResponse<CashFlowRegistry>): void => {
           this.cashFlowResultSet = response;
+          this.searchCashFlowIsLoading = false;
         },
         error: error => {
           console.log(error);
+          this.searchCashFlowIsLoading = false;
         }
       })
     ).subscribe();
@@ -331,4 +336,5 @@ export class CashFlowRegistryComponent {
   }
 
   protected readonly CashFlowType = CashFlowType;
+  protected readonly getArrayFromNumber = getArrayFromNumber;
 }

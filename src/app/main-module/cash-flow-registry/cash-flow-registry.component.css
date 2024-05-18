@@ -1,0 +1,7 @@
+.cash-flow-col {
+  width: calc(calc(100% - 200px) / 4);
+}
+
+.cash-flow-table-action {
+  width: 200px !important;
+}
