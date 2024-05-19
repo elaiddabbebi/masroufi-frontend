@@ -152,7 +152,7 @@ export class CustomerDashboardComponent implements OnInit {
           fill: true,
           borderColor: documentStyle.getPropertyValue('--primary-color-900'),
           tension: 0.3,
-          backgroundColor: 'rgba(133,98,16,0.6)'
+          backgroundColor: documentStyle.getPropertyValue('--primary-color-900-transparent')
         },
         {
           label: this.translatePipe.transform('EXPENSE'),
@@ -161,7 +161,7 @@ export class CustomerDashboardComponent implements OnInit {
           borderDash: [9, 2],
           tension: 0.3,
           borderColor: documentStyle.getPropertyValue('--primary-color-300'),
-          backgroundColor: 'rgba(253,177,32,0.6)'
+          backgroundColor: documentStyle.getPropertyValue('--primary-color-300-transparent'),
         }
       ]
     };
@@ -181,7 +181,7 @@ export class CustomerDashboardComponent implements OnInit {
           fill: true,
           borderColor: documentStyle.getPropertyValue('--primary-color-900'),
           tension: 0.3,
-          backgroundColor: 'rgba(164,118,23,0.2)'
+          backgroundColor: documentStyle.getPropertyValue('--primary-color-900-very-transparent')
         },
         {
           label: this.translatePipe.transform(lastMonth),
@@ -190,7 +190,7 @@ export class CustomerDashboardComponent implements OnInit {
           borderDash: [9, 2],
           tension: 0.3,
           borderColor: documentStyle.getPropertyValue('--primary-color-300'),
-          backgroundColor: 'rgba(252,173,17,0.2)',
+          backgroundColor: documentStyle.getPropertyValue('--primary-color-300-very-transparent'),
           hidden: true
         }
       ]

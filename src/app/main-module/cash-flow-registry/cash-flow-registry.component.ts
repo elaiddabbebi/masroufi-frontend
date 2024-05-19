@@ -13,8 +13,6 @@ import {
 } from "../cash-flow-list/components/cash-flow-category/services/cash-flow-category.service";
 import {AutoCompleteCompleteEvent} from "primeng/autocomplete";
 import {AutoCompleteItem} from "../../shared/types/auto-complete-item";
-import {PrimeNGConfig} from "primeng/api";
-import {PrimeNgLocaleSettingsBuilder} from "../../shared/utils/prime-ng-locale-settings-builder";
 import {CustomerCashFlowRegistrySearchCriteria} from "./types/customer-cash-flow-registry-search-criteria";
 import {SortOrder} from "../../shared/types/sort-order";
 import {ResultSetResponse} from "../../shared/types/result-set-response";
@@ -54,9 +52,7 @@ export class CashFlowRegistryComponent {
     private cashFlowCategoryService: CashFlowCategoryService,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
-    private primeNGConfig: PrimeNGConfig,
   ) {
-    this.primeNGConfig.setTranslation(PrimeNgLocaleSettingsBuilder.getLocaleSettings());
     this.cashFlowDetailsForm = this.formBuilder.group({
       name: new FormControl(null, [Validators.required]),
       category: new FormControl(null, [Validators.required]),

@@ -20,7 +20,7 @@ export class StatisticsComponent implements OnInit {
   yearsList: GenericObject[] = [];
 
   constructor(
-    private translate: TranslatePipe
+    private translate: TranslatePipe,
   ) {
     this.initChartOptions();
     this.prepareCashFlowTypeList();
@@ -35,8 +35,8 @@ export class StatisticsComponent implements OnInit {
       datasets: [
         {
           label: 'Consommation',
-          backgroundColor: documentStyle.getPropertyValue('--primary-color-500'),
-          borderColor: documentStyle.getPropertyValue('--primary-color-900'),
+          backgroundColor: documentStyle.getPropertyValue('--primary-color-700-transparent'),
+          borderColor: documentStyle.getPropertyValue('--primary-color-700'),
           data: [80, 59, 50, 44, 35, 25, 14, 12, 10, 9, 5, 2]
         },
       ]

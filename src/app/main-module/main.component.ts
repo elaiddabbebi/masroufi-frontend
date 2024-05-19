@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuItem} from "primeng/api";
+import {MenuItem, PrimeNGConfig} from "primeng/api";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter, tap} from "rxjs";
 import {TranslatePipe} from "../shared/pipes/translate.pipe";
 import {AppSecurityContext} from "./app-security/app-security-context";
 import {AccountDetails} from "./app-security/types/account-details";
+import {PrimeNgLocaleSettingsBuilder} from "../shared/utils/prime-ng-locale-settings-builder";
 
 @Component({
   selector: 'app-main',
@@ -22,7 +23,9 @@ export class MainComponent implements OnInit {
     private router: Router,
     private translate: TranslatePipe,
     public appSecurityContext: AppSecurityContext,
+    private primeNGConfig: PrimeNGConfig,
   ) {
+    this.primeNGConfig.setTranslation(PrimeNgLocaleSettingsBuilder.getLocaleSettings());
     this.router.events
       .pipe(
         filter((event): boolean => {
