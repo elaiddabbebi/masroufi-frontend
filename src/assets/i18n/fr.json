@@ -210,5 +210,12 @@
   "ELEMENTS": "Elements",
   "REVENUE": "Revenue",
   "REVENUE_EXPENSE_PER_MONTH": "Revenue et dépense par mois",
-  "ABOUT_APPLICATION": "À propos de l'application"
+  "ABOUT_APPLICATION": "À propos de l'application",
+  "START_DATE": "Date de début",
+  "END_DATE": "Date de fin",
+  "WITH___": "Par...",
+  "PER_CATEGORY": "Par catégorie",
+  "PER_MONTH": "Par mois",
+  "SELECT_CATEGORY": "Sélectionner une catégorie",
+  "SELECT_YEAR": "Sélectionner une année"
 }

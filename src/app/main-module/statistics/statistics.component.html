@@ -1,1 +1,115 @@
-<p>statistics works!</p>
+<div class="p-datatable-gridlines p-datatable-sm p-datatable p-component m-t-20">
+  <div class="p-datatable-header">
+    <div class="row">
+      <div class="col-4 p-5">
+        <p-dropdown
+          class="w-100"
+          id="type"
+          [options]="cashFlowTypeList"
+          optionLabel="key"
+          optionValue="value"
+          [showClear]="true"
+          placeholder="{{ 'TYPE' | translate }}"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+
+      <div class="col-4 p-5">
+        <p-dropdown
+          class="w-100"
+          id="search-with"
+          [options]="searchWithList"
+          optionLabel="key"
+          optionValue="value"
+          [showClear]="true"
+          placeholder="{{ 'WITH___' | translate }}"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+
+      <div class="col-4 p-5">
+        <p-dropdown
+          *ngIf="true"
+          class="w-100"
+          id="category"
+          [options]="categoriesList"
+          optionLabel="key"
+          optionValue="value"
+          [showClear]="true"
+          placeholder="{{ 'SELECT_CATEGORY' | translate }}"
+          emptyMessage="{{ 'NO_RESULT_FOUND' | translate }}"
+          appendTo="body"
+        ></p-dropdown>
+
+        <p-dropdown
+          *ngIf="false"
+          class="w-100"
+          id="year"
+          [options]="yearsList"
+          optionLabel="key"
+          optionValue="value"
+          [showClear]="true"
+          placeholder="{{ 'SELECT_YEAR' | translate }}"
+          emptyMessage="{{ 'NO_RESULT_FOUND' | translate }}"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-5">
+        <p-calendar
+          id="start-date"
+          [showIcon]="true"
+          styleClass="col-12"
+          appendTo="body"
+          (onSelect)="selectDate($event)"
+          [placeholder]="'START_DATE' | translate"
+        ></p-calendar>
+      </div>
+
+      <div class="col-4 p-5">
+        <p-calendar
+          id="end-date"
+          [showIcon]="true"
+          styleClass="col-12"
+          appendTo="body"
+          (onSelect)="selectDate($event)"
+          [placeholder]="'END_DATE' | translate"
+        ></p-calendar>
+      </div>
+
+      <div class="col-4 p-5">
+        <div class="row float-right">
+          <app-cancel-btn></app-cancel-btn>
+          <app-confirm-btn></app-confirm-btn>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="m-t-20" style="width: calc(100% - 40px)">
+  <div class="row w-100">
+    <div class="card col-12 p-10 w-100">
+      <p-fieldset styleClass="stats-fieldset" [style]="{'width': '100%'}">
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
+            <img class="dash-logo" src="assets/img/chart-bar.png">
+          </div>
+        </ng-template>
+        <div class="dash-card-title-container">
+          <span class="font-bold dash-card-title">{{ 'EXPENSE_EVOLUTION' | translate }}</span><br /><br />
+        </div>
+        <div>
+          <p-chart
+            type="bar"
+            [data]="data"
+            [options]="options"
+          />
+        </div>
+      </p-fieldset>
+    </div>
+  </div>
+</div>

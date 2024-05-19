@@ -64,6 +64,7 @@ import {PaginatorModule} from "primeng/paginator";
         SplashScreenComponent,
         PaginatorComponent,
         AboutComponent,
+        ConfirmBtnComponent,
     ]
 })
 export class ComponentsModule { }

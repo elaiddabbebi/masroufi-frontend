@@ -1,0 +1,40 @@
+.stats-fieldset {
+  width: calc(100% - 40px);
+}
+
+.dash-logo {
+  height: 34px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dash-logo-container {
+  width: 38px;
+  height: 38px;
+}
+
+.dash-amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primary-color-700);
+  padding: 20px;
+}
+
+.dash-non-colored-amount {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.dash-card-title {
+  font-size: 14px;
+  color: #756b52;
+  font-weight: bold;
+}
+
+.dash-card-title-container {
+  text-align: right;
+  margin-top: -46px;
+  margin-bottom: 15px;
+  margin-right: -16px;
+}
