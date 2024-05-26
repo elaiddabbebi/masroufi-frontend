@@ -331,6 +331,19 @@ export class CashFlowRegistryComponent {
     ).subscribe();
   }
 
+  onSearchCashFlowKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.searchCashFlow();
+    }
+  }
+
+  clearCashFlowSearchField(): void {
+    if (this.searchCriteria.cashFlow && this.searchCriteria.cashFlow.length > 0) {
+      this.searchCriteria.cashFlow = '';
+      this.searchCashFlow();
+    }
+  }
+
   protected readonly CashFlowType = CashFlowType;
   protected readonly getArrayFromNumber = getArrayFromNumber;
 }

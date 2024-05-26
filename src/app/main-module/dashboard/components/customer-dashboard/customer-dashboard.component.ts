@@ -4,6 +4,7 @@ import {TranslatePipe} from "../../../../shared/pipes/translate.pipe";
 import {ConsumptionEvolutionData} from "../../types/consumption-evolution-data";
 import {ExpenseRevenueEvolutionData} from "../../types/expense-revenue-evolution-data";
 import {Month} from "../../../../shared/enums/month";
+import {CssRootVariables} from "../../../../shared/constants/css-root-variables";
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -150,9 +151,9 @@ export class CustomerDashboardComponent implements OnInit {
           label: this.translatePipe.transform('REVENUE'),
           data: expenseRevenueEvolutionData.revenueEvolution.map(monthAmount => monthAmount.amount),
           fill: true,
-          borderColor: documentStyle.getPropertyValue('--primary-color-900'),
+          borderColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900),
           tension: 0.3,
-          backgroundColor: documentStyle.getPropertyValue('--primary-color-900-transparent')
+          backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900_TRANSPARENT)
         },
         {
           label: this.translatePipe.transform('EXPENSE'),
@@ -160,8 +161,8 @@ export class CustomerDashboardComponent implements OnInit {
           fill: false,
           borderDash: [9, 2],
           tension: 0.3,
-          borderColor: documentStyle.getPropertyValue('--primary-color-300'),
-          backgroundColor: documentStyle.getPropertyValue('--primary-color-300-transparent'),
+          borderColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_300),
+          backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_300_TRANSPARENT),
         }
       ]
     };
@@ -179,9 +180,9 @@ export class CustomerDashboardComponent implements OnInit {
           label: this.translatePipe.transform(currentMonth),
           data: consumptionData?.currentMonthData?.data,
           fill: true,
-          borderColor: documentStyle.getPropertyValue('--primary-color-900'),
+          borderColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900),
           tension: 0.3,
-          backgroundColor: documentStyle.getPropertyValue('--primary-color-900-very-transparent')
+          backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900_VERY_TRANSPARENT)
         },
         {
           label: this.translatePipe.transform(lastMonth),
@@ -189,8 +190,8 @@ export class CustomerDashboardComponent implements OnInit {
           fill: false,
           borderDash: [9, 2],
           tension: 0.3,
-          borderColor: documentStyle.getPropertyValue('--primary-color-300'),
-          backgroundColor: documentStyle.getPropertyValue('--primary-color-300-very-transparent'),
+          borderColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_300),
+          backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_300_VERY_TRANSPARENT),
           hidden: true
         }
       ]
@@ -199,8 +200,8 @@ export class CustomerDashboardComponent implements OnInit {
 
   initChartOptions(): void {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
-    const textColor: string = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary: string = documentStyle.getPropertyValue('--text-color-secondary');
+    const textColor: string = documentStyle.getPropertyValue(CssRootVariables.TEXT_COLOR);
+    const textColorSecondary: string = documentStyle.getPropertyValue(CssRootVariables.TEXT_COLOR_SECONDARY);
     const surfaceBorder: string = documentStyle.getPropertyValue('--surface-border');
 
     this.options = {

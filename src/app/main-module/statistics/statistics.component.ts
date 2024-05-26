@@ -4,6 +4,7 @@ import {TranslatePipe} from "../../shared/pipes/translate.pipe";
 import {CashFlowType} from "../cash-flow-registry/types/cash-flow-type";
 import {getUTCDateFrom} from "../../shared/utils/utils-functions";
 import {SearchType} from "./types/search-type";
+import {CssRootVariables} from "../../shared/constants/css-root-variables";
 
 @Component({
   selector: 'app-statistics',
@@ -35,8 +36,8 @@ export class StatisticsComponent implements OnInit {
       datasets: [
         {
           label: 'Consommation',
-          backgroundColor: documentStyle.getPropertyValue('--primary-color-700-transparent'),
-          borderColor: documentStyle.getPropertyValue('--primary-color-700'),
+          backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_700_TRANSPARENT),
+          borderColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_700),
           data: [80, 59, 50, 44, 35, 25, 14, 12, 10, 9, 5, 2]
         },
       ]
@@ -69,8 +70,8 @@ export class StatisticsComponent implements OnInit {
 
   initChartOptions(): void {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
-    const textColor: string = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary: string = documentStyle.getPropertyValue('--text-color-secondary');
+    const textColor: string = documentStyle.getPropertyValue(CssRootVariables.TEXT_COLOR);
+    const textColorSecondary: string = documentStyle.getPropertyValue(CssRootVariables.TEXT_COLOR_SECONDARY);
     const surfaceBorder: string = documentStyle.getPropertyValue('--surface-border');
 
     this.options = {

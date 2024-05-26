@@ -10,15 +10,23 @@
   >
     <ng-template pTemplate="caption">
       <div class="flex">
-        <span class="p-input-icon-left ml-auto">
-                <i class="pi pi-search cursor-pointer"></i>
-                <input
-                  pInputTextarea
-                  type="text"
-                  (input)="null"
-                  placeholder="{{ 'SEARCH' | translate }}"
-                  class="min-w-400"
-                />
+        <span class="p-input-icon-left p-input-icon-right ml-auto col-4">
+          <i
+            class="pi pi-search cursor-pointer"
+            (click)="searchCashFlow()"
+          ></i>
+          <input
+            pInputTextarea
+            type="text"
+            [(ngModel)]="searchCriteria.cashFlow"
+            placeholder="{{ 'SEARCH' | translate }}"
+            class="min-w-400"
+            (keydown)="onSearchCashFlowKeydown($event)"
+          />
+           <i
+             class="pi pi-times cursor-pointer"
+             (click)="clearCashFlowSearchField()"
+           ></i>
           </span>
 
         <div class="float-right">
