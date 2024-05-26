@@ -5,7 +5,7 @@ export interface StatisticsSearchCriteria {
   cashFlowType: CashFlowType;
   searchType: StatisticsSearchType;
   category?: string;
-  year?: string;
+  year?: number;
   startDate?: Date;
   endDate?: Date;
 }

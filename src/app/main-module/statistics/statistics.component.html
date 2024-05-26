@@ -12,6 +12,7 @@
           placeholder="{{ 'TYPE' | translate }}"
           appendTo="body"
           formControlName="cashFlowType"
+          (onChange)="getCashFlowCategories()"
         ></p-dropdown>
       </div>
 
@@ -87,8 +88,15 @@
 
       <div class="col-4 p-5">
         <div class="row float-right">
-          <app-cancel-btn></app-cancel-btn>
-          <app-confirm-btn></app-confirm-btn>
+          <app-cancel-btn
+            (click)="clearSearchForm($event)"
+            [disabled]="searchStatisticsIsLoading"
+          ></app-cancel-btn>
+          <app-confirm-btn
+            (click)="launchSearch($event)"
+            [disabled]="searchStatisticsIsLoading"
+            [loading]="searchStatisticsIsLoading"
+          ></app-confirm-btn>
         </div>
       </div>
     </div>
