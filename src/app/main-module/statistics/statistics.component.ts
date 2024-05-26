@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {GenericObject} from "../../shared/types/generic-object";
 import {TranslatePipe} from "../../shared/pipes/translate.pipe";
 import {CashFlowType} from "../cash-flow-registry/types/cash-flow-type";
-import {getUTCDateFrom} from "../../shared/utils/utils-functions";
-import {SearchType} from "./types/search-type";
+import {getFirstDateOfYear, getUTCDateFrom} from "../../shared/utils/utils-functions";
+import {StatisticsSearchType} from "./types/statistics-search-type";
 import {CssRootVariables} from "../../shared/constants/css-root-variables";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-statistics',
@@ -19,10 +20,20 @@ export class StatisticsComponent implements OnInit {
   searchWithList: GenericObject[] = [];
   categoriesList: GenericObject[] = [];
   yearsList: GenericObject[] = [];
+  searchFromGroup: FormGroup;
 
   constructor(
     private translate: TranslatePipe,
+    private formBuilder: FormBuilder,
   ) {
+    this.searchFromGroup = this.formBuilder.group({
+      cashFlowType: new FormControl(CashFlowType.EXPENSE, [Validators.required]),
+      searchType: new FormControl(StatisticsSearchType.PER_CATEGORY, [Validators.required]),
+      category: new FormControl(null, [Validators.required]),
+      year: new FormControl(null, [Validators.required]),
+      startDate: new FormControl(getUTCDateFrom(getFirstDateOfYear()), [Validators.required]),
+      endDate: new FormControl(getUTCDateFrom(new Date()), [Validators.required]),
+    });
     this.initChartOptions();
     this.prepareCashFlowTypeList();
     this.prepareSearchWithList();
@@ -58,13 +69,13 @@ export class StatisticsComponent implements OnInit {
 
   prepareSearchWithList(): void {
     this.searchWithList.push({
-      key: this.translate.transform(SearchType.PER_CATEGORY.toString()),
-      value: SearchType.PER_CATEGORY.toString()
+      key: this.translate.transform(StatisticsSearchType.PER_CATEGORY.toString()),
+      value: StatisticsSearchType.PER_CATEGORY.toString()
     });
 
     this.searchWithList.push({
-      key: this.translate.transform(SearchType.PER_MONTH.toString()),
-      value: SearchType.PER_MONTH.toString()
+      key: this.translate.transform(StatisticsSearchType.PER_MONTH.toString()),
+      value: StatisticsSearchType.PER_MONTH.toString()
     });
   }
 

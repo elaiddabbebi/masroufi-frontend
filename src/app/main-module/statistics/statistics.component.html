@@ -1,5 +1,5 @@
 <div class="p-datatable-gridlines p-datatable-sm p-datatable p-component m-t-20">
-  <div class="p-datatable-header">
+  <div class="p-datatable-header" [formGroup]="searchFromGroup">
     <div class="row">
       <div class="col-4 p-5">
         <p-dropdown
@@ -11,6 +11,7 @@
           [showClear]="true"
           placeholder="{{ 'TYPE' | translate }}"
           appendTo="body"
+          formControlName="cashFlowType"
         ></p-dropdown>
       </div>
 
@@ -24,6 +25,7 @@
           [showClear]="true"
           placeholder="{{ 'WITH___' | translate }}"
           appendTo="body"
+          formControlName="searchType"
         ></p-dropdown>
       </div>
 
@@ -39,6 +41,7 @@
           placeholder="{{ 'SELECT_CATEGORY' | translate }}"
           emptyMessage="{{ 'NO_RESULT_FOUND' | translate }}"
           appendTo="body"
+          formControlName="category"
         ></p-dropdown>
 
         <p-dropdown
@@ -52,6 +55,7 @@
           placeholder="{{ 'SELECT_YEAR' | translate }}"
           emptyMessage="{{ 'NO_RESULT_FOUND' | translate }}"
           appendTo="body"
+          formControlName="year"
         ></p-dropdown>
       </div>
     </div>
@@ -65,6 +69,7 @@
           appendTo="body"
           (onSelect)="selectDate($event)"
           [placeholder]="'START_DATE' | translate"
+          formControlName="startDate"
         ></p-calendar>
       </div>
 
@@ -76,6 +81,7 @@
           appendTo="body"
           (onSelect)="selectDate($event)"
           [placeholder]="'END_DATE' | translate"
+          formControlName="endDate"
         ></p-calendar>
       </div>
 
@@ -95,7 +101,7 @@
       <p-fieldset styleClass="stats-fieldset" [style]="{'width': '100%'}">
         <ng-template pTemplate="header">
           <div class="flex align-items-center gap-2 px-2 dash-logo-container text-center">
-            <img class="dash-logo" src="assets/img/chart-bar.png">
+            <img class="dash-logo" src="assets/img/chart-blue.png">
           </div>
         </ng-template>
         <div class="dash-card-title-container">

@@ -8,8 +8,7 @@ import {ExpenseRevenueEvolutionData} from "../types/expense-revenue-evolution-da
 
 @Injectable()
 export class DashboardService {
-  constructor(private httpClient: AppHttpClient) {
-  }
+  constructor(private httpClient: AppHttpClient) {}
 
   public getCurrentCashAmount(): Observable<number> {
     const url = dashboardEndpoints.getCurrentCashAmount;

@@ -20,6 +20,10 @@ export function getUTCDateFrom(date: Date): Date {
   }
 }
 
+export function getFirstDateOfYear(): Date {
+  return new Date(new Date().getFullYear(), 0, 1);
+}
+
 export function getArrayFromNumber(lastItem: number): number[] {
   const returnValue: number[] = [];
   for (let i = 0; i < lastItem; i++) {

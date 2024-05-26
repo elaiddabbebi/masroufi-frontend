@@ -3,11 +3,12 @@ import {Locale} from "../enums/locale";
 import frJson from '../../../assets/i18n/fr.json';
 import enJson from '../../../assets/i18n/en.json';
 
-const frLanguage = <JSON><unknown>Object.assign({}, frJson);
-const enLanguage = <JSON><unknown>Object.assign({}, enJson);
+const frLanguage: JSON = <JSON><unknown>Object.assign({}, frJson);
+const enLanguage: JSON = <JSON><unknown>Object.assign({}, enJson);
 
 @Pipe({name: 'translate'})
 export class TranslatePipe implements PipeTransform {
+
   transform(key: string): string {
     const locale = this.getLocale();
     const result = this.translate(key, locale);
