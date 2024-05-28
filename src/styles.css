@@ -9,18 +9,22 @@
   --primary-color-text: #ffffff;
 
   --primary-color-900: darkgoldenrod;
+  --primary-color-900-little-transparent: rgba(164,118,23,0.8);
   --primary-color-900-transparent: rgba(164,118,23,0.6);
   --primary-color-900-very-transparent: rgba(164,118,23,0.2);
 
   --primary-color-700: #cc9710;
+  --primary-color-700-little-transparent: rgba(204, 151, 16, 0.8);
   --primary-color-700-transparent: rgba(204, 151, 16, 0.6);
   --primary-color-700-very-transparent: rgba(204, 151, 16, 0.2);
 
   --primary-color-500: #dc9e19;
+  --primary-color-500-little-transparent: rgba(220, 158, 25, 0.8);
   --primary-color-500-transparent: rgba(220, 158, 25, 0.6);
   --primary-color-500-very-transparent: rgba(220, 158, 25, 0.2);
 
   --primary-color-300: #fdc95c;
+  --primary-color-300-little-transparent: rgba(252,173,17,0.8);
   --primary-color-300-transparent: rgba(252,173,17,0.6);
   --primary-color-300-very-transparent: rgba(252,173,17,0.2);
 
@@ -63,6 +67,12 @@
 
 .p-paginator {
   justify-content: right !important;
+}
+
+.p-datepicker-trigger:disabled,
+.p-button-icon-only:disabled {
+  background: var(--primary-color-900) !important;
+  border-color: var(--primary-color-900) !important;
 }
 
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {

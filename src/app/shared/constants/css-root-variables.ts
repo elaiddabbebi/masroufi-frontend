@@ -5,18 +5,22 @@ export enum CssRootVariables {
   PRIMARY_COLOR_TEXT = '--primary-color-text',
 
   PRIMARY_COLOR_900 = '--primary-color-900',
+  PRIMARY_COLOR_900_LITTLE_TRANSPARENT = '--primary-color-900-little-transparent',
   PRIMARY_COLOR_900_TRANSPARENT = '--primary-color-900-transparent',
-  PRIMARY_COLOR_900_VERY_TRANSPARENT = '--primary-color-700-very-transparent',
+  PRIMARY_COLOR_900_VERY_TRANSPARENT = '--primary-color-900-very-transparent',
 
   PRIMARY_COLOR_700 = '--primary-color-700',
+  PRIMARY_COLOR_700_LITTLE_TRANSPARENT = '--primary-color-700-little-transparent',
   PRIMARY_COLOR_700_TRANSPARENT = '--primary-color-700-transparent',
   PRIMARY_COLOR_700_VERY_TRANSPARENT = '--primary-color-700-very-transparent',
 
   PRIMARY_COLOR_500 = '--primary-color-500',
+  PRIMARY_COLOR_500_LITTLE_TRANSPARENT = '--primary-color-500-little-transparent',
   PRIMARY_COLOR_500_TRANSPARENT = '--primary-color-500-transparent',
   PRIMARY_COLOR_500_VERY_TRANSPARENT = '--primary-color-500-very-transparent',
 
   PRIMARY_COLOR_300 = '--primary-color-300',
+  PRIMARY_COLOR_300_LITTLE_TRANSPARENT = '--primary-color-300-little-transparent',
   PRIMARY_COLOR_300_TRANSPARENT = '--primary-color-300-transparent',
   PRIMARY_COLOR_300_VERY_TRANSPARENT = '--primary-color-300-very-transparent',
 

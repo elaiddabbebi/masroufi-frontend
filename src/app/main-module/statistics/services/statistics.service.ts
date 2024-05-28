@@ -28,4 +28,10 @@ export class StatisticsService {
     };
     return this.httpClient.get<GenericObject[]>(url, options);
   }
+
+  getCustomerYearsList(): Observable<number[]> {
+    const url: string = statisticsEndpoints.getYearsList;
+    const options = {};
+    return this.httpClient.get<number[]>(url, options);
+  }
 }

@@ -12,25 +12,27 @@ import {DropdownModule} from "primeng/dropdown";
 import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
     StatisticsComponent
   ],
-  imports: [
-    CommonModule,
-    StatisticsRoutingModule,
-    ChartModule,
-    FieldsetModule,
-    PipesModule,
-    SharedModule,
-    InputTextareaModule,
-    SharedModule,
-    ComponentsModule,
-    DropdownModule,
-    PaginatorModule,
-    ReactiveFormsModule,
-    CalendarModule
-  ]
+    imports: [
+        CommonModule,
+        StatisticsRoutingModule,
+        ChartModule,
+        FieldsetModule,
+        PipesModule,
+        SharedModule,
+        InputTextareaModule,
+        SharedModule,
+        ComponentsModule,
+        DropdownModule,
+        PaginatorModule,
+        ReactiveFormsModule,
+        CalendarModule,
+        ToastModule
+    ]
 })
 export class StatisticsModule { }

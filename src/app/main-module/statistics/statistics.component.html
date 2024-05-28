@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="p-datatable-gridlines p-datatable-sm p-datatable p-component m-t-20">
   <div class="p-datatable-header" [formGroup]="searchFromGroup">
     <div class="row">
@@ -27,12 +28,13 @@
           placeholder="{{ 'WITH___' | translate }}"
           appendTo="body"
           formControlName="searchType"
+          (onChange)="onSearchWithChanged()"
         ></p-dropdown>
       </div>
 
       <div class="col-4 p-5">
         <p-dropdown
-          *ngIf="true"
+          *ngIf="searchFromGroup.get('searchType')?.value === StatisticsSearchType.PER_CATEGORY"
           class="w-100"
           id="category"
           [options]="categoriesList"
@@ -46,12 +48,10 @@
         ></p-dropdown>
 
         <p-dropdown
-          *ngIf="false"
+          *ngIf="searchFromGroup.get('searchType')?.value === StatisticsSearchType.PER_MONTH"
           class="w-100"
           id="year"
           [options]="yearsList"
-          optionLabel="key"
-          optionValue="value"
           [showClear]="true"
           placeholder="{{ 'SELECT_YEAR' | translate }}"
           emptyMessage="{{ 'NO_RESULT_FOUND' | translate }}"
@@ -70,6 +70,7 @@
           appendTo="body"
           (onSelect)="selectDate($event)"
           [placeholder]="'START_DATE' | translate"
+          [disabled]="searchFromGroup.get('searchType')?.value === StatisticsSearchType.PER_MONTH"
           formControlName="startDate"
         ></p-calendar>
       </div>
@@ -83,6 +84,7 @@
           (onSelect)="selectDate($event)"
           [placeholder]="'END_DATE' | translate"
           formControlName="endDate"
+          [disabled]="searchFromGroup.get('searchType')?.value === StatisticsSearchType.PER_MONTH"
         ></p-calendar>
       </div>
 
@@ -94,7 +96,7 @@
           ></app-cancel-btn>
           <app-confirm-btn
             (click)="launchSearch($event)"
-            [disabled]="searchStatisticsIsLoading"
+            [disabled]="searchStatisticsIsLoading || searchFromGroup.invalid"
             [loading]="searchStatisticsIsLoading"
           ></app-confirm-btn>
         </div>

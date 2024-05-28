@@ -10,12 +10,13 @@ import {StatisticsService} from "./services/statistics.service";
 import {StatisticsResult} from "./types/statistics-result";
 import {StatisticsSearchCriteria} from "./types/statistics-search-criteria";
 import {tap} from "rxjs";
+import {NotificationService} from "../../shared/services/notification.service";
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css'],
-  providers: [TranslatePipe, StatisticsService]
+  providers: [TranslatePipe, StatisticsService, NotificationService]
 })
 export class StatisticsComponent implements OnInit {
   data: any;
@@ -23,7 +24,7 @@ export class StatisticsComponent implements OnInit {
   cashFlowTypeList: GenericObject[] = [];
   searchWithList: GenericObject[] = [];
   categoriesList: GenericObject[] = [];
-  yearsList: GenericObject[] = [];
+  yearsList: number[] = [];
   searchFromGroup: FormGroup;
   searchStatisticsIsLoading: boolean = false;
   chartTitle: string = '';
@@ -32,12 +33,13 @@ export class StatisticsComponent implements OnInit {
     private translate: TranslatePipe,
     private formBuilder: FormBuilder,
     private statisticsService: StatisticsService,
+    private notificationService: NotificationService,
   ) {
     this.searchFromGroup = this.formBuilder.group({
       cashFlowType: new FormControl(CashFlowType.EXPENSE, [Validators.required]),
       searchType: new FormControl(StatisticsSearchType.PER_CATEGORY, [Validators.required]),
-      categoryUuid: new FormControl(null, [Validators.required]),
-      year: new FormControl(null, [Validators.required]),
+      categoryUuid: new FormControl(null, []),
+      year: new FormControl(null, []),
       startDate: new FormControl(getUTCDateFrom(getFirstDateOfYear()), [Validators.required]),
       endDate: new FormControl(getUTCDateFrom(new Date()), [Validators.required]),
     });
@@ -49,6 +51,7 @@ export class StatisticsComponent implements OnInit {
   ngOnInit(): void {
     this.searchStatistics();
     this.getCashFlowCategories();
+    this.getYearsList();
   }
 
   getChartTitle(): string {
@@ -74,8 +77,10 @@ export class StatisticsComponent implements OnInit {
   }
 
   launchSearch(event: Event): void {
-    event.preventDefault();
-    this.searchStatistics();
+    if (this.searchFromGroup.valid) {
+      event.preventDefault();
+      this.searchStatistics();
+    }
   }
 
   searchStatistics(): void {
@@ -101,7 +106,7 @@ export class StatisticsComponent implements OnInit {
             datasets: [
               {
                 label: this.translate.transform(searchCriteria.cashFlowType),
-                backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900_TRANSPARENT),
+                backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_700_LITTLE_TRANSPARENT),
                 borderColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900),
                 data: response.data
               },
@@ -111,6 +116,7 @@ export class StatisticsComponent implements OnInit {
         },
         error: (error) => {
           this.searchStatisticsIsLoading = false;
+          this.notificationService.notifyError('ERROR_OCCURRED');
           console.error(error);
         }
       })
@@ -122,6 +128,16 @@ export class StatisticsComponent implements OnInit {
       tap({
         next: (response: GenericObject[]): void => {
           this.categoriesList = response;
+        }
+      })
+    ).subscribe();
+  }
+
+  getYearsList(): void {
+    this.statisticsService.getCustomerYearsList().pipe(
+      tap({
+        next: (response: number[]): void => {
+          this.yearsList = response;
         }
       })
     ).subscribe();
@@ -208,4 +224,33 @@ export class StatisticsComponent implements OnInit {
     getUTCDateFrom(date);
   }
 
+  onSearchWithChanged(): void {
+    if (this.searchFromGroup.value.searchType === StatisticsSearchType.PER_MONTH) {
+      this.searchFromGroup.get('startDate')?.setValue(null);
+      this.searchFromGroup.get('endDate')?.setValue(null);
+      this.searchFromGroup.get('categoryUuid')?.setValue(null);
+
+      this.searchFromGroup.get('startDate')?.setValidators(null);
+      this.searchFromGroup.get('endDate')?.setValidators(null);
+      this.searchFromGroup.get('year')?.setValidators([Validators.required]);
+
+      this.searchFromGroup.get('startDate')?.updateValueAndValidity();
+      this.searchFromGroup.get('endDate')?.updateValueAndValidity();
+      this.searchFromGroup.get('categoryUuid')?.updateValueAndValidity();
+      this.searchFromGroup.get('year')?.updateValueAndValidity();
+    } else if (this.searchFromGroup.value.searchType === StatisticsSearchType.PER_CATEGORY) {
+      this.searchFromGroup.get('year')?.setValue(null);
+
+      this.searchFromGroup.get('year')?.setValidators(null);
+      this.searchFromGroup.get('startDate')?.setValidators([Validators.required]);
+      this.searchFromGroup.get('endDate')?.setValidators([Validators.required]);
+
+      this.searchFromGroup.get('year')?.updateValueAndValidity();
+      this.searchFromGroup.get('startDate')?.updateValueAndValidity();
+      this.searchFromGroup.get('endDate')?.updateValueAndValidity();
+    }
+    this.searchFromGroup.updateValueAndValidity();
+  }
+
+  protected readonly StatisticsSearchType = StatisticsSearchType;
 }

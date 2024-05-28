@@ -205,6 +205,7 @@ export class CustomerDashboardComponent implements OnInit {
     const surfaceBorder: string = documentStyle.getPropertyValue('--surface-border');
 
     this.options = {
+      indexAxis: 'x',
       maintainAspectRatio: false,
       aspectRatio: 0.65,
       plugins: {
@@ -220,7 +221,8 @@ export class CustomerDashboardComponent implements OnInit {
             color: textColorSecondary
           },
           grid: {
-            color: surfaceBorder
+            color: surfaceBorder,
+            drawBorder: true
           }
         },
         y: {
@@ -228,7 +230,8 @@ export class CustomerDashboardComponent implements OnInit {
             color: textColorSecondary
           },
           grid: {
-            color: surfaceBorder
+            color: surfaceBorder,
+            drawBorder: true
           }
         }
       }
