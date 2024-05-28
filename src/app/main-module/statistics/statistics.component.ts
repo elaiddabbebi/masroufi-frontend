@@ -26,6 +26,7 @@ export class StatisticsComponent implements OnInit {
   yearsList: GenericObject[] = [];
   searchFromGroup: FormGroup;
   searchStatisticsIsLoading: boolean = false;
+  chartTitle: string = '';
 
   constructor(
     private translate: TranslatePipe,
@@ -35,7 +36,7 @@ export class StatisticsComponent implements OnInit {
     this.searchFromGroup = this.formBuilder.group({
       cashFlowType: new FormControl(CashFlowType.EXPENSE, [Validators.required]),
       searchType: new FormControl(StatisticsSearchType.PER_CATEGORY, [Validators.required]),
-      category: new FormControl(null, [Validators.required]),
+      categoryUuid: new FormControl(null, [Validators.required]),
       year: new FormControl(null, [Validators.required]),
       startDate: new FormControl(getUTCDateFrom(getFirstDateOfYear()), [Validators.required]),
       endDate: new FormControl(getUTCDateFrom(new Date()), [Validators.required]),
@@ -50,6 +51,28 @@ export class StatisticsComponent implements OnInit {
     this.getCashFlowCategories();
   }
 
+  getChartTitle(): string {
+    if (this.searchFromGroup.value.cashFlowType === CashFlowType.EXPENSE) {
+      if (this.searchFromGroup.value.searchType === StatisticsSearchType.PER_CATEGORY) {
+        return 'EXPENSE_PER_CATEGORY';
+      } else if (this.searchFromGroup.value.searchType === StatisticsSearchType.PER_MONTH) {
+        return 'EXPENSE_PER_MONTH';
+      } else {
+        return '';
+      }
+    } else if (this.searchFromGroup.value.cashFlowType === CashFlowType.GAIN) {
+      if (this.searchFromGroup.value.searchType === StatisticsSearchType.PER_CATEGORY) {
+        return 'GAIN_PER_CATEGORY';
+      } else if (this.searchFromGroup.value.searchType === StatisticsSearchType.PER_MONTH) {
+        return 'GAIN_PER_MONTH';
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
+  }
+
   launchSearch(event: Event): void {
     event.preventDefault();
     this.searchStatistics();
@@ -57,10 +80,11 @@ export class StatisticsComponent implements OnInit {
 
   searchStatistics(): void {
     this.searchStatisticsIsLoading = true;
+    this.chartTitle = this.getChartTitle();
     const searchCriteria: StatisticsSearchCriteria = {
       cashFlowType: this.searchFromGroup.value.cashFlowType,
       searchType: this.searchFromGroup.value.searchType,
-      category: this.searchFromGroup.value.category,
+      categoryUuid: this.searchFromGroup.value.categoryUuid,
       year: this.searchFromGroup.value.year,
       startDate: this.searchFromGroup.value.startDate,
       endDate: this.searchFromGroup.value.endDate,

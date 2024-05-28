@@ -42,7 +42,7 @@
           placeholder="{{ 'SELECT_CATEGORY' | translate }}"
           emptyMessage="{{ 'NO_RESULT_FOUND' | translate }}"
           appendTo="body"
-          formControlName="category"
+          formControlName="categoryUuid"
         ></p-dropdown>
 
         <p-dropdown
@@ -113,7 +113,7 @@
           </div>
         </ng-template>
         <div class="dash-card-title-container">
-          <span class="font-bold dash-card-title">{{ 'EXPENSE_EVOLUTION' | translate }}</span><br /><br />
+          <span class="font-bold dash-card-title">{{ chartTitle | translate }}</span><br /><br />
         </div>
         <div>
           <p-chart
