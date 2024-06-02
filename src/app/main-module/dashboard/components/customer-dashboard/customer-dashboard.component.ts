@@ -213,6 +213,11 @@ export class CustomerDashboardComponent implements OnInit {
           labels: {
             color: textColor
           }
+        },
+        datalabels: {
+          formatter: (value: number) => {
+            return null;
+          }
         }
       },
       scales: {

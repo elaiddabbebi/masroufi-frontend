@@ -11,16 +11,28 @@ import {StatisticsResult} from "./types/statistics-result";
 import {StatisticsSearchCriteria} from "./types/statistics-search-criteria";
 import {tap} from "rxjs";
 import {NotificationService} from "../../shared/services/notification.service";
+import {Chart, ChartData, ChartOptions} from "chart.js";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import {SpaceSeparatorPipe} from "../../shared/pipes/space-separator.pipe";
+import {DecimalPipe} from "@angular/common";
+
+Chart.register(ChartDataLabels);
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css'],
-  providers: [TranslatePipe, StatisticsService, NotificationService]
+  providers: [
+    TranslatePipe,
+    StatisticsService,
+    NotificationService,
+    SpaceSeparatorPipe,
+    DecimalPipe
+  ]
 })
 export class StatisticsComponent implements OnInit {
-  data: any;
-  options: any;
+  data: ChartData<'bar'> = {datasets: [], labels: [], xLabels: [], yLabels: []};
+  options: ChartOptions<'bar'> = {};
   cashFlowTypeList: GenericObject[] = [];
   searchWithList: GenericObject[] = [];
   categoriesList: GenericObject[] = [];
@@ -34,6 +46,8 @@ export class StatisticsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private statisticsService: StatisticsService,
     private notificationService: NotificationService,
+    private spaceSeparatorPipe: SpaceSeparatorPipe,
+    private numberPipe: DecimalPipe,
   ) {
     this.searchFromGroup = this.formBuilder.group({
       cashFlowType: new FormControl(CashFlowType.EXPENSE, [Validators.required]),
@@ -188,6 +202,18 @@ export class StatisticsComponent implements OnInit {
         legend: {
           labels: {
             color: textColor
+          },
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          color:  documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900),
+          font: {
+            weight: 'bold'
+          },
+          formatter: (value: number): string | null => {
+            const amount: string | null = this.spaceSeparatorPipe.transform(this.numberPipe.transform(value, '.0-0'));
+            return amount !== '0' ? amount + ' ' + this.translate.transform('TND_CURRENCY') : null;
           }
         }
       },
@@ -201,7 +227,6 @@ export class StatisticsComponent implements OnInit {
           },
           grid: {
             color: surfaceBorder,
-            drawBorder: true
           }
         },
         y: {
@@ -213,7 +238,6 @@ export class StatisticsComponent implements OnInit {
           },
           grid: {
             color: surfaceBorder,
-            drawBorder: true
           }
         }
       }
