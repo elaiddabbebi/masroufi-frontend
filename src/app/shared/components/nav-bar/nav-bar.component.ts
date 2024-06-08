@@ -12,7 +12,7 @@ import {AppSecurityContext} from "../../../main-module/app-security/app-security
   providers: [TranslatePipe]
 })
 export class NavBarComponent implements OnInit {
-  items: MenuItem[] | undefined;
+  items: MenuItem[] = [];
 
   constructor(
     private translate: TranslatePipe,
@@ -44,6 +44,20 @@ export class NavBarComponent implements OnInit {
             icon: 'pi pi-fw pi-user',
             command: (event: MenuItemCommandEvent): void => {
               this.router.navigate(['/main/profile']);
+            }
+          },
+          {
+            label: this.translate.transform('CONFIGURATION'),
+            icon: 'pi pi-fw pi-cog',
+            command: (event: MenuItemCommandEvent): void => {
+              this.router.navigate(['/main/configuration']);
+            }
+          },
+          {
+            label: this.translate.transform('ABOUT'),
+            icon: 'pi pi-fw pi-info-circle',
+            command: (event: MenuItemCommandEvent): void => {
+              this.router.navigate(['/main/about']);
             }
           },
           {

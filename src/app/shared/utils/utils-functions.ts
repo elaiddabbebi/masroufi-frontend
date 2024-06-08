@@ -31,3 +31,7 @@ export function getArrayFromNumber(lastItem: number): number[] {
   }
   return returnValue;
 }
+
+export function today(): Date {
+  return new Date();
+}

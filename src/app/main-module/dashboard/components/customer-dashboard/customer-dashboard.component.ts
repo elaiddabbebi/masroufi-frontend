@@ -5,6 +5,7 @@ import {ConsumptionEvolutionData} from "../../types/consumption-evolution-data";
 import {ExpenseRevenueEvolutionData} from "../../types/expense-revenue-evolution-data";
 import {Month} from "../../../../shared/enums/month";
 import {CssRootVariables} from "../../../../shared/constants/css-root-variables";
+import {today} from "../../../../shared/utils/utils-functions";
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -192,7 +193,7 @@ export class CustomerDashboardComponent implements OnInit {
           tension: 0.3,
           borderColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_300),
           backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_300_VERY_TRANSPARENT),
-          hidden: true
+          hidden: today().getDate() > 15
         }
       ]
     };
