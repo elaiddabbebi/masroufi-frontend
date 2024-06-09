@@ -18,7 +18,6 @@
     </small>
   </div>
   <app-save-cancel-footer
-    *ngIf="showSaveFooter"
     [saveIsLoading]="saveIsLoading"
     [saveIsDisabled]="cashFlowConfigFrom.invalid"
     (onCancel)="cancelUpdateCashFlowConfig()"

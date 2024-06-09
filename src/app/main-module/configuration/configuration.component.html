@@ -1,18 +1,68 @@
-<p-tabView styleClass="tabview-custom">
-  <p-toast></p-toast>
-  <p-tabPanel [headerStyle]="{'width': '100%'}">
-    <ng-template pTemplate="header" class="text-center">
-      <i class="pi pi-database"></i>
-      <span class="m-l-10">{{ 'CASH' | translate }}</span>
-    </ng-template>
-    <app-cash-flow-config></app-cash-flow-config>
-  </p-tabPanel>
+<p-toast></p-toast>
+<div class="row p-t-20">
+  <div class="card col-6 p-10">
+    <p-fieldset
+      [style]="{
+                  'background-color': 'var(--primary-color-001)',
+                  'height': '300px'
+               }"
+    >
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2 px-2 p-fieldset-logo-container text-center">
+          <i class="pi pi-fw pi-dollar p-fieldset-icon"></i>
+        </div>
+      </ng-template>
+      <div class="p-fieldset-card-title-container">
+        <span class="font-bold p-fieldset-card-title">{{ 'CASH' | translate }}</span><br /><br />
+      </div>
+      <div>
+        <app-cash-flow-config></app-cash-flow-config>
+      </div>
+    </p-fieldset>
+  </div>
+  <div class="card col-6 p-10">
+    <p-fieldset
+      [style]="{
+                  'background-color': 'var(--primary-color-001)',
+                  'height': '300px'
+               }"
+    >
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2 px-2 p-fieldset-logo-container text-center">
+          <i class="pi pi-fw pi-calendar p-fieldset-icon"></i>
+        </div>
+      </ng-template>
+      <div class="p-fieldset-card-title-container">
+        <span class="font-bold p-fieldset-card-title">{{ 'SUBSCRIPTION' | translate }}</span><br /><br />
+      </div>
+      <div>
+        <app-subscription-config></app-subscription-config>
+      </div>
+    </p-fieldset>
+  </div>
+</div>
 
-  <p-tabPanel [headerStyle]="{'width': '100%'}">
-    <ng-template pTemplate="header" class="text-center">
-      <i class="pi pi-calendar"></i>
-      <span class="m-l-10">{{ 'SUBSCRIPTION' | translate }}</span>
-    </ng-template>
-    <app-subscription-config></app-subscription-config>
-  </p-tabPanel>
-</p-tabView>
+<div class="row p-t-20">
+  <div class="card col-6 p-10">
+    <p-fieldset
+      [style]="{
+                  'background-color': 'var(--primary-color-001)',
+                  'height': '300px'
+               }"
+    >
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2 px-2 p-fieldset-logo-container text-center">
+          <i class="pi pi-fw pi-language p-fieldset-icon"></i>
+        </div>
+      </ng-template>
+      <div class="p-fieldset-card-title-container">
+        <span class="font-bold p-fieldset-card-title">{{ 'LANGUAGE' | translate }}</span><br /><br />
+      </div>
+      <div>
+        <app-language-config></app-language-config>
+      </div>
+    </p-fieldset>
+  </div>
+  <div class="card col-6 p-10">
+  </div>
+</div>

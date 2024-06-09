@@ -1,0 +1,32 @@
+.p-fieldset-logo {
+  height: 26px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-fieldset-icon {
+  font-size: 1.7rem;
+  color: var(--primary-color-900);
+}
+
+.p-fieldset-logo-container {
+  width: 32px;
+  height: 32px;
+}
+
+.p-fieldset-card-title-container {
+  text-align: right;
+  margin-top: -46px;
+  margin-bottom: 15px;
+  margin-right: -16px;
+}
+
+.p-fieldset-card-title {
+  font-size: 17px;
+  color: #756b52;
+  font-weight: bold;
+}
+
+.p-fieldset-container {
+  background-color: var(--primary-color-001);
+}

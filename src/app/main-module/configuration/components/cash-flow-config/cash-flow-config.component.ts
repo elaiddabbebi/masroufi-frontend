@@ -14,7 +14,6 @@ import {NotificationService} from "../../../../shared/services/notification.serv
 export class CashFlowConfigComponent implements OnInit {
 
   cashFlowConfigFrom: FormGroup;
-  showSaveFooter: boolean = false;
   saveIsLoading: boolean = false;
   currentConfig: CashFlowConfig;
 
@@ -25,10 +24,6 @@ export class CashFlowConfigComponent implements OnInit {
   ) {
     this.cashFlowConfigFrom = this.formBuilder.group({
       initialCashAmount: new FormControl(0, [Validators.required])
-    });
-
-    this.cashFlowConfigFrom.valueChanges.subscribe(() => {
-      this.showFooter();
     });
 
     this.currentConfig = {
@@ -55,7 +50,6 @@ export class CashFlowConfigComponent implements OnInit {
           if (response) {
             this.currentConfig = response;
             this.populateCashFlowConfigForm(response);
-            this.hideFooter();
           }
         },
         error: error => {
@@ -65,21 +59,8 @@ export class CashFlowConfigComponent implements OnInit {
     ).subscribe();
   }
 
-  showFooter(): void {
-    if (!this.showSaveFooter) {
-      this.showSaveFooter = true;
-    }
-  }
-
-  hideFooter(): void {
-    if (this.showSaveFooter) {
-      this.showSaveFooter = false;
-    }
-  }
-
   cancelUpdateCashFlowConfig(): void {
     this.populateCashFlowConfigForm(this.currentConfig);
-    this.hideFooter();
   }
 
   updateCashFlowConfig(event: Event): void {
@@ -95,7 +76,6 @@ export class CashFlowConfigComponent implements OnInit {
           this.currentConfig = response;
           this.populateCashFlowConfigForm(response);
           this.notificationService.notifySuccess('UPDATE_SUCCESS');
-          this.hideFooter();
         },
         error: error => {
           this.saveIsLoading = false;
