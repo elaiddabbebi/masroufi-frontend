@@ -221,5 +221,6 @@
   "EXPENSE_PER_CATEGORY": "Expense per category",
   "EXPENSE_PER_MONTH": "Expense per month",
   "GAIN_PER_CATEGORY": "Gain per category",
-  "GAIN_PER_MONTH": "Gain per month"
+  "GAIN_PER_MONTH": "Gain per month",
+  "KPI": "Performance Indicators"
 }

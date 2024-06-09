@@ -51,6 +51,13 @@ const routes: Routes = [
     },
   },
   {
+    path: 'kpi',
+    loadChildren: () => import('./kpi/kpi.module').then((m) => m.KpiModule),
+    data: {
+      breadcrumb: 'KPI'
+    },
+  },
+  {
     path: 'simulator',
     loadChildren: () => import('./simulator/simulator.module').then((m) => m.SimulatorModule),
     data: {

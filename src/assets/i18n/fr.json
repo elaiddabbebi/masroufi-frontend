@@ -221,5 +221,6 @@
   "EXPENSE_PER_CATEGORY": "Dépense par catégorie",
   "EXPENSE_PER_MONTH": "Dépense par mois",
   "GAIN_PER_CATEGORY": "Revenu par catégorie",
-  "GAIN_PER_MONTH": "Revenu par mois"
+  "GAIN_PER_MONTH": "Revenu par mois",
+  "KPI": "Indicateurs de Performance"
 }

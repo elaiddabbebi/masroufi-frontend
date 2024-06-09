@@ -189,7 +189,7 @@ export class CustomerDashboardComponent implements OnInit {
           label: this.translatePipe.transform(lastMonth),
           data: consumptionData?.lastMonthData?.data,
           fill: false,
-          borderDash: [9, 2],
+          borderDash: [12, 2],
           tension: 0.3,
           borderColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_300),
           backgroundColor: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_300_VERY_TRANSPARENT),
