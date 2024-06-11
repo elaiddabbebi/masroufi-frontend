@@ -8,12 +8,13 @@ import {PipesModule} from "../../shared/pipes/pipes.module";
 import {SharedModule} from "primeng/api";
 import {TabViewModule} from "primeng/tabview";
 import {ToastModule} from "primeng/toast";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PasswordModule} from "primeng/password";
 import {ComponentsModule} from "../../shared/components/components.module";
 import {InputTextModule} from "primeng/inputtext";
 import { LanguageConfigComponent } from './components/language-config/language-config.component';
 import {FieldsetModule} from "primeng/fieldset";
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
   declarations: [
@@ -22,18 +23,20 @@ import {FieldsetModule} from "primeng/fieldset";
     SubscriptionConfigComponent,
     LanguageConfigComponent
   ],
-    imports: [
-        CommonModule,
-        ConfigurationRoutingModule,
-        PipesModule,
-        SharedModule,
-        TabViewModule,
-        ToastModule,
-        ReactiveFormsModule,
-        PasswordModule,
-        ComponentsModule,
-        InputTextModule,
-        FieldsetModule,
-    ]
+  imports: [
+    CommonModule,
+    ConfigurationRoutingModule,
+    PipesModule,
+    SharedModule,
+    TabViewModule,
+    ToastModule,
+    ReactiveFormsModule,
+    PasswordModule,
+    ComponentsModule,
+    InputTextModule,
+    FieldsetModule,
+    DropdownModule,
+    FormsModule,
+  ]
 })
 export class ConfigurationModule { }

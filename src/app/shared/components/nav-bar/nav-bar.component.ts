@@ -1,7 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MenuItem, MenuItemCommandEvent} from "primeng/api";
 import {TranslatePipe} from "../../pipes/translate.pipe";
-import {Locale} from "../../enums/locale";
 import {Router} from "@angular/router";
 import {AppSecurityContext} from "../../../main-module/app-security/app-security-context";
 
@@ -23,18 +22,6 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = [
-      {
-        label: this.translate.transform(this.getCurrentLanguage()),
-        icon: 'pi pi-fw pi-globe',
-        items: [
-          {
-            label: this.translate.transform(this.getOtherLanguage()),
-            command: (event: MenuItemCommandEvent): void => {
-              this.changeLanguage();
-            }
-          }
-        ]
-      },
       {
         label: this.appSecurityContext.fullName,
         icon: 'pi pi-fw pi-user',
@@ -75,33 +62,5 @@ export class NavBarComponent implements OnInit {
   logout(): void {
     localStorage.clear();
     this.router.navigate(['/auth/login']);
-  }
-
-  getCurrentLanguage() {
-    const locale = localStorage.getItem('locale') === 'EN' ? Locale.EN : Locale.FR;
-    if (locale === Locale.EN) {
-      return 'EN';
-    } else {
-      return 'FR';
-    }
-  }
-
-  getOtherLanguage() {
-    const locale = localStorage.getItem('locale') === 'EN' ? Locale.EN : Locale.FR;
-    if (locale === Locale.FR) {
-      return 'ENGLISH';
-    } else {
-      return 'FRENCH';
-    }
-  }
-
-  changeLanguage() {
-    const locale = localStorage.getItem('locale') === 'EN' ? Locale.EN : Locale.FR;
-    if (locale === Locale.FR) {
-      localStorage.setItem('locale', 'EN');
-    } else {
-      localStorage.setItem('locale', 'FR');
-    }
-    window.location.reload();
   }
 }

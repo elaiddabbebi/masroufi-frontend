@@ -1,1 +1,26 @@
-
+<div class="col-12">
+  <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-10">
+    <label class="p-b-5 p-l-5" for="language">{{ 'LANGUAGE' | translate }} <span> :</span></label>
+    <p-dropdown
+      class="w-100"
+      id="language"
+      [options]="languages"
+      [showClear]="false"
+      [(ngModel)]="language"
+      placeholder="{{ 'LANGUAGE' | translate }}"
+      appendTo="body"
+    >
+      <ng-template let-language pTemplate="item">
+        <div class="language-item">
+          <img [src]="language.flag" class="flag" alt="{{language.label}} Flag">
+          <span>{{language.label}}</span>
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+  <div class="col-12 text-right p-r-10 p-t-20">
+    <app-save-btn
+      (click)="changeLanguage()"
+    ></app-save-btn>
+  </div>
+</div>
