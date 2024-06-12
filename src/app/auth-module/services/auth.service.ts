@@ -10,7 +10,7 @@ export class AuthService {
   constructor(private httpClient: AppHttpClient) {}
 
   public login(loginModel: LoginRequestModel): Observable<LoginResponseModel> {
-    const url = authEndpoints.login;
+    const url: string = authEndpoints.login;
     return this.httpClient.post<LoginResponseModel>(url, loginModel);
   }
 }

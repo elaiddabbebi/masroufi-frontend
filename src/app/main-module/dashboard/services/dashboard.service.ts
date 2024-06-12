@@ -11,77 +11,77 @@ export class DashboardService {
   constructor(private httpClient: AppHttpClient) {}
 
   public getCurrentCashAmount(): Observable<number> {
-    const url = dashboardEndpoints.getCurrentCashAmount;
+    const url: string = dashboardEndpoints.getCurrentCashAmount;
     return this.httpClient.get<number>(url);
   }
 
   public getCurrentWeekConsumption(): Observable<number> {
-    const url = dashboardEndpoints.getCurrentWeekConsumption;
+    const url: string = dashboardEndpoints.getCurrentWeekConsumption;
     return this.httpClient.get<number>(url);
   }
 
   public getLastWeekConsumption(): Observable<number> {
-    const url = dashboardEndpoints.getLastWeekConsumption;
+    const url: string = dashboardEndpoints.getLastWeekConsumption;
     return this.httpClient.get<number>(url);
   }
 
   public getCurrentWeekBalance(): Observable<number> {
-    const url = dashboardEndpoints.getCurrentWeekBalance;
+    const url: string = dashboardEndpoints.getCurrentWeekBalance;
     return this.httpClient.get<number>(url);
   }
 
   public getLastWeekBalance(): Observable<number> {
-    const url = dashboardEndpoints.getLastWeekBalance;
+    const url: string = dashboardEndpoints.getLastWeekBalance;
     return this.httpClient.get<number>(url);
   }
 
   public getCurrentMonthConsumption(): Observable<number> {
-    const url = dashboardEndpoints.getCurrentMonthConsumption;
+    const url: string = dashboardEndpoints.getCurrentMonthConsumption;
     return this.httpClient.get<number>(url);
   }
 
   public getLastMonthConsumption(): Observable<number> {
-    const url = dashboardEndpoints.getLastMonthConsumption;
+    const url: string = dashboardEndpoints.getLastMonthConsumption;
     return this.httpClient.get<number>(url);
   }
 
   public getCurrentMonthBalance(): Observable<number> {
-    const url = dashboardEndpoints.getCurrentMonthBalance;
+    const url: string = dashboardEndpoints.getCurrentMonthBalance;
     return this.httpClient.get<number>(url);
   }
 
   public getLastMonthBalance(): Observable<number> {
-    const url = dashboardEndpoints.getLastMonthBalance;
+    const url: string = dashboardEndpoints.getLastMonthBalance;
     return this.httpClient.get<number>(url);
   }
 
   public getCurrentYearRevenue(): Observable<number> {
-    const url = dashboardEndpoints.getCurrentYearRevenue;
+    const url: string = dashboardEndpoints.getCurrentYearRevenue;
     return this.httpClient.get<number>(url);
   }
 
   public getCurrentYearBalance(): Observable<number> {
-    const url = dashboardEndpoints.getCurrentYearBalance;
+    const url: string = dashboardEndpoints.getCurrentYearBalance;
     return this.httpClient.get<number>(url);
   }
 
   public getConsumptionEvolution(): Observable<ConsumptionEvolutionData> {
-    const url = dashboardEndpoints.getConsumptionEvolution;
+    const url: string = dashboardEndpoints.getConsumptionEvolution;
     return this.httpClient.get<ConsumptionEvolutionData>(url);
   }
 
   public getCurrentYearRevenueEvolution(): Observable<MonthAmount[]> {
-    const url = dashboardEndpoints.getCurrentYearRevenueEvolution;
+    const url: string = dashboardEndpoints.getCurrentYearRevenueEvolution;
     return this.httpClient.get<MonthAmount[]>(url);
   }
 
   public getCurrentYearExpenseEvolution(): Observable<MonthAmount[]> {
-    const url = dashboardEndpoints.getCurrentYearExpenseEvolution;
+    const url: string = dashboardEndpoints.getCurrentYearExpenseEvolution;
     return this.httpClient.get<MonthAmount[]>(url);
   }
 
   public getCurrentYearExpenseRevenueEvolution(): Observable<ExpenseRevenueEvolutionData> {
-    const url = dashboardEndpoints.getCurrentYearExpenseRevenueEvolution;
+    const url: string = dashboardEndpoints.getCurrentYearExpenseRevenueEvolution;
     return this.httpClient.get<ExpenseRevenueEvolutionData>(url);
   }
 }

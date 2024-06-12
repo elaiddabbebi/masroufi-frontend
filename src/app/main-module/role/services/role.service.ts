@@ -10,32 +10,32 @@ export class RoleService {
   constructor(private httpClient: AppHttpClient) {}
 
   public getRoleDetails(uuid: string): Observable<Role> {
-    const url = roleEndpoints.getDetails(uuid);
+    const url: string = roleEndpoints.getDetails(uuid);
     return this.httpClient.get<Role>(url);
   }
 
   public getAllRoles(): Observable<Role[]> {
-    const url = roleEndpoints.getAllRoles;
+    const url: string = roleEndpoints.getAllRoles;
     return this.httpClient.get<Role[]>(url);
   }
 
   public getAllPermissions(): Observable<Permission[]> {
-    const url = roleEndpoints.getAllPermissions;
+    const url: string = roleEndpoints.getAllPermissions;
     return this.httpClient.get<Permission[]>(url);
   }
 
   public createRole(role: Role): Observable<Role> {
-    const url = roleEndpoints.create;
+    const url: string = roleEndpoints.create;
     return this.httpClient.post<Role>(url, role);
   }
 
   public updateRole(role: Role): Observable<Role> {
-    const url = roleEndpoints.update;
+    const url: string = roleEndpoints.update;
     return this.httpClient.put<Role>(url, role);
   }
 
   public deleteRole(uuid: string): Observable<Role> {
-    const url = roleEndpoints.delete(uuid);
+    const url: string = roleEndpoints.delete(uuid);
     return this.httpClient.delete<Role>(url);
   }
 }

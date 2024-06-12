@@ -11,17 +11,17 @@ export class CashFlowCategoryService {
   constructor(private httpClient: AppHttpClient) {}
 
   public getCategoryDetails(uuid: string): Observable<CashFlowCategory>{
-    const url = cashFlowCategoryEndpoints.getDetails(uuid);
+    const url: string = cashFlowCategoryEndpoints.getDetails(uuid);
     return this.httpClient.get<CashFlowCategory>(url);
   }
 
   public searchCategories(): Observable<CashFlowCategory[]>{
-    const url = cashFlowCategoryEndpoints.search;
+    const url: string = cashFlowCategoryEndpoints.search;
     return this.httpClient.get<CashFlowCategory[]>(url);
   }
 
   public findTop10CategoriesByName(name: string): Observable<CashFlowCategory[]>{
-    const url = cashFlowCategoryEndpoints.top10ByName;
+    const url: string = cashFlowCategoryEndpoints.top10ByName;
     const options = {
       params: new HttpParams().append('categoryName', name)
     }
@@ -29,27 +29,27 @@ export class CashFlowCategoryService {
   }
 
   public getAllNameList(): Observable<string[]>{
-    const url = cashFlowCategoryEndpoints.getAllNameList;
+    const url: string = cashFlowCategoryEndpoints.getAllNameList;
     return this.httpClient.get<string[]>(url);
   }
 
   public createCategory(categoryDetails: CashFlowCategory): Observable<CashFlowCategory>{
-    const url = cashFlowCategoryEndpoints.createCategory;
+    const url: string = cashFlowCategoryEndpoints.createCategory;
     return this.httpClient.post<CashFlowCategory>(url, categoryDetails);
   }
 
   public deleteCategory(uuid: string): Observable<CashFlowCategory>{
-    const url = cashFlowCategoryEndpoints.deleteCategory(uuid);
+    const url: string = cashFlowCategoryEndpoints.deleteCategory(uuid);
     return this.httpClient.delete<CashFlowCategory>(url);
   }
 
   public updateCategory(uuid: string, categoryDetails: CashFlowCategory): Observable<CashFlowCategory>{
-    const url = cashFlowCategoryEndpoints.updateCategory(uuid);
+    const url: string = cashFlowCategoryEndpoints.updateCategory(uuid);
     return this.httpClient.put<CashFlowCategory>(url, categoryDetails);
   }
 
   public validateRejectCategory(uuid: string, valid: boolean): Observable<CashFlowCategory>{
-    const url = cashFlowCategoryEndpoints.validateRejectCategory(uuid);
+    const url: string = cashFlowCategoryEndpoints.validateRejectCategory(uuid);
     const validity: ValidityModel = {
       valid: valid
     }
@@ -57,7 +57,7 @@ export class CashFlowCategoryService {
   }
 
   public checkIfCategoryExist(categoryName: string): Observable<boolean>{
-    const url = cashFlowCategoryEndpoints.checkIfCategoryExist;
+    const url: string = cashFlowCategoryEndpoints.checkIfCategoryExist;
     const options = {
       params: new HttpParams().append('categoryName', categoryName)
     };

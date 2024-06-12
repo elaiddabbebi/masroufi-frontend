@@ -10,17 +10,17 @@ export class AppSecurityService {
   constructor(private httpClient: AppHttpClient) {}
 
   public getAccountInfo(): Observable<AccountDetails> {
-    const url = appSecurityEndpoints.getInfo;
+    const url: string = appSecurityEndpoints.getInfo;
     return this.httpClient.get<AccountDetails>(url);
   }
 
   public updateAccountDetails(details: AccountDetails): Observable<AccountDetails> {
-    const url = appSecurityEndpoints.updateDetails;
+    const url: string = appSecurityEndpoints.updateDetails;
     return this.httpClient.put<AccountDetails>(url, details);
   }
 
   public updatePassword(accountPassword: AccountPasswordModel): Observable<AccountDetails> {
-    const url = appSecurityEndpoints.updatePassword;
+    const url: string = appSecurityEndpoints.updatePassword;
     return this.httpClient.put<AccountDetails>(url, accountPassword);
   }
 }

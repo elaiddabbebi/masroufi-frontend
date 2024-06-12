@@ -1,0 +1,26 @@
+<div class="col-12" [formGroup]="subscriptionConfigForm">
+  <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-l-10 p-r-10 p-b-10">
+    <label class="p-b-5 p-l-5" for="start-date">{{ 'START_DATE' | translate }} <span> :</span></label>
+    <p-calendar
+      id="start-date"
+      [showIcon]="true"
+      styleClass="col-12"
+      appendTo="body"
+      [placeholder]="'START_DATE' | translate"
+      [disabled]="true"
+      formControlName="startDate"
+    ></p-calendar>
+  </div>
+  <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-l-10 p-r-10">
+    <label class="p-b-5 p-l-5" for="end-date">{{ 'END_DATE' | translate }} <span> :</span></label>
+    <p-calendar
+      id="end-date"
+      [showIcon]="true"
+      styleClass="col-12"
+      appendTo="body"
+      [placeholder]="'END_DATE' | translate"
+      [disabled]="true"
+      formControlName="endDate"
+    ></p-calendar>
+  </div>
+</div>

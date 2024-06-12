@@ -13,17 +13,17 @@ export class CashFlowRegistryService {
   constructor(private httpClient: AppHttpClient) {}
 
   public getDetails(uuid: string): Observable<CashFlowRegistry>{
-    const url = cashFlowRegistryEndpoints.getDetails(uuid);
+    const url: string = cashFlowRegistryEndpoints.getDetails(uuid);
     return this.httpClient.get<CashFlowRegistry>(url);
   }
 
   public findAll(): Observable<CashFlowRegistry[]>{
-    const url = cashFlowRegistryEndpoints.findAll;
+    const url: string = cashFlowRegistryEndpoints.findAll;
     return this.httpClient.get<CashFlowRegistry[]>(url);
   }
 
   public search(searchCriteria: CustomerCashFlowRegistrySearchCriteria): Observable<ResultSetResponse<CashFlowRegistry>> {
-    const url = cashFlowRegistryEndpoints.search;
+    const url: string = cashFlowRegistryEndpoints.search;
     const options = {
       params: buildHttpParamsFrom(searchCriteria)
     };
@@ -32,17 +32,17 @@ export class CashFlowRegistryService {
   }
 
   public create(categoryDetails: CashFlowRegistry): Observable<CashFlowRegistry>{
-    const url = cashFlowRegistryEndpoints.create;
+    const url: string = cashFlowRegistryEndpoints.create;
     return this.httpClient.post<CashFlowRegistry>(url, categoryDetails);
   }
 
   public delete(uuid: string): Observable<CashFlowRegistry>{
-    const url = cashFlowRegistryEndpoints.delete(uuid);
+    const url: string = cashFlowRegistryEndpoints.delete(uuid);
     return this.httpClient.delete<CashFlowRegistry>(url);
   }
 
   public update(uuid: string, categoryDetails: CashFlowRegistry): Observable<CashFlowRegistry>{
-    const url = cashFlowRegistryEndpoints.update(uuid);
+    const url: string = cashFlowRegistryEndpoints.update(uuid);
     return this.httpClient.put<CashFlowRegistry>(url, categoryDetails);
   }
 }

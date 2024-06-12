@@ -15,6 +15,7 @@ import {InputTextModule} from "primeng/inputtext";
 import { LanguageConfigComponent } from './components/language-config/language-config.component';
 import {FieldsetModule} from "primeng/fieldset";
 import {DropdownModule} from "primeng/dropdown";
+import {CalendarModule} from "primeng/calendar";
 
 @NgModule({
   declarations: [
@@ -23,20 +24,21 @@ import {DropdownModule} from "primeng/dropdown";
     SubscriptionConfigComponent,
     LanguageConfigComponent
   ],
-  imports: [
-    CommonModule,
-    ConfigurationRoutingModule,
-    PipesModule,
-    SharedModule,
-    TabViewModule,
-    ToastModule,
-    ReactiveFormsModule,
-    PasswordModule,
-    ComponentsModule,
-    InputTextModule,
-    FieldsetModule,
-    DropdownModule,
-    FormsModule,
-  ]
+    imports: [
+        CommonModule,
+        ConfigurationRoutingModule,
+        PipesModule,
+        SharedModule,
+        TabViewModule,
+        ToastModule,
+        ReactiveFormsModule,
+        PasswordModule,
+        ComponentsModule,
+        InputTextModule,
+        FieldsetModule,
+        DropdownModule,
+        FormsModule,
+        CalendarModule,
+    ]
 })
 export class ConfigurationModule { }
