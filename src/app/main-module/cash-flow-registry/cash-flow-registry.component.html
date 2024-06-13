@@ -136,7 +136,7 @@
   </ng-template>
 
   <ng-template pTemplate="body">
-    <form [formGroup]="cashFlowDetailsForm">
+    <form [formGroup]="cashFlowDetailsForm" (keyup.enter)="saveCashFlow($event)">
       <div class="row">
         <div class="flex flex-column gap-2 col-12 d-flex f-d-column text-left p-t-10 p-b-10">
           <label for="type">{{ 'TYPE' | translate }} <span class="required"> :</span></label>
@@ -153,7 +153,7 @@
           ></p-dropdown>
           <small
             *ngIf="
-                cashFlowDetailsControls['type'].errors &&
+                saveClicked && cashFlowDetailsControls['type'].errors &&
                 (cashFlowDetailsControls['type'].dirty || cashFlowDetailsControls['type'].touched)
               "
             class="col-12 p-t-4 form-text text-danger"
@@ -178,7 +178,7 @@
           ></p-autoComplete>
           <small
             *ngIf="
-                cashFlowDetailsControls['category'].errors &&
+                saveClicked && cashFlowDetailsControls['category'].errors &&
                 (cashFlowDetailsControls['category'].dirty || cashFlowDetailsControls['category'].touched)
               "
             class="col-12 p-t-4 form-text text-danger"
@@ -201,7 +201,7 @@
           ></p-autoComplete>
           <small
             *ngIf="
-                cashFlowDetailsControls['name'].errors &&
+                saveClicked && cashFlowDetailsControls['name'].errors &&
                 (cashFlowDetailsControls['name'].dirty || cashFlowDetailsControls['name'].touched)
               "
             class="col-12 p-t-4 form-text text-danger"
@@ -225,7 +225,7 @@
           ></p-calendar>
           <small
             *ngIf="
-                cashFlowDetailsControls['date'].errors &&
+                saveClicked && cashFlowDetailsControls['date'].errors &&
                 (cashFlowDetailsControls['date'].dirty || cashFlowDetailsControls['date'].touched)
               "
             class="col-12 p-t-4 form-text text-danger"
@@ -247,7 +247,7 @@
           />
           <small
             *ngIf="
-                cashFlowDetailsControls['amount'].errors &&
+                saveClicked && cashFlowDetailsControls['amount'].errors &&
                 (cashFlowDetailsControls['amount'].dirty || cashFlowDetailsControls['amount'].touched)
               "
             class="col-12 p-t-4 form-text text-danger"
@@ -262,7 +262,7 @@
     <app-save-cancel-footer
       (onCancel)="hideCashFlowDetailsDialog()"
       (onSave)="saveCashFlow($event)"
-      [saveIsDisabled]="cashFlowDetailsForm.invalid"
+      [saveIsDisabled]="saveClicked && cashFlowDetailsForm.invalid"
       [saveIsLoading]="saveIsLoading"
     ></app-save-cancel-footer>
   </ng-template>

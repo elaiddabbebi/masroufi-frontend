@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Locale} from "../enums/locale";
+import {AppLocale} from "../enums/appLocale";
 import frJson from '../../../assets/i18n/fr.json';
 import enJson from '../../../assets/i18n/en.json';
 
@@ -19,16 +19,16 @@ export class TranslatePipe implements PipeTransform {
     }
   }
 
-  private getLocale(): Locale {
+  private getLocale(): AppLocale {
     if (localStorage.getItem('locale') === 'EN') {
-      return Locale.EN;
+      return AppLocale.EN;
     } else {
-      return Locale.FR;
+      return AppLocale.FR;
     }
   }
 
-  private translate(key: string, locale: Locale) {
-    if (locale === Locale.FR) {
+  private translate(key: string, locale: AppLocale) {
+    if (locale === AppLocale.FR) {
       // @ts-ignore
       return frLanguage[key];
     } else {

@@ -1,5 +1,6 @@
 import {Role} from "../../role/types/role";
 import {MenuItem} from "primeng/api";
+import {AppLocale} from "../../../shared/enums/appLocale";
 
 export interface AccountDetails {
   uuid?: string;
@@ -13,4 +14,5 @@ export interface AccountDetails {
   age?: number;
   isActivated?: boolean;
   items?: MenuItem[];
+  locale?: AppLocale;
 }

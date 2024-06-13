@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {TranslatePipe} from "../../../../shared/pipes/translate.pipe";
-import {Locale} from "../../../../shared/enums/locale";
+import {AppLocale} from "../../../../shared/enums/appLocale";
 
 @Component({
   selector: 'app-language-config',
@@ -10,8 +10,8 @@ import {Locale} from "../../../../shared/enums/locale";
 })
 export class LanguageConfigComponent {
 
-  languages: {label: string, value: Locale, flag: string}[] = [];
-  language: Locale = this.getCurrentLanguage();
+  languages: {label: string, value: AppLocale, flag: string}[] = [];
+  language: AppLocale = this.getCurrentLanguage();
 
   constructor(
     private translatePipe: TranslatePipe
@@ -19,23 +19,23 @@ export class LanguageConfigComponent {
     this.languages.push(
       {
         label: this.translatePipe.transform('FRENCH'),
-        value: Locale.FR,
+        value: AppLocale.FR,
         flag: 'assets/img/france_flag.png'
       },
       {
         label: this.translatePipe.transform('ENGLISH'),
-        value: Locale.EN,
+        value: AppLocale.EN,
         flag: 'assets/img/uk_flag.png'
       }
     )
   }
 
-  getCurrentLanguage(): Locale {
-    return localStorage.getItem('locale') === 'EN' ? Locale.EN : Locale.FR;
+  getCurrentLanguage(): AppLocale {
+    return localStorage.getItem('locale') === 'EN' ? AppLocale.EN : AppLocale.FR;
   }
 
   changeLanguage(): void {
-    if (this.language === Locale.FR) {
+    if (this.language === AppLocale.FR) {
       localStorage.setItem('locale', 'FR');
     } else {
       localStorage.setItem('locale', 'EN');

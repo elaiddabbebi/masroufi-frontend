@@ -1,4 +1,4 @@
-export enum Locale {
+export enum AppLocale {
   FR = 'FR',
   EN = 'EN'
 }

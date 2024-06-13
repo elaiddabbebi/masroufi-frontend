@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
-  applicationVersion: string = '2.2.5';
-  lastUpdate: string = '09-03-2024';
+  applicationVersion: string = '3.0.0';
+  lastUpdate: string = '13-06-2024';
 }

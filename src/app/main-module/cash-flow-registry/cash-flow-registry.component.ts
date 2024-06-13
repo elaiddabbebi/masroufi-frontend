@@ -32,6 +32,7 @@ export class CashFlowRegistryComponent {
   deleteCashFlowDialog: boolean = false;
   cashFlowDetailsForm: FormGroup;
   saveIsLoading: boolean = false;
+  saveClicked: boolean = false;
   deleteIsLoading: boolean = false;
   cashFlowDetailsDialogHeader: string = '';
   mode: string = '';
@@ -130,6 +131,7 @@ export class CashFlowRegistryComponent {
   }
 
   showCashFlowDetailsDialog(): void {
+    this.saveClicked = false;
     this.cashFlowDetailsDialog = true;
   }
 
@@ -176,6 +178,9 @@ export class CashFlowRegistryComponent {
 
   saveCashFlow(event: Event): void {
     event.stopPropagation();
+    this.saveClicked = true;
+    this.cashFlowDetailsForm.markAsDirty();
+    this.cashFlowDetailsForm.markAllAsTouched();
     if (this.mode === 'ADD') {
       this.createCashFlow();
     } else {

@@ -1,5 +1,5 @@
 import {LocaleSettings} from "primeng/calendar";
-import {Locale} from "../enums/locale";
+import {AppLocale} from "../enums/appLocale";
 
 export class PrimeNgLocaleSettingsBuilder {
   private static en: LocaleSettings = {
@@ -28,16 +28,16 @@ export class PrimeNgLocaleSettingsBuilder {
     weekHeader: 'Sm'
   }
 
-  private static getLocale(): Locale {
+  private static getLocale(): AppLocale {
     if (localStorage.getItem('locale') === 'EN') {
-      return Locale.EN;
+      return AppLocale.EN;
     } else {
-      return Locale.FR;
+      return AppLocale.FR;
     }
   }
 
   public static getLocaleSettings(): LocaleSettings {
-    if (this.getLocale() === Locale.FR) {
+    if (this.getLocale() === AppLocale.FR) {
       return this.fr;
     } else {
       return this.en;
