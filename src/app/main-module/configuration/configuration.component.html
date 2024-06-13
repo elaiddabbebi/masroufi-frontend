@@ -29,14 +29,14 @@
     >
       <ng-template pTemplate="header">
         <div class="flex align-items-center gap-2 px-2 p-fieldset-logo-container text-center">
-          <i class="pi pi-fw pi-calendar p-fieldset-icon"></i>
+          <i class="pi pi-fw pi-language p-fieldset-icon"></i>
         </div>
       </ng-template>
       <div class="p-fieldset-card-title-container">
-        <span class="font-bold p-fieldset-card-title">{{ 'SUBSCRIPTION' | translate }}</span><br /><br />
+        <span class="font-bold p-fieldset-card-title">{{ 'LANGUAGE' | translate }}</span><br /><br />
       </div>
       <div>
-        <app-subscription-config></app-subscription-config>
+        <app-language-config></app-language-config>
       </div>
     </p-fieldset>
   </div>
@@ -52,17 +52,16 @@
     >
       <ng-template pTemplate="header">
         <div class="flex align-items-center gap-2 px-2 p-fieldset-logo-container text-center">
-          <i class="pi pi-fw pi-language p-fieldset-icon"></i>
+          <i class="pi pi-fw pi-calendar p-fieldset-icon"></i>
         </div>
       </ng-template>
       <div class="p-fieldset-card-title-container">
-        <span class="font-bold p-fieldset-card-title">{{ 'LANGUAGE' | translate }}</span><br /><br />
+        <span class="font-bold p-fieldset-card-title">{{ 'SUBSCRIPTION' | translate }}</span><br /><br />
       </div>
       <div>
-        <app-language-config></app-language-config>
+        <app-subscription-config></app-subscription-config>
       </div>
     </p-fieldset>
   </div>
-  <div class="card col-6 p-10">
-  </div>
+  <div class="card col-6 p-10"></div>
 </div>

@@ -10,6 +10,12 @@
       placeholder="{{ 'LANGUAGE' | translate }}"
       appendTo="body"
     >
+      <ng-template let-selectedLanguage pTemplate="selectedItem">
+        <div class="language-item">
+          <img [src]="selectedLanguage.flag" class="flag" alt="{{selectedLanguage.label}} Flag">
+          <span>{{selectedLanguage.label}}</span>
+        </div>
+      </ng-template>
       <ng-template let-language pTemplate="item">
         <div class="language-item">
           <img [src]="language.flag" class="flag" alt="{{language.label}} Flag">
