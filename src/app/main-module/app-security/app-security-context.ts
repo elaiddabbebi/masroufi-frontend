@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {AppSecurityService} from "./services/app-security.service";
 import {MenuItem} from "primeng/api";
 import {TranslatePipe} from "../../shared/pipes/translate.pipe";
+import {AppLocale} from "../../shared/enums/appLocale";
 
 @Injectable({
   providedIn: 'root'
@@ -20,17 +21,21 @@ export class AppSecurityContext {
     private translate: TranslatePipe,
     private router: Router,
     private service: AppSecurityService,
-  ) {
-  }
+  ) {}
 
   initContext(): Observable<AccountDetails> {
     return this.service.getAccountInfo().pipe(
       tap({
-        next: (response: AccountDetails) => {
+        next: (response: AccountDetails): void => {
+          if (response.locale === AppLocale.EN) {
+            localStorage.setItem('locale', 'EN');
+          } else {
+            localStorage.setItem('locale', 'FR');
+          }
           this.currentUser = response;
           this.fullName = response.fullName ? response.fullName : 'Unknown User';
           this.sidebarItems = response.items;
-          this.sidebarItems?.forEach(item => {
+          this.sidebarItems?.forEach((item: MenuItem): void => {
             this.translateMenuItemsLabels(item);
           });
         },
@@ -90,5 +95,9 @@ export class AppSecurityContext {
       return permissionIndex ? permissionIndex >= 0 : false;
     }
     return false;
+  }
+
+  getLocale(): AppLocale {
+    return this.currentUser?.locale ? this.currentUser?.locale : AppLocale.FR;
   }
 }

@@ -26,7 +26,8 @@
   </div>
   <div class="col-12 text-right p-r-10 p-t-20">
     <app-save-btn
-      (click)="changeLanguage()"
+      [loading]="updateLanguageIsLoading"
+      (click)="changeLanguage($event)"
     ></app-save-btn>
   </div>
 </div>

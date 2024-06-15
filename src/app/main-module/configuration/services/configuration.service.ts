@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {configurationEndpoints} from "./configuration-endpoints";
 import {CashFlowConfig} from "../types/cash-flow-config";
 import {SubscriptionConfig} from "../types/subscription-config";
+import {AppLocale} from "../../../shared/enums/appLocale";
 
 @Injectable()
 export class ConfigurationService {
@@ -22,5 +23,15 @@ export class ConfigurationService {
   public getSubscriptionConfig(): Observable<SubscriptionConfig> {
     const url: string = configurationEndpoints.getSubscriptionConfig;
     return this.httpClient.get<SubscriptionConfig>(url);
+  }
+
+  public getLanguageConfig(): Observable<AppLocale> {
+    const url: string = configurationEndpoints.getLanguageConfig;
+    return this.httpClient.get<AppLocale>(url);
+  }
+
+  public updateLanguageConfig(locale: AppLocale): Observable<AppLocale> {
+    const url: string = configurationEndpoints.updateLanguageConfig;
+    return this.httpClient.put<AppLocale>(url, {locale: locale});
   }
 }
