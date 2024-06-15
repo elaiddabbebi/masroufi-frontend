@@ -21,8 +21,6 @@ export class ProfileComponent implements OnInit {
   profileDetailsForm: FormGroup;
   passwordForm: FormGroup;
   loading: boolean = false;
-  showUpdateDetailsFooter: boolean = false;
-  showUpdatePasswordFooter: boolean = false;
   profileDetails: AccountDetails = {};
 
   constructor(
@@ -47,10 +45,6 @@ export class ProfileComponent implements OnInit {
       newPassword: new FormControl('', [Validators.required]),
       passwordConfirmation: new FormControl('', [Validators.required]),
     });
-
-    this.passwordForm.valueChanges.subscribe(() => {
-      this.showUpdatePasswordFooter = true;
-    })
   }
 
   selectDate(date: Date): void {
@@ -90,10 +84,6 @@ export class ProfileComponent implements OnInit {
     this.profileDetailsForm.get('lastName')?.setValue(details.lastName);
     this.profileDetailsForm.get('birthDate')?.setValue( details.birthDate ? new Date(details.birthDate) : null);
     this.profileDetailsForm.get('role')?.setValue(details.role ? this.translate.transform(details.role?.type.toString()) : null);
-
-    this.profileDetailsForm.valueChanges.subscribe(() => {
-      this.showUpdateDetailsFooter = true;
-    })
   }
 
   updateProfileDetails(event: Event): void {
@@ -116,7 +106,6 @@ export class ProfileComponent implements OnInit {
           this.profileDetails = response;
           this.populateProfileFrom(response);
           this.loading = false;
-          this.showUpdateDetailsFooter = false;
           this.notificationService.notifySuccess('UPDATE_SUCCESS');
         },
         error: (error) => {
@@ -128,7 +117,6 @@ export class ProfileComponent implements OnInit {
 
   cancelUpdateDetails(): void {
     this.populateProfileFrom(this.profileDetails);
-    this.showUpdateDetailsFooter = false;
   }
 
   updatePassword(event: Event): void {
@@ -145,7 +133,6 @@ export class ProfileComponent implements OnInit {
       tap({
         next: (response) => {
           this.passwordForm.reset();
-          this.showUpdatePasswordFooter = false;
           this.notificationService.notifySuccess('UPDATE_SUCCESS');
         },
         error: (error) => {
@@ -157,6 +144,5 @@ export class ProfileComponent implements OnInit {
 
   cancelUpdatePassword(): void {
     this.passwordForm.reset();
-    this.showUpdatePasswordFooter = false;
   }
 }

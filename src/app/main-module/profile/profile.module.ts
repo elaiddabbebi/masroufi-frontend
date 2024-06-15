@@ -12,24 +12,26 @@ import {BadgeModule} from "primeng/badge";
 import { TabViewModule } from 'primeng/tabview';
 import {PasswordModule} from "primeng/password";
 import {ToastModule} from "primeng/toast";
+import {FieldsetModule} from "primeng/fieldset";
 
 @NgModule({
   declarations: [
     ProfileComponent
   ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule,
-    InputTextModule,
-    PipesModule,
-    ReactiveFormsModule,
-    CalendarModule,
-    SharedModule,
-    TabMenuModule,
-    BadgeModule,
-    TabViewModule,
-    PasswordModule,
-    ToastModule,
-  ]
+    imports: [
+        CommonModule,
+        ProfileRoutingModule,
+        InputTextModule,
+        PipesModule,
+        ReactiveFormsModule,
+        CalendarModule,
+        SharedModule,
+        TabMenuModule,
+        BadgeModule,
+        TabViewModule,
+        PasswordModule,
+        ToastModule,
+        FieldsetModule,
+    ]
 })
 export class ProfileModule { }
