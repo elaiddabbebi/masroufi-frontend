@@ -1810,3 +1810,37 @@ body {
 .p-datepicker:not(.p-datepicker-inline) {
   border: 1px solid rgba(190, 190, 190, 0.71);
 }
+
+.p-toast-message-text {
+  padding-top: 8px;
+}
+
+.p-toast-message-icon > checkicon > svg {
+  width: 22px;
+  height: 22px;
+}
+
+.p-toast-message-icon > exclamationtriangleicon > svg {
+  width: 22px;
+  height: 22px;
+}
+
+.p-toast-message-icon > timescircleicon > svg {
+  width: 22px;
+  height: 22px;
+}
+
+.p-toast-message-icon > infocircleicon > svg {
+  width: 22px;
+  height: 22px;
+}
+
+.p-toast-message-icon {
+  margin-top: -3px;
+}
+
+.p-toast-icon-close {
+  margin-top: 4px;
+}
+
+

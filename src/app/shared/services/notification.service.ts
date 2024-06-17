@@ -13,32 +13,28 @@ export class NotificationService {
   public notifySuccess(message: string): void {
     this.messageService.add({
       severity: 'success',
-      summary: this.translate.transform('SUCCESS'),
-      detail: this.translate.transform(message)
+      summary: this.translate.transform(message),
     });
   }
 
   public notifyWarning(message: string): void {
     this.messageService.add({
       severity: 'warn',
-      summary: this.translate.transform('WARNING'),
-      detail: this.translate.transform(message)
+      summary: this.translate.transform(message),
     });
   }
 
   public notifyError(message: string): void {
     this.messageService.add({
       severity: 'error',
-      summary: this.translate.transform('ERROR'),
-      detail: this.translate.transform(message)
+      summary: this.translate.transform(message),
     });
   }
 
   public notifyInfo(message: string): void {
     this.messageService.add({
       severity: 'info',
-      summary: this.translate.transform('INFO_ALERT'),
-      detail: this.translate.transform(message)
+      summary: this.translate.transform(message),
     });
   }
 }
