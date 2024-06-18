@@ -5,8 +5,9 @@
 }
 
 .p-fieldset-icon {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   color: var(--primary-color-900);
+  font-weight: bold;
 }
 
 .p-fieldset-logo-container {

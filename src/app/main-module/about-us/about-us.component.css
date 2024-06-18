@@ -1,3 +1,9 @@
+.p-fieldset-icon {
+  font-size: 1.6rem;
+  color: var(--primary-color-900);
+  font-weight: bold;
+}
+
 .about-logo {
   height: 26px;
   margin-left: auto;
