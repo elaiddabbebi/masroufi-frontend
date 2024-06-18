@@ -47,11 +47,6 @@ export class LanguageConfigComponent {
       tap({
         next: (locale: AppLocale): void => {
           this.updateLanguageIsLoading = false;
-          if (locale === AppLocale.EN) {
-            localStorage.setItem('locale', 'EN');
-          } else {
-            localStorage.setItem('locale', 'FR');
-          }
           window.location.reload();
         },
         error: (error: any): void => {
