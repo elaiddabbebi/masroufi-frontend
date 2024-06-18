@@ -37,4 +37,8 @@ export class NotificationService {
       summary: this.translate.transform(message),
     });
   }
+
+  public clear(): void {
+    this.messageService.clear();
+  }
 }
