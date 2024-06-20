@@ -8,6 +8,10 @@ import {CssRootVariables} from "../../../../shared/constants/css-root-variables"
 import {today} from "../../../../shared/utils/utils-functions";
 import {SpaceSeparatorPipe} from "../../../../shared/pipes/space-separator.pipe";
 import {DecimalPipe} from "@angular/common";
+import {Chart} from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+
+Chart.register(ChartDataLabels);
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -264,13 +268,13 @@ export class CustomerDashboardComponent implements OnInit {
         datalabels: {
           anchor: 'end',
           align: 'end',
-          color: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900),
+          color: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_500),
           font: {
             weight: 'bold'
           },
           formatter: (value: number): string | null => {
             const amount: string | null = this.spaceSeparatorPipe.transform(this.numberPipe.transform(value, '.0-0'));
-            return amount !== '0' ? amount + ' ' + this.translatePipe.transform('TND_CURRENCY') : null;
+            return amount !== '0' ? amount : null;
           }
         }
       },
