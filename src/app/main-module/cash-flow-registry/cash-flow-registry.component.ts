@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TranslatePipe} from "../../shared/pipes/translate.pipe";
 import {NotificationService} from "../../shared/services/notification.service";
-import {tap} from "rxjs";
+import {map, tap} from "rxjs";
 import {CashFlowRegistry} from "./types/cash-flow-registry";
 import {CashFlowRegistryService} from "./services/cash-flow-registry.service";
 import {GenericObject} from "../../shared/types/generic-object";
@@ -19,6 +19,9 @@ import {ResultSetResponse} from "../../shared/types/result-set-response";
 import {PageChangeEvent} from "../../shared/types/page-change-event";
 import {EmptyResultSet} from "../../shared/utils/empty-result-set";
 import {getArrayFromNumber, getUTCDateFrom} from "../../shared/utils/utils-functions";
+import * as FileSaver from 'file-saver';
+import {ContentType} from "../../shared/types/content-type";
+import {FileExtension} from "../../shared/types/file-extension";
 
 @Component({
   selector: 'app-cash-flow-registry',
@@ -45,6 +48,7 @@ export class CashFlowRegistryComponent {
   cashFlowTypeList: GenericObject[] = [];
   searchCriteria: CustomerCashFlowRegistrySearchCriteria = new CustomerCashFlowRegistrySearchCriteria();
   searchCashFlowIsLoading: boolean = false;
+  downloadCashFlowIsLoading: boolean = false;
 
   constructor(
     private translate: TranslatePipe,
@@ -204,6 +208,23 @@ export class CashFlowRegistryComponent {
         error: error => {
           console.log(error);
           this.searchCashFlowIsLoading = false;
+        }
+      })
+    ).subscribe();
+  }
+
+  downloadCashFlow(): void {
+    this.downloadCashFlowIsLoading = true;
+    this.cashFlowRegistryService.download(this.searchCriteria).pipe(
+      tap({
+        next: (data: Blob): void => {
+          const blob: Blob = new Blob([data], { type: ContentType.SPREAD_SHEET });
+          FileSaver.saveAs(blob, this.translate.transform('CASH_FLOW_REGISTRY_FILE_NAME') + FileExtension.XLSX);
+          this.downloadCashFlowIsLoading = false;
+        },
+        error: err => {
+          console.error(err);
+          this.downloadCashFlowIsLoading = false;
         }
       })
     ).subscribe();

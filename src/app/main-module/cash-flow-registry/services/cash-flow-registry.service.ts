@@ -31,6 +31,16 @@ export class CashFlowRegistryService {
     return this.httpClient.get<ResultSetResponse<CashFlowRegistry>>(url, options);
   }
 
+  public download(searchCriteria: CustomerCashFlowRegistrySearchCriteria): Observable<Blob> {
+    const url: string = cashFlowRegistryEndpoints.download;
+    const options = {
+      params: buildHttpParamsFrom(searchCriteria),
+      responseType: 'blob'
+    };
+
+    return this.httpClient.get<Blob>(url, options);
+  }
+
   public create(categoryDetails: CashFlowRegistry): Observable<CashFlowRegistry>{
     const url: string = cashFlowRegistryEndpoints.create;
     return this.httpClient.post<CashFlowRegistry>(url, categoryDetails);

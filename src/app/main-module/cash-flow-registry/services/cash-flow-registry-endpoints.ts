@@ -9,4 +9,5 @@ export const cashFlowRegistryEndpoints = {
   delete: (uuid: string): string => baseUrl + `/customer-cash-flow-registry/${uuid}`,
   create: baseUrl + '/customer-cash-flow-registry',
   update: (uuid: string): string => baseUrl + `/customer-cash-flow-registry/${uuid}`,
+  download: baseUrl + '/customer-cash-flow-registry/download',
 }

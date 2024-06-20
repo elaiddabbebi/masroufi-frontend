@@ -225,5 +225,6 @@
   "KPI": "KPIs",
   "LANGUAGE": "Language",
   "CONFIGURE_TOOL_TIP": "Configure",
-  "DOWNLOAD_TOOL_TIP": "Download"
+  "DOWNLOAD_TOOL_TIP": "Download",
+  "CASH_FLOW_REGISTRY_FILE_NAME": "cash-flow-registry"
 }
