@@ -223,5 +223,7 @@
   "GAIN_PER_CATEGORY": "Gain per category",
   "GAIN_PER_MONTH": "Gain per month",
   "KPI": "KPIs",
-  "LANGUAGE": "Language"
+  "LANGUAGE": "Language",
+  "CONFIGURE_TOOL_TIP": "Configure",
+  "DOWNLOAD_TOOL_TIP": "Download"
 }

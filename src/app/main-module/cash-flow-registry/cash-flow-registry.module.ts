@@ -19,31 +19,33 @@ import {ToastModule} from "primeng/toast";
 import {TooltipModule} from "primeng/tooltip";
 import {CalendarModule} from "primeng/calendar";
 import { SkeletonModule } from 'primeng/skeleton';
+import {RippleModule} from "primeng/ripple";
 
 @NgModule({
   declarations: [
     CashFlowRegistryComponent
   ],
-  imports: [
-    CommonModule,
-    CashFlowRegistryRoutingModule,
-    AutoCompleteModule,
-    ButtonModule,
-    CheckboxModule,
-    ComponentsModule,
-    DialogModule,
-    InputTextModule,
-    InputTextareaModule,
-    PaginatorModule,
-    PipesModule,
-    ReactiveFormsModule,
-    SharedModule,
-    TableModule,
-    TagModule,
-    ToastModule,
-    TooltipModule,
-    CalendarModule,
-    SkeletonModule,
-  ]
+    imports: [
+        CommonModule,
+        CashFlowRegistryRoutingModule,
+        AutoCompleteModule,
+        ButtonModule,
+        CheckboxModule,
+        ComponentsModule,
+        DialogModule,
+        InputTextModule,
+        InputTextareaModule,
+        PaginatorModule,
+        PipesModule,
+        ReactiveFormsModule,
+        SharedModule,
+        TableModule,
+        TagModule,
+        ToastModule,
+        TooltipModule,
+        CalendarModule,
+        SkeletonModule,
+        RippleModule,
+    ]
 })
 export class CashFlowRegistryModule { }

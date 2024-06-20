@@ -32,6 +32,20 @@
         <div class="float-right">
           <button
             type="button" pButton pRipple
+            icon="pi pi-cog"
+            class="mr-2 m-r-10"
+            pTooltip="{{ 'CONFIGURE_TOOL_TIP' | translate }}"
+            tooltipPosition="top"
+          ></button>
+          <button
+            type="button" pButton pRipple
+            icon="pi pi-download"
+            class="mr-2 m-r-10"
+            pTooltip="{{ 'DOWNLOAD_TOOL_TIP' | translate }}"
+            tooltipPosition="top"
+          ></button>
+          <button
+            type="button" pButton pRipple
             icon="pi pi-plus"
             (click)="addCashFlow()"
             class="mr-2"
@@ -279,15 +293,18 @@
       {{ 'DELETE_CASH_FLOW_REGISTRY' | translate }}
     </span>
   </ng-template>
-  <p>
-    {{ 'DELETE_CASH_FLOW_REGISTRY_CONFIRM_Q' | translate }}
-    <span style="font-weight: bold;">{{ ' ' + currentCashFlowName }}</span> ?
-  </p>
+  <ng-template pTemplate="body">
+    <p>
+      {{ 'DELETE_CASH_FLOW_REGISTRY_CONFIRM_Q' | translate }}
+      <span style="font-weight: bold;">{{ ' ' + currentCashFlowName }}</span> ?
+    </p>
+  </ng-template>
   <ng-template pTemplate="footer">
     <app-confirm-cancel-footer
       (onCancel)="hideCashFlowCategoryDialog()"
       (onConfirm)="confirmDeleteCashFlow($event)"
       [confirmIsLoading]="deleteIsLoading"
+      styleClass="p-b-10 p-r-10"
     ></app-confirm-cancel-footer>
   </ng-template>
 </p-dialog>
