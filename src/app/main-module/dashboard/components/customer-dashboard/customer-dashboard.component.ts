@@ -6,12 +6,18 @@ import {ExpenseRevenueEvolutionData} from "../../types/expense-revenue-evolution
 import {Month} from "../../../../shared/enums/month";
 import {CssRootVariables} from "../../../../shared/constants/css-root-variables";
 import {today} from "../../../../shared/utils/utils-functions";
+import {SpaceSeparatorPipe} from "../../../../shared/pipes/space-separator.pipe";
+import {DecimalPipe} from "@angular/common";
 
 @Component({
   selector: 'app-customer-dashboard',
   templateUrl: './customer-dashboard.component.html',
   styleUrls: ['./customer-dashboard.component.css'],
-  providers: [TranslatePipe]
+  providers: [
+    TranslatePipe,
+    SpaceSeparatorPipe,
+    DecimalPipe
+  ]
 })
 export class CustomerDashboardComponent implements OnInit {
 
@@ -38,11 +44,14 @@ export class CustomerDashboardComponent implements OnInit {
 
   expenseEvolutionData: any;
   expenseRevenueEvolutionData: any;
-  options: any;
+  expenseEvolutionOptions: any;
+  expenseRevenueEvolutionOptions: any;
 
   constructor(
     private dashboardService: DashboardService,
     private translatePipe: TranslatePipe,
+    private spaceSeparatorPipe: SpaceSeparatorPipe,
+    private numberPipe: DecimalPipe,
   ) {}
 
   ngOnInit(): void {
@@ -205,7 +214,7 @@ export class CustomerDashboardComponent implements OnInit {
     const textColorSecondary: string = documentStyle.getPropertyValue(CssRootVariables.TEXT_COLOR_SECONDARY);
     const surfaceBorder: string = documentStyle.getPropertyValue('--surface-border');
 
-    this.options = {
+    this.expenseEvolutionOptions = {
       indexAxis: 'x',
       maintainAspectRatio: false,
       aspectRatio: 0.65,
@@ -218,6 +227,50 @@ export class CustomerDashboardComponent implements OnInit {
         datalabels: {
           formatter: (value: number) => {
             return null;
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: textColorSecondary
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: true
+          }
+        },
+        y: {
+          ticks: {
+            color: textColorSecondary
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: true
+          }
+        }
+      }
+    };
+    this.expenseRevenueEvolutionOptions = {
+      indexAxis: 'x',
+      maintainAspectRatio: false,
+      aspectRatio: 0.65,
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor
+          }
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          color: documentStyle.getPropertyValue(CssRootVariables.PRIMARY_COLOR_900),
+          font: {
+            weight: 'bold'
+          },
+          formatter: (value: number): string | null => {
+            const amount: string | null = this.spaceSeparatorPipe.transform(this.numberPipe.transform(value, '.0-0'));
+            return amount !== '0' ? amount + ' ' + this.translatePipe.transform('TND_CURRENCY') : null;
           }
         }
       },
